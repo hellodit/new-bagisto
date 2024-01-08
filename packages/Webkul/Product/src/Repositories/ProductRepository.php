@@ -213,6 +213,8 @@ class ProductRepository extends Repository
             $params['name'] = $params['search'];
         }
 
+
+
         $query = $this->with([
             'attribute_family',
             'images',
@@ -242,6 +244,11 @@ class ProductRepository extends Repository
             if (! empty($params['type'])) {
                 $qb->where('products.type', $params['type']);
             }
+
+            if (! empty($params['location_id'])) {
+                $qb->where('products.location_id', $params['location_id']);
+            }
+
 
             /**
              * Filter query by price.

@@ -5,6 +5,7 @@ namespace Hellodit\CustomerProduct\Http\Controllers\Shop;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Event;
+use Illuminate\Support\Str;
 use Webkul\Admin\Http\Resources\AttributeResource;
 use Webkul\Attribute\Repositories\AttributeFamilyRepository;
 use Webkul\Core\Rules\Slug;
@@ -127,6 +128,7 @@ class CustomerProductController extends Controller
         $data['channel'] = null;
         $data['locale'] = null;
         $data['visible_individually'] = true;
+        $data['url_key'] = Str::slug($data['name'],'-');
 
         $product = $this->productRepository->update($data, $id);
         Event::dispatch('catalog.product.update.after', $product);

@@ -11,6 +11,8 @@ use Webkul\Attribute\Repositories\AttributeFamilyRepository;
 use Webkul\Core\Rules\Slug;
 use Webkul\Inventory\Repositories\InventorySourceRepository;
 use Webkul\Product\Helpers\ProductType;
+use Webkul\Product\Models\Product;
+use Webkul\Product\Models\ProductFlat;
 use Webkul\Product\Repositories\ProductAttributeValueRepository;
 use Webkul\Product\Repositories\ProductDownloadableLinkRepository;
 use Webkul\Product\Repositories\ProductDownloadableSampleRepository;
@@ -123,10 +125,9 @@ class CustomerProductController extends Controller
     public function update(Request $request, $id)
     {
         Event::dispatch('catalog.product.update.before', $id);
-
         $data = request()->all();
-        $data['channel'] = null;
-        $data['locale'] = null;
+        $data['channel'] = core()->getCurrentChannel()->code;
+        $data['locale'] = core()->getCurrentLocale()->code;
         $data['visible_individually'] = true;
         $data['url_key'] = Str::slug($data['name'],'-');
 

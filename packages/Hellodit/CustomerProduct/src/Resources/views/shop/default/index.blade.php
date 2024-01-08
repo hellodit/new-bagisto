@@ -229,6 +229,10 @@
                             <span class="icon-cart text-[24px] ltr:ml-[4px] rtl:mr-[4px] p-[6px] rounded-[6px] cursor-pointer transition-all hover:bg-gray-200 dark:hover:bg-gray-800">
                             </span>
                         </a>
+                        <a :href=`{{route('shop.product_or_category.index','')}}/${record.url_key}`>
+                            <span class="icon-eye text-[24px] ltr:ml-[4px] rtl:mr-[4px] p-[6px] rounded-[6px] cursor-pointer transition-all hover:bg-gray-200 dark:hover:bg-gray-800">
+                            </span>
+                        </a>
 
                     </div>
                 </div>

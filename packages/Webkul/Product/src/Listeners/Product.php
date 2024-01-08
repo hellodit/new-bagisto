@@ -54,7 +54,6 @@ class Product
         $this->flatIndexer->refresh($product);
 
         $productIds = $this->getAllRelatedProductIds($product);
-
         Bus::chain([
             new UpdateCreateInventoryIndexJob($productIds),
             new UpdateCreatePriceIndexJob($productIds),

@@ -7,7 +7,15 @@ return [
         'route' => 'shop.customers.account.profile.index',
         'icon'  => '',
         'sort'  => 1,
-    ], [
+    ],
+    [
+        'key' => 'account.customerproduct',
+        'name' => 'Product',
+        'route' => 'shop.customer_product.index',
+        'icon' => 'icon-cart',
+        'sort' => 2,
+    ],
+    [
         'key'   => 'account.profile',
         'name'  => 'shop::app.layouts.profile',
         'route' => 'shop.customers.account.profile.index',

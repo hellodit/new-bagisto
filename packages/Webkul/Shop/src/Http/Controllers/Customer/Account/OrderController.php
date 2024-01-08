@@ -5,7 +5,7 @@ namespace Webkul\Shop\Http\Controllers\Customer\Account;
 use Webkul\Core\Traits\PDFHandler;
 use Webkul\Sales\Repositories\InvoiceRepository;
 use Webkul\Sales\Repositories\OrderRepository;
-use Webkul\Shop\DataGrids\OrderDataGrid;
+use Hellodit\CustomerProduct\DataGrinds\OrderDataGrid;
 use Webkul\Shop\Http\Controllers\Controller;
 
 class OrderController extends Controller

@@ -27,7 +27,7 @@ use Webkul\Product\Facades\ProductImage;
 class ProductController extends Controller
 {
     /*
-    * Using const variable for status 
+    * Using const variable for status
     */
     const ACTIVE_STATUS = 1;
 
@@ -278,12 +278,12 @@ class ProductController extends Controller
         try {
             foreach ($productIds as $productId) {
                 $product = $this->productRepository->find($productId);
-    
+
                 if (isset($product)) {
                     Event::dispatch('catalog.product.delete.before', $productId);
-    
+
                     $this->productRepository->delete($productId);
-    
+
                     Event::dispatch('catalog.product.delete.after', $productId);
                 }
             }
@@ -319,7 +319,7 @@ class ProductController extends Controller
 
             Event::dispatch('catalog.product.update.after', $product);
         }
-        
+
         return new JsonResponse([
             'message' => trans('admin::app.catalog.products.index.datagrid.mass-update-success')
         ], 200);

@@ -37,6 +37,26 @@
 
         <style>
             {!! core()->getConfigData('general.content.custom_scripts.custom_css') !!}
+
+
+            .label-active-store{
+                color: white;
+                padding: 3px;
+                font-size: 13px;
+                align-content: center;
+                background-color: #04AA6D;
+                border-radius: 5px;
+
+            }
+            .label-info-store{
+                font-size: 13px;
+                align-content: center;
+                border-radius: 5px;
+                padding: 3px;
+                background-color: #e7e7e7;
+                color: black;
+
+            }
         </style>
 
         {!! view_render_event('bagisto.shop.layout.head') !!}

@@ -157,18 +157,6 @@
 
 
 
-                {{-- Reviews Tab --}}
-                <x-shop::tabs.item
-                    class="container mt-[60px] !p-0 max-1180:hidden"
-                    :title="trans('shop::app.products.view.declaimer')"
-                    :is-selected="false"
-                >
-                    @include('shop::products.view.declaimer')
-
-                </x-shop::tabs.item>
-
-
-
             </x-shop::tabs>
         </div>
 

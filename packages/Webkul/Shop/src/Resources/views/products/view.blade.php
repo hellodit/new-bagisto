@@ -142,6 +142,33 @@
                 >
                     @include('shop::products.view.reviews')
                 </x-shop::tabs.item>
+
+
+                {{-- Reviews Tab --}}
+                <x-shop::tabs.item
+                    class="container mt-[60px] !p-0 max-1180:hidden"
+                    :title="trans('shop::app.products.view.comments')"
+                    :is-selected="false"
+                >
+                    @include('shop::products.view.comments')
+
+
+                </x-shop::tabs.item>
+
+
+
+                {{-- Reviews Tab --}}
+                <x-shop::tabs.item
+                    class="container mt-[60px] !p-0 max-1180:hidden"
+                    :title="trans('shop::app.products.view.declaimer')"
+                    :is-selected="false"
+                >
+                    @include('shop::products.view.declaimer')
+
+                </x-shop::tabs.item>
+
+
+
             </x-shop::tabs>
         </div>
 

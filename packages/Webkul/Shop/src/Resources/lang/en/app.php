@@ -511,6 +511,8 @@ return [
             'related-product-title'  => 'Related Products',
             'tax-inclusive'          => 'Inclusive of all taxes',
             'up-sell-title'          => 'We found other products you might like!',
+            'comments' => 'Comments',
+            'declaimer' => 'Declaimer'
         ],
 
         'type' => [

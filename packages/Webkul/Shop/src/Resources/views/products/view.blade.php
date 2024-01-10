@@ -11,8 +11,7 @@
 
 {{-- SEO Meta Content --}}
 @push('meta')
-    <meta name="description"
-          content="{{ trim($product->meta_description) != "" ? $product->meta_description : \Illuminate\Support\Str::limit(strip_tags($product->description), 120, '') }}"/>
+    <meta name="description" content="{{ trim($product->meta_description) != "" ? $product->meta_description : \Illuminate\Support\Str::limit(strip_tags($product->description), 120, '') }}"/>
 
     <meta name="keywords" content="{{ $product->meta_keywords }}"/>
 
@@ -24,25 +23,25 @@
 
     <?php $productBaseImage = product_image()->getProductBaseImage($product); ?>
 
-    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:card" content="summary_large_image" />
 
-    <meta name="twitter:title" content="{{ $product->name }}"/>
+    <meta name="twitter:title" content="{{ $product->name }}" />
 
-    <meta name="twitter:description" content="{!! htmlspecialchars(trim(strip_tags($product->description))) !!}"/>
+    <meta name="twitter:description" content="{!! htmlspecialchars(trim(strip_tags($product->description))) !!}" />
 
-    <meta name="twitter:image:alt" content=""/>
+    <meta name="twitter:image:alt" content="" />
 
-    <meta name="twitter:image" content="{{ $productBaseImage['medium_image_url'] }}"/>
+    <meta name="twitter:image" content="{{ $productBaseImage['medium_image_url'] }}" />
 
-    <meta property="og:type" content="og:product"/>
+    <meta property="og:type" content="og:product" />
 
-    <meta property="og:title" content="{{ $product->name }}"/>
+    <meta property="og:title" content="{{ $product->name }}" />
 
-    <meta property="og:image" content="{{ $productBaseImage['medium_image_url'] }}"/>
+    <meta property="og:image" content="{{ $productBaseImage['medium_image_url'] }}" />
 
-    <meta property="og:description" content="{!! htmlspecialchars(trim(strip_tags($product->description))) !!}"/>
+    <meta property="og:description" content="{!! htmlspecialchars(trim(strip_tags($product->description))) !!}" />
 
-    <meta property="og:url" content="{{ route('shop.product_or_category.index', $product->url_key) }}"/>
+    <meta property="og:url" content="{{ route('shop.product_or_category.index', $product->url_key) }}" />
 @endPush
 
 {{-- Page Layout --}}
@@ -276,8 +275,7 @@
                                 @include('shop::products.view.gallery')
 
                                 <!-- Details -->
-                                <div
-                                    class="max-w-[590px] relative max-1180:w-full max-1180:max-w-full max-1180:px-[20px]">
+                                <div class="max-w-[590px] relative max-1180:w-full max-1180:max-w-full max-1180:px-[20px]">
                                     {!! view_render_event('bagisto.shop.products.name.before', ['product' => $product]) !!}
 
                                     <div class="flex gap-[15px] justify-between">
@@ -332,6 +330,11 @@
                                     </span>
                                     </p>
 
+                                    {!! view_render_event('bagisto.shop.products.price.after', ['product' => $product]) !!}
+
+                                    {!! view_render_event('bagisto.shop.products.short_description.before', ['product' => $product]) !!}
+
+
                                     @if($product->author)
                                         <p>
                                             <span class="font-bold">Author:</span>
@@ -352,87 +355,69 @@
                                             </a>
 
                                         </p>
-                                        {!! view_render_event('bagisto.shop.products.price.after', ['product' => $product]) !!}
 
-                                        {!! view_render_event('bagisto.shop.products.short_description.before', ['product' => $product]) !!}
-
+                                    @endif
                                         <p class="mt-[25px] text-[18px] text-[#6E6E6E] max-sm:text-[14px] max-sm:mt-[15px]">
-                                            {!! $product->short_description !!}
-                                        </p>
+                                        {!! $product->short_description !!}
+                                    </p>
 
-                                        {!! view_render_event('bagisto.shop.products.short_description.after', ['product' => $product]) !!}
+                                    {!! view_render_event('bagisto.shop.products.short_description.after', ['product' => $product]) !!}
 
-                                        @include('shop::products.view.types.configurable')
+                                    @include('shop::products.view.types.configurable')
 
-                                        @include('shop::products.view.types.grouped')
+                                    @include('shop::products.view.types.grouped')
 
-                                        @include('shop::products.view.types.bundle')
+                                    @include('shop::products.view.types.bundle')
 
-                                        @include('shop::products.view.types.downloadable')
-
-
-                                        <!-- Product Actions and Qunatity Box -->
-                                        <div class="flex gap-[15px] max-w-[470px] mt-[30px]">
-
-                                            {!! view_render_event('bagisto.shop.products.view.quantity.before', ['product' => $product]) !!}
-
-                                            @if ($product->getTypeInstance()->showQuantityBox())
-                                                <x-shop::quantity-changer
-                                                    name="quantity"
-                                                    value="1"
-                                                    class="gap-x-[16px] py-[15px] px-[26px] rounded-[12px]"
-                                                >
-                                                </x-shop::quantity-changer>
-                                            @endif
-
-                                            {!! view_render_event('bagisto.shop.products.view.quantity.after', ['product' => $product]) !!}
-
-                                            <!-- Add To Cart Button -->
-                                            {!! view_render_event('bagisto.shop.products.view.add_to_cart.before', ['product' => $product]) !!}
+                                    @include('shop::products.view.types.downloadable')
 
 
-                                            @endif
+                                    <!-- Product Actions and Qunatity Box -->
+                                    <div class="flex gap-[15px] max-w-[470px] mt-[30px]">
 
-                                            <a href="" class="secondary-button w-full max-w-full">
+                                        @if($product->author)
+
+                                            <a href="{{$product->author->phone}}" target="_blank" class="secondary-button w-full max-w-full">
                                                 Gaskeun (Send WhatsApp)
                                             </a>
-
-                                            {!! view_render_event('bagisto.shop.products.view.add_to_cart.after', ['product' => $product]) !!}
-                                        </div>
-
-                                        <!-- Buy Now Button -->
-                                        {!! view_render_event('bagisto.shop.products.view.buy_now.before', ['product' => $product]) !!}
-
-                                        @if (core()->getConfigData('catalog.products.storefront.buy_now_button_display'))
-                                            <button
-                                                type="submit"
-                                                class="primary-button w-full max-w-[470px] mt-[20px]"
-                                                @click="is_buy_now=1;"
-                                                {{ ! $product->isSaleable(1) ? 'disabled' : '' }}
-                                            >
-                                                @lang('shop::app.products.view.buy-now')
-                                            </button>
                                         @endif
 
-                                        {!! view_render_event('bagisto.shop.products.view.buy_now.after', ['product' => $product]) !!}
+                                        {!! view_render_event('bagisto.shop.products.view.add_to_cart.after', ['product' => $product]) !!}
+                                    </div>
 
-                                        <!-- Share Buttons -->
-                                        <div class="flex gap-[35px] mt-[40px] max-sm:flex-wrap max-sm:justify-center">
-                                            {!! view_render_event('bagisto.shop.products.view.compare.before', ['product' => $product]) !!}
+                                    <!-- Buy Now Button -->
+                                    {!! view_render_event('bagisto.shop.products.view.buy_now.before', ['product' => $product]) !!}
 
-                                            <div
-                                                class="flex gap-[10px] justify-center items-center cursor-pointer"
-                                                @click="is_buy_now=0; addToCompare({{ $product->id }})"
-                                            >
-                                                @if (core()->getConfigData('general.content.shop.compare_option'))
-                                                    <span class="icon-compare text-[24px]"></span>
+                                    @if (core()->getConfigData('catalog.products.storefront.buy_now_button_display'))
+                                        <button
+                                            type="submit"
+                                            class="primary-button w-full max-w-[470px] mt-[20px]"
+                                            @click="is_buy_now=1;"
+                                            {{ ! $product->isSaleable(1) ? 'disabled' : '' }}
+                                        >
+                                            @lang('shop::app.products.view.buy-now')
+                                        </button>
+                                    @endif
 
-                                                    @lang('shop::app.products.view.compare')
-                                                @endif
-                                            </div>
+                                    {!! view_render_event('bagisto.shop.products.view.buy_now.after', ['product' => $product]) !!}
 
-                                            {!! view_render_event('bagisto.shop.products.view.compare.after', ['product' => $product]) !!}
+                                    <!-- Share Buttons -->
+                                    <div class="flex gap-[35px] mt-[40px] max-sm:flex-wrap max-sm:justify-center">
+                                        {!! view_render_event('bagisto.shop.products.view.compare.before', ['product' => $product]) !!}
+
+                                        <div
+                                            class="flex gap-[10px] justify-center items-center cursor-pointer"
+                                            @click="is_buy_now=0; addToCompare({{ $product->id }})"
+                                        >
+                                            @if (core()->getConfigData('general.content.shop.compare_option'))
+                                                <span class="icon-compare text-[24px]"></span>
+
+                                                @lang('shop::app.products.view.compare')
+                                            @endif
                                         </div>
+
+                                        {!! view_render_event('bagisto.shop.products.view.compare.after', ['product' => $product]) !!}
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -469,23 +454,16 @@
                                     if (response.data.message) {
                                         this.$emitter.emit('update-mini-cart', response.data.data);
 
-                                        this.$emitter.emit('add-flash', {
-                                            type: 'success',
-                                            message: response.data.message
-                                        });
+                                        this.$emitter.emit('add-flash', { type: 'success', message: response.data.message });
 
                                         if (response.data.redirect) {
-                                            window.location.href = response.data.redirect;
+                                            window.location.href= response.data.redirect;
                                         }
                                     } else {
-                                        this.$emitter.emit('add-flash', {
-                                            type: 'warning',
-                                            message: response.data.data.message
-                                        });
+                                        this.$emitter.emit('add-flash', { type: 'warning', message: response.data.data.message });
                                     }
                                 })
-                                .catch(error => {
-                                });
+                                .catch(error => {});
                         },
 
                         addToWishlist() {
@@ -494,15 +472,11 @@
                                     product_id: "{{ $product->id }}"
                                 })
                                     .then(response => {
-                                        this.isWishlist = !this.isWishlist;
+                                        this.isWishlist = ! this.isWishlist;
 
-                                        this.$emitter.emit('add-flash', {
-                                            type: 'success',
-                                            message: response.data.data.message
-                                        });
+                                        this.$emitter.emit('add-flash', { type: 'success', message: response.data.data.message });
                                     })
-                                    .catch(error => {
-                                    });
+                                    .catch(error => {});
                             } else {
                                 window.location.href = "{{ route('shop.customer.session.index')}}";
                             }
@@ -517,25 +491,16 @@
                                     'product_id': productId
                                 })
                                     .then(response => {
-                                        this.$emitter.emit('add-flash', {
-                                            type: 'success',
-                                            message: response.data.data.message
-                                        });
+                                        this.$emitter.emit('add-flash', { type: 'success', message: response.data.data.message });
                                     })
                                     .catch(error => {
                                         if ([400, 422].includes(error.response.status)) {
-                                            this.$emitter.emit('add-flash', {
-                                                type: 'warning',
-                                                message: error.response.data.data.message
-                                            });
+                                            this.$emitter.emit('add-flash', { type: 'warning', message: error.response.data.data.message });
 
                                             return;
                                         }
 
-                                        this.$emitter.emit('add-flash', {
-                                            type: 'error',
-                                            message: error.response.data.message
-                                        });
+                                        this.$emitter.emit('add-flash', { type: 'error', message: error.response.data.message});
                                     });
 
                                 return;
@@ -547,28 +512,19 @@
                             let existingItems = this.getStorageValue(this.getCompareItemsStorageKey()) ?? [];
 
                             if (existingItems.length) {
-                                if (!existingItems.includes(productId)) {
+                                if (! existingItems.includes(productId)) {
                                     existingItems.push(productId);
 
                                     this.setStorageValue(this.getCompareItemsStorageKey(), existingItems);
 
-                                    this.$emitter.emit('add-flash', {
-                                        type: 'success',
-                                        message: "@lang('shop::app.products.view.add-to-compare')"
-                                    });
+                                    this.$emitter.emit('add-flash', { type: 'success', message: "@lang('shop::app.products.view.add-to-compare')" });
                                 } else {
-                                    this.$emitter.emit('add-flash', {
-                                        type: 'warning',
-                                        message: "@lang('shop::app.products.view.already-in-compare')"
-                                    });
+                                    this.$emitter.emit('add-flash', { type: 'warning', message: "@lang('shop::app.products.view.already-in-compare')" });
                                 }
                             } else {
                                 this.setStorageValue(this.getCompareItemsStorageKey(), [productId]);
 
-                                this.$emitter.emit('add-flash', {
-                                    type: 'success',
-                                    message: "@lang('shop::app.products.view.add-to-compare')"
-                                });
+                                this.$emitter.emit('add-flash', { type: 'success', message: "@lang('shop::app.products.view.add-to-compare')" });
                             }
                         },
 

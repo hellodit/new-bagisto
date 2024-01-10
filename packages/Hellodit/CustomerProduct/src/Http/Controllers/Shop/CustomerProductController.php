@@ -9,6 +9,7 @@ use Illuminate\Support\Str;
 use Webkul\Admin\Http\Resources\AttributeResource;
 use Webkul\Attribute\Repositories\AttributeFamilyRepository;
 use Webkul\Core\Rules\Slug;
+use Webkul\Customer\Models\Customer;
 use Webkul\Inventory\Repositories\InventorySourceRepository;
 use Webkul\Product\Helpers\ProductType;
 use Webkul\Product\Models\Product;
@@ -136,5 +137,12 @@ class CustomerProductController extends Controller
 
         session()->flash('success', trans('admin::app.catalog.products.update-success'));
         return redirect()->route('shop.customer_product.index', ['id' => $product->id]);
+    }
+
+
+    public function information($user_id)
+    {
+       $author = Customer::whereId($user_id)->with('products')->firstOrFail();
+       return view("customerproduct::shop.default.information", compact('author'));
     }
 }

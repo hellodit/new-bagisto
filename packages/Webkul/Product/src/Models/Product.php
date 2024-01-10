@@ -3,6 +3,7 @@
 namespace Webkul\Product\Models;
 
 use Exception;
+use Hellodit\Location\Models\Location;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -15,6 +16,7 @@ use Webkul\Attribute\Models\AttributeFamilyProxy;
 use Webkul\Attribute\Models\AttributeProxy;
 use Webkul\Attribute\Repositories\AttributeRepository;
 use Webkul\Category\Models\CategoryProxy;
+use Webkul\Customer\Models\Customer;
 use Webkul\Inventory\Models\InventorySourceProxy;
 use Webkul\CatalogRule\Models\CatalogRuleProductPriceProxy;
 use Webkul\Product\Contracts\Product as ProductContract;
@@ -65,6 +67,18 @@ class Product extends Model implements ProductContract
     public function product_flats(): HasMany
     {
         return $this->hasMany(ProductFlatProxy::modelClass(), 'product_id');
+    }
+
+
+    public function author(): BelongsTo
+    {
+        return $this->belongsTo(Customer::class,'customer_id');
+    }
+
+
+    public function location(): BelongsTo
+    {
+        return $this->belongsTo(Location::class,'location_id');
     }
 
     /**

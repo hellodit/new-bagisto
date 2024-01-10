@@ -223,11 +223,14 @@ class ProductRepository extends Repository
             'price_indices',
             'inventory_indices',
             'reviews',
+            'author',
+            'location'
         ])->scopeQuery(function ($query) use ($params) {
             $prefix = DB::getTablePrefix();
 
             $qb = $query->distinct()
-                ->select('products.*')
+                ->select('products.*','customers.phone')
+                ->leftJoin('customers','customers.id','=','products.customer_id')
                 ->leftJoin('products as variants', DB::raw('COALESCE(' . $prefix . 'variants.parent_id, ' . $prefix . 'variants.id)'), '=', 'products.id')
                 ->leftJoin('product_price_indices', function ($join) {
                     $customerGroup = $this->customerRepository->getCurrentGroup();
@@ -247,6 +250,11 @@ class ProductRepository extends Repository
 
             if (! empty($params['location_id'])) {
                 $qb->where('products.location_id', $params['location_id']);
+            }
+
+
+            if (! empty($params['customer_id'])) {
+                $qb->where('products.customer_id', $params['customer_id']);
             }
 
 

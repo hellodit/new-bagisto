@@ -12,6 +12,7 @@ use Webkul\Checkout\Models\CartProxy;
 use Webkul\Core\Models\SubscribersListProxy;
 use Webkul\Customer\Contracts\Customer as CustomerContract;
 use Webkul\Customer\Database\Factories\CustomerFactory;
+use Webkul\Product\Models\Product;
 use Webkul\Shop\Mail\Customer\ResetPasswordNotification;
 use Webkul\Product\Models\ProductReviewProxy;
 use Webkul\Sales\Models\OrderProxy;
@@ -86,6 +87,12 @@ class Customer extends Authenticatable implements CustomerContract
     protected static function newFactory()
     {
         return CustomerFactory::new();
+    }
+
+
+    public function products()
+    {
+        return $this->hasMany(Product::class,'customer_id');
     }
 
     /**

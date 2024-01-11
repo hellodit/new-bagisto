@@ -1,6 +1,7 @@
 <?php
 
 
+use Hellodit\Partner\Http\Controllers\Admin\PartnerAddressController;
 use Hellodit\Partner\Http\Controllers\Admin\PartnerController;
 use Illuminate\Support\Facades\Route;
 
@@ -29,6 +30,35 @@ Route::group([
 
     Route::delete('{partner}', [PartnerController::class, 'destroy'])
         ->name('admin.partner.destroy');
+
+
+});
+
+
+Route::group([
+    'prefix' => 'admin/partner-address',
+    'middleware' => ['web', 'admin']
+], function () {
+    Route::get('', [PartnerAddressController::class, 'index'])
+        ->name('admin.partner_address.index');
+
+    Route::get('create', [PartnerAddressController::class, 'create'])
+        ->name('admin.partner_address.create');
+
+    Route::post('partner', [PartnerAddressController::class, 'store'])
+        ->name('admin.partner_address.store');
+
+    Route::get('{partner}', [PartnerAddressController::class, 'show'])
+        ->name('admin.partner_address.show');
+
+    Route::get('{partner}/edit', [PartnerAddressController::class, 'edit'])
+        ->name('admin.partner_address.edit');
+
+    Route::put('{partner}', [PartnerAddressController::class, 'update'])
+        ->name('admin.partner_address.update');
+
+    Route::delete('{partner}', [PartnerAddressController::class, 'destroy'])
+        ->name('admin.partner_address.destroy');
 
 
 });

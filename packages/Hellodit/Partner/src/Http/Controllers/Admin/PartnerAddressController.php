@@ -2,7 +2,9 @@
 
 namespace Hellodit\Partner\Http\Controllers\Admin;
 
+use Hellodit\Partner\DataGrids\PartnerAddressDataGrid;
 use Hellodit\Partner\DataGrids\PartnerDataGrid;
+use Hellodit\Partner\Models\PartnerAddress;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
@@ -44,10 +46,11 @@ class PartnerAddressController extends Controller
     public function index()
     {
         if (request()->ajax()) {
-            return app(PartnerDataGrid::class)->toJson();
+            return app(PartnerAddressDataGrid::class)->toJson();
         }
 
-        return view($this->_config['view']);
+        return view('partner::admin.address.index');
+
     }
 
     /**
@@ -57,7 +60,7 @@ class PartnerAddressController extends Controller
      */
     public function create()
     {
-        return view($this->_config['view']);
+        return view('partner::admin.address.form');
     }
 
     /**
@@ -68,50 +71,30 @@ class PartnerAddressController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'language' => 'required',
-            'solution' => 'required',
-            'title' => 'required',
-            'last_name' => 'required',
-            'first_name' => 'required',
+            'partner_id' => 'required',
+            'company' => 'required',
+            'company_id' => 'required',
             'street' => 'required',
             'zip_code' => 'required',
             'city' => 'required',
             'country' => 'required',
             'state' => 'required',
-            'telephone' => 'required',
-            'mobile' => 'required',
-            'famille' => 'required',
-            'email' => 'required',
-            'website' => 'required',
-            'company' => 'required',
-            'company_id' => 'required',
         ]);
 
         $data = $request->only([
-            'language',
-            'solution',
-            'title',
-            'last_name',
-            'first_name',
+            'partner_id',
+            'company',
+            'company_id',
             'street',
             'zip_code',
             'city',
             'country',
             'state',
-            'telephone',
-            'mobile',
-            'famille',
-            'email',
-            'website',
-            'company',
-            'company_id',
-            'image',
-            'description'
         ]);
 
-        $this->partnerRepository->create($data);
+        PartnerAddress::create($data);
 
-        return redirect()->route('admin.partner.index')->with('success',
+        return redirect()->route('admin.partner_address.index')->with('success',
             trans('partner::app.admin.create-success'));
 
     }
@@ -146,7 +129,8 @@ class PartnerAddressController extends Controller
      */
     public function destroy($id)
     {
-        $this->partnerRepository->delete($id);
+        $partner_address = PartnerAddress::whereId($id)->firstOrfail();
+        $partner_address->delete();
 
         return new JsonResponse([
             'message' => trans('partner::app.admin.delete-success'),

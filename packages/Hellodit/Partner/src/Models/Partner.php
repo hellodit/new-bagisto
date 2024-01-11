@@ -8,4 +8,33 @@ use Hellodit\Partner\Contracts\Partner as PartnerContract;
 class Partner extends Model implements PartnerContract
 {
     protected $fillable = [];
+
+
+
+    public function setImageAttribute($value)
+    {
+        $attributeName = "image";
+        $folderPath = "partner-image";
+        if ($value) {
+            $value = $value[0];
+            $imageName = time() . '_' . $value->getClientOriginalName();
+            $value->storeAs($folderPath, $imageName, 'public');
+            $this->attributes[$attributeName] = $imageName;
+        }
+    }
+
+
+    public function imageAssets()
+    {
+        $value =  $this->attributes['image'];
+        if ($value){
+            return asset("storage/partner-image/{$value}");
+        }
+
+        return  "https://placehold.co/400";
+    }
+    public function address()
+    {
+        return $this->hasMany(PartnerAddress::class,'partner_id');
+    }
 }

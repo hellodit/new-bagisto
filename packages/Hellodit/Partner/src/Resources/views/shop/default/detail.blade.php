@@ -117,67 +117,70 @@
                 </div>
 
             </div>
-            <div class="grid grid-cols-2 gap-4 mt-[14px] mb-[25px] max-xl:flex-wrap">
-                <div class="flex flex-col gap-[8px] flex-1 max-xl:flex-auto">
-                    <p class="text-[25px] text-gray-800 dark:text-white font-semibold mb-[16px]"> Address </p>
-                    <div class="mb-[10px] flex items-center">
-                        <p class="font-bold m-0"> Street</p>
-                        <p class="font-medium m-0 ml-[10px]">
-                            <span class="underline-text">{{$partner->street ?? '-'}}</span>
-                        </p>
+            @foreach($partner->address as $partner_address)
+                <div class="grid grid-cols-2 gap-4 mt-[14px] mb-[25px] max-xl:flex-wrap">
+                    <div class="flex flex-col gap-[8px] flex-1 max-xl:flex-auto">
+                        <p class="text-[25px] text-gray-800 dark:text-white font-semibold mb-[16px]"> Address </p>
+                        <div class="mb-[10px] flex items-center">
+                            <p class="font-bold m-0"> Street</p>
+                            <p class="font-medium m-0 ml-[10px]">
+                                <span class="underline-text">{{$partner_address->street ?? '-'}}</span>
+                            </p>
+                        </div>
+
+                        <div class="mb-[10px] flex items-center">
+                            <p class="font-bold m-0"> Zip code</p>
+                            <p class="font-medium m-0 ml-[10px]">
+                                <span class="underline-text">{{$partner_address->zip_code  ?? '-'}}</span>
+                            </p>
+                        </div>
+
+                        <div class="mb-[10px] flex items-center">
+                            <p class="font-bold m-0"> City</p>
+                            <p class="font-medium m-0 ml-[10px]">
+                                <span class="underline-text">{{$partner_address->city  ?? '-'}}</span>
+                            </p>
+                        </div>
+
+
+                        <div class="mb-[10px] flex items-center">
+                            <p class="font-bold m-0"> Country</p>
+                            <p class="font-medium m-0 ml-[10px]">
+                                <span class="underline-text">{{$partner_address->country  ?? '-'}}</span>
+                            </p>
+                        </div>
+
+
+                        <div class="mb-[10px] flex items-center">
+                            <p class="font-bold m-0"> State</p>
+                            <p class="font-medium m-0 ml-[10px]">
+                                <span class="underline-text">{{$partner_address->state  ?? '-'}}</span>
+                            </p>
+                        </div>
+
                     </div>
 
-                    <div class="mb-[10px] flex items-center">
-                        <p class="font-bold m-0"> Zip code</p>
-                        <p class="font-medium m-0 ml-[10px]">
-                            <span class="underline-text">{{$partner->zip_code  ?? '-'}}</span>
-                        </p>
+                    <div class="flex flex-col gap-[8px] flex-1 max-xl:flex-auto">
+                        <p class="text-[25px] text-gray-800 dark:text-white font-semibold mb-[16px]"> Company Detail </p>
+                        <div class="mb-[10px] flex items-center">
+                            <p class="font-bold m-0"> Company</p>
+                            <p class="font-medium m-0 ml-[10px]">
+                                <span class="underline-text">{{$partner_address->company  ?? '-'}}</span>
+                            </p>
+                        </div>
+
+                        <div class="mb-[10px] flex items-center">
+                            <p class="font-bold m-0"> ID </p>
+                            <p class="font-medium m-0 ml-[10px]">
+                                <span class="underline-text">{{$partner_address->company_id  ?? '-'}}</span>
+                            </p>
+                        </div>
+
+
                     </div>
-
-                    <div class="mb-[10px] flex items-center">
-                        <p class="font-bold m-0"> City</p>
-                        <p class="font-medium m-0 ml-[10px]">
-                            <span class="underline-text">{{$partner->city  ?? '-'}}</span>
-                        </p>
-                    </div>
-
-
-                    <div class="mb-[10px] flex items-center">
-                        <p class="font-bold m-0"> Country</p>
-                        <p class="font-medium m-0 ml-[10px]">
-                            <span class="underline-text">{{$partner->country  ?? '-'}}</span>
-                        </p>
-                    </div>
-
-
-                    <div class="mb-[10px] flex items-center">
-                        <p class="font-bold m-0"> State</p>
-                        <p class="font-medium m-0 ml-[10px]">
-                            <span class="underline-text">{{$partner->state  ?? '-'}}</span>
-                        </p>
-                    </div>
-
                 </div>
+            @endforeach
 
-                <div class="flex flex-col gap-[8px] flex-1 max-xl:flex-auto">
-                    <p class="text-[25px] text-gray-800 dark:text-white font-semibold mb-[16px]"> Company Detail </p>
-                    <div class="mb-[10px] flex items-center">
-                        <p class="font-bold m-0"> Company</p>
-                        <p class="font-medium m-0 ml-[10px]">
-                            <span class="underline-text">{{$partner->company  ?? '-'}}</span>
-                        </p>
-                    </div>
-
-                    <div class="mb-[10px] flex items-center">
-                        <p class="font-bold m-0"> ID </p>
-                        <p class="font-medium m-0 ml-[10px]">
-                            <span class="underline-text">{{$partner->company_id  ?? '-'}}</span>
-                        </p>
-                    </div>
-
-
-                </div>
-            </div>
 
         </div>
     </section>

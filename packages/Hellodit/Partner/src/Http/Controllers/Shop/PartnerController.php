@@ -2,10 +2,10 @@
 
 namespace Hellodit\Partner\Http\Controllers\Shop;
 
+use Hellodit\Partner\Models\Partner;
 use Illuminate\Routing\Controller;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
-use Webkul\Partner\Models\Partner;
 
 class PartnerController extends Controller
 {
@@ -41,7 +41,9 @@ class PartnerController extends Controller
 
     public function detail($id)
     {
-        $partner = Partner::whereId($id)->firstOrFail();
+        $partner = Partner::whereId($id)->with('address')->firstOrFail();
         return view($this->_config['view'], compact('partner'));
     }
+
+
 }

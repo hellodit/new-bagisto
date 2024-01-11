@@ -11,7 +11,8 @@ class PartnerDataGrid extends DataGrid
 
     public function prepareQueryBuilder()
     {
-        return DB::table('partners')->select('*');
+        return DB::table('partners')
+            ->select('*');
     }
 
     public function prepareColumns()

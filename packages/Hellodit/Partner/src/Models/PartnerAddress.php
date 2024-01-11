@@ -7,5 +7,25 @@ use Hellodit\Partner\Contracts\PartnerAddress as PartnerAddressContract;
 
 class PartnerAddress extends Model implements PartnerAddressContract
 {
-    protected $fillable = [];
+    protected $fillable = [
+        'partner_id',
+        'street',
+        'zip_code',
+        'city',
+        'country',
+        'state',
+        'telephone',
+        'mobile',
+        'famille',
+        'email',
+        'website',
+        'company',
+        'company_id',
+        'image',
+        'description'
+    ];
+    public function partner()
+    {
+        return $this->belongsTo(Partner::class);
+    }
 }

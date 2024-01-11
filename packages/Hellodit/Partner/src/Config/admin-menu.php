@@ -17,7 +17,7 @@ return [
     ],
     [
         'key' => 'partner.address',
-        'name' => 'Partner',
+        'name' => 'Partner Address',
         'route' => 'admin.partner.index',
         'sort' => 2,
         'icon' => 'icon-dashboard',

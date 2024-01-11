@@ -21,9 +21,12 @@ return new class extends Migration
             $table->string('last_name');
             $table->string('first_name');
 
-            #company detail
-            $table->string('company');
-            $table->string('company_id');
+            #communication
+            $table->string('telephone')->nullable();
+            $table->string('mobile')->nullable();
+            $table->string('famille')->nullable();
+            $table->string('email');
+            $table->string('website');
             $table->text('description');
 
             $table->timestamps();
@@ -36,6 +39,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('partners');
+
     }
 };

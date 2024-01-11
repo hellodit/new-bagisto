@@ -11,9 +11,8 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Webkul\Partner\Repositories\PartnerRepository;
 
-class PartnerController extends Controller
+class PartnerAddressController extends Controller
 {
-
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
     /**
@@ -48,8 +47,7 @@ class PartnerController extends Controller
             return app(PartnerDataGrid::class)->toJson();
         }
 
-        return view('partner::admin.index');
-
+        return view($this->_config['view']);
     }
 
     /**
@@ -59,7 +57,7 @@ class PartnerController extends Controller
      */
     public function create()
     {
-        return view('partner::admin.create');
+        return view($this->_config['view']);
     }
 
     /**
@@ -70,32 +68,44 @@ class PartnerController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'image' => 'required',
             'language' => 'required',
             'solution' => 'required',
             'title' => 'required',
             'last_name' => 'required',
             'first_name' => 'required',
+            'street' => 'required',
+            'zip_code' => 'required',
+            'city' => 'required',
+            'country' => 'required',
+            'state' => 'required',
             'telephone' => 'required',
             'mobile' => 'required',
             'famille' => 'required',
             'email' => 'required',
             'website' => 'required',
-            'description' => 'required',
+            'company' => 'required',
+            'company_id' => 'required',
         ]);
 
         $data = $request->only([
-            'image',
             'language',
             'solution',
             'title',
             'last_name',
             'first_name',
+            'street',
+            'zip_code',
+            'city',
+            'country',
+            'state',
             'telephone',
             'mobile',
             'famille',
             'email',
             'website',
+            'company',
+            'company_id',
+            'image',
             'description'
         ]);
 

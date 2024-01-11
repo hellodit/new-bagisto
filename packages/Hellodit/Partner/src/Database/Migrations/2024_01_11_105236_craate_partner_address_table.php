@@ -23,13 +23,12 @@ return new class extends Migration {
             $table->string('state');
 
 
-            #communication
-            $table->string('telephone')->nullable();
-            $table->string('mobile')->nullable();
-            $table->string('famille')->nullable();
-            $table->string('email');
-            $table->string('website');
+            #company detail
+            $table->string('company');
+            $table->string('company_id');
+
             $table->timestamps();
+
 
         });
     }
@@ -39,6 +38,7 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('partner_addresses');
+
     }
 };

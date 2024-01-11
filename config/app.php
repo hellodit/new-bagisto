@@ -223,7 +223,6 @@ return [
         Webkul\Tax\Providers\TaxServiceProvider::class,
         Webkul\Theme\Providers\ThemeServiceProvider::class,
         Webkul\User\Providers\UserServiceProvider::class,
-        \Webkul\Partner\Providers\PartnerServiceProvider::class,
         \Hellodit\Location\Providers\LocationServiceProvider::class,
         \Hellodit\CustomerProduct\Providers\CustomerProductServiceProvider::class,
         \Hellodit\Partner\Providers\PartnerServiceProvider::class,

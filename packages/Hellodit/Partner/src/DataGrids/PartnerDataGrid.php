@@ -41,15 +41,6 @@ class PartnerDataGrid extends DataGrid
             'sortable' => true,
             'filterable' => true
         ]);
-
-        $this->addColumn([
-            'index' => 'company',
-            'label' => 'Company name',
-            'type' => 'string',
-            'searchable' => false,
-            'sortable' => true,
-            'filterable' => true
-        ]);
         $this->addColumn([
             'index' => 'email',
             'label' => 'Email',

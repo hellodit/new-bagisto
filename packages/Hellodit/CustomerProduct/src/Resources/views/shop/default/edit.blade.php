@@ -26,9 +26,23 @@
                         <div class="mb-2">
                             <label for="image"
                                    class="block mb-15px mt-30px text-16px text-gray-800 dark:text-white required">Image</label>
-                            <input type="file" name="image" id="image"
-                                   class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50">
+                            <input type="file" name="images[files][]" id="image"
+                                   class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50"
+                                   accept="image/*"
+                                   multiple>
                         </div>
+
+                        <ul class="mb-3">
+                            <div class="flex gap-2">
+                                @foreach($product->product->images as $images)
+                                    <a href="{{Storage::url($images->path)}}">
+                                        <img src="{{Storage::url($images->path)}}" class="w-[200px] h-[200px] w-fit" alt="">
+                                    </a>
+                                @endforeach
+                            </div>
+
+                        </ul>
+
 
                         <div class="mb-2">
                             <label for="location_id"
@@ -91,13 +105,16 @@
                         </div>
 
                         <div class="mb-2">
-                            <label for="status" class="block mb-15px mt-30px text-16px text-gray-800 dark:text-white required">Status</label>
-                            <select name="status" id="status" class="custom-select block w-full py-2 px-3 shadow bg-white border border-[#E9E9E9] rounded-lg text-[16px] transition-all hover:border-gray-400 focus:border-gray-400">
-                                <option value="1" {{ old('status') ?? $product->status ? 'selected' : '' }}>Active</option>
-                                <option value="0" {{ old('status') ?? !$product->status ? 'selected' : '' }}>Inactive</option>
+                            <label for="status"
+                                   class="block mb-15px mt-30px text-16px text-gray-800 dark:text-white required">Status</label>
+                            <select name="status" id="status"
+                                    class="custom-select block w-full py-2 px-3 shadow bg-white border border-[#E9E9E9] rounded-lg text-[16px] transition-all hover:border-gray-400 focus:border-gray-400">
+                                <option value="1" {{ old('status') ?? $product->status ? 'selected' : '' }}>Active
+                                </option>
+                                <option value="0" {{ old('status') ?? !$product->status ? 'selected' : '' }}>Inactive
+                                </option>
                             </select>
                         </div>
-
 
 
                     </div>

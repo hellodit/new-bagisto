@@ -87,5 +87,29 @@
     "file": "assets/app-aa4b60e6.js",
     "isEntry": true,
     "src": "src/Resources/assets/js/app.js"
-  }
+  },
+    "src/Resources/assets/images/product-placeholders/front.svg": {
+        "file": "assets/front.svg",
+        "src": "src/Resources/assets/images/product-placeholders/front.svg"
+    },
+    "src/Resources/assets/images/product-placeholders/next-1.svg": {
+        "file": "assets/next-1.svg",
+        "src": "src/Resources/assets/images/product-placeholders/next-1.svg"
+    },
+    "src/Resources/assets/images/product-placeholders/next-2.svg": {
+        "file": "assets/next-2.svg",
+        "src": "src/Resources/assets/images/product-placeholders/next-2.svg"
+    },
+    "src/Resources/assets/images/product-placeholders/size.svg": {
+        "file": "assets/size.svg",
+        "src": "src/Resources/assets/images/product-placeholders/size.svg"
+    },
+    "src/Resources/assets/images/product-placeholders/use-cases.svg": {
+        "file": "assets/use-cases.svg",
+        "src": "src/Resources/assets/images/product-placeholders/use-cases.svg"
+    },
+    "src/Resources/assets/images/product-placeholders/zoom.svg": {
+        "file": "assets/zoom.svg",
+        "src": "src/Resources/assets/images/product-placeholders/zoom.svg"
+    }
 }

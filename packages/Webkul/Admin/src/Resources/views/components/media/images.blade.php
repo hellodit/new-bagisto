@@ -36,7 +36,7 @@
 
                         <p class="grid text-[14px] text-gray-600 dark:text-gray-300 font-semibold text-center">
                             @lang('admin::app.components.media.images.add-image-btn')
-                            
+
                             <span class="text-[12px]">
                                 @lang('admin::app.components.media.images.allowed-types')
                             </span>
@@ -90,7 +90,7 @@
                     </div>
                 </template>
             </div>
-        </div>  
+        </div>
     </script>
 
     <script type="text/x-template" id="v-media-image-item-template">
@@ -140,7 +140,7 @@
 
             props: {
                 name: {
-                    type: String, 
+                    type: String,
                     default: 'images',
                 },
 

@@ -35,7 +35,8 @@
 
                 <x-slot:content>
                     {{-- Account Profile Hero Section --}}
-                    <div class="grid grid-cols-[auto_1fr] gap-[15px] items-center mb-[15px] p-[10px] border border-[#E9E9E9] rounded-[12px]">
+                    <div
+                        class="grid grid-cols-[auto_1fr] gap-[15px] items-center mb-[15px] p-[10px] border border-[#E9E9E9] rounded-[12px]">
                         <div class="">
                             <img
                                 src="{{ auth()->user()?->image_url ??  bagisto_asset('images/user-placeholder.png') }}"
@@ -67,7 +68,8 @@
                     <v-mobile-category></v-mobile-category>
 
                     {{-- Localization & Currency Section --}}
-                    <div class="absolute w-full flex bottom-0 left-0 bg-white shadow-lg p-4 gap-x-[20px] justify-between items-center mb-[15px]">
+                    <div
+                        class="absolute w-full flex bottom-0 left-0 bg-white shadow-lg p-4 gap-x-[20px] justify-between items-center mb-[15px]">
                         <x-shop::dropdown position="top-left">
                             <!-- Dropdown Toggler -->
                             <x-slot:toggle>
@@ -146,9 +148,10 @@
                     </a>
                 @endif
 
-{{--                @include('shop::checkout.cart.mini-cart')--}}
+                {{--                @include('shop::checkout.cart.mini-cart')--}}
 
-                <x-shop::dropdown position="bottom-{{ core()->getCurrentLocale()->direction === 'ltr' ? 'right' : 'left' }}">
+                <x-shop::dropdown
+                    position="bottom-{{ core()->getCurrentLocale()->direction === 'ltr' ? 'right' : 'left' }}">
                     <x-slot:toggle>
                         <span class="icon-users text-[24px] cursor-pointer"></span>
                     </x-slot:toggle>
@@ -209,6 +212,14 @@
                                 >
                                     @lang('shop::app.components.layouts.header.profile')
                                 </a>
+
+                                <a
+                                    class="px-5 py-2 text-[16px] hover:bg-gray-100 cursor-pointer"
+                                    href="{{ route('shop.customer_product.index') }}"
+                                >
+                                    Products
+                                </a>
+
 
                                 <a
                                     class="px-5 py-2 text-[16px] hover:bg-gray-100 cursor-pointer"
@@ -283,7 +294,8 @@
     <script type="text/x-template" id="v-mobile-category-template">
         <div>
             <template v-for="(category) in categories">
-                <div class="flex justify-between items-center border border-b-[1px] border-l-0 border-r-0 border-t-0 border-[#f3f3f5]">
+                <div
+                    class="flex justify-between items-center border border-b-[1px] border-l-0 border-r-0 border-t-0 border-[#f3f3f5]">
                     <a
                         :href="category.url"
                         class="flex items-center justify-between pb-[20px] mt-[20px]"
@@ -305,7 +317,8 @@
                 >
                     <ul v-if="category.children.length">
                         <li v-for="secondLevelCategory in category.children">
-                            <div class="flex justify-between items-center ml-3 border border-b-[1px] border-l-0 border-r-0 border-t-0 border-[#f3f3f5]">
+                            <div
+                                class="flex justify-between items-center ml-3 border border-b-[1px] border-l-0 border-r-0 border-t-0 border-[#f3f3f5]">
                                 <a
                                     :href="secondLevelCategory.url"
                                     class="flex items-center justify-between pb-[20px] mt-[20px]"
@@ -327,7 +340,8 @@
                             <div v-if="secondLevelCategory.category_show">
                                 <ul v-if="secondLevelCategory.children.length">
                                     <li v-for="thirdLevelCategory in secondLevelCategory.children">
-                                        <div class="flex justify-between items-center ml-3 border border-b-[1px] border-l-0 border-r-0 border-t-0 border-[#f3f3f5]">
+                                        <div
+                                            class="flex justify-between items-center ml-3 border border-b-[1px] border-l-0 border-r-0 border-t-0 border-[#f3f3f5]">
                                             <a
                                                 :href="thirdLevelCategory.url"
                                                 class="flex items-center justify-between mt-[20px] ml-3 pb-[20px]"
@@ -364,7 +378,7 @@
             template: '#v-mobile-category-template',
 
             data() {
-                return  {
+                return {
                     categories: [],
                 }
             },
@@ -379,14 +393,14 @@
                         .then(response => {
                             this.categories = response.data.data;
                         }).catch(error => {
-                            console.log(error);
-                        });
+                        console.log(error);
+                    });
                 },
 
                 toggle(selectedCategory) {
                     this.categories = this.categories.map((category) => ({
                         ...category,
-                        isOpen: category.id === selectedCategory.id ? ! category.isOpen : false,
+                        isOpen: category.id === selectedCategory.id ? !category.isOpen : false,
                     }));
                 },
             },

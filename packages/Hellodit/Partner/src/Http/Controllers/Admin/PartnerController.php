@@ -1,19 +1,20 @@
 <?php
 
-namespace Webkul\Partner\Http\Controllers\Admin;
+namespace Hellodit\Partner\Http\Controllers\Admin;
 
+use Hellodit\Partner\DataGrids\PartnerDataGrid;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
-use Webkul\Admin\DataGrids\Marketing\Promotions\CatalogRuleDataGrid;
-use Hellodit\Partner\DataGrids\PartnerDataGrid;
 use Webkul\Partner\Repositories\PartnerRepository;
 
 class PartnerController extends Controller
 {
+    use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
     /**

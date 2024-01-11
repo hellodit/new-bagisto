@@ -225,7 +225,8 @@ return [
         Webkul\User\Providers\UserServiceProvider::class,
         \Webkul\Partner\Providers\PartnerServiceProvider::class,
         \Hellodit\Location\Providers\LocationServiceProvider::class,
-        \Hellodit\CustomerProduct\Providers\CustomerProductServiceProvider::class
+        \Hellodit\CustomerProduct\Providers\CustomerProductServiceProvider::class,
+        \Hellodit\Partner\Providers\PartnerServiceProvider::class,
     ])->toArray(),
 
     /*
@@ -240,17 +241,17 @@ return [
     */
 
     'aliases' => Facade::defaultAliases()->merge([
-        'Captcha'      => Webkul\Customer\Facades\Captcha::class,
-        'Cart'         => Webkul\Checkout\Facades\Cart::class,
-        'Concord'      => Konekt\Concord\Facades\Concord::class,
-        'Core'         => Webkul\Core\Facades\Core::class,
-        'Datagrid'     => Webkul\Ui\DataGrid\Facades\DataGrid::class,
-        'Excel'        => Maatwebsite\Excel\Facades\Excel::class,
-        'Helper'       => Konekt\Concord\Facades\Helper::class,
-        'Image'        => Intervention\Image\Facades\Image::class,
-        'PDF'          => Barryvdh\DomPDF\Facade\Pdf::class,
+        'Captcha' => Webkul\Customer\Facades\Captcha::class,
+        'Cart' => Webkul\Checkout\Facades\Cart::class,
+        'Concord' => Konekt\Concord\Facades\Concord::class,
+        'Core' => Webkul\Core\Facades\Core::class,
+        'Datagrid' => Webkul\Ui\DataGrid\Facades\DataGrid::class,
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
+        'Helper' => Konekt\Concord\Facades\Helper::class,
+        'Image' => Intervention\Image\Facades\Image::class,
+        'PDF' => Barryvdh\DomPDF\Facade\Pdf::class,
         'ProductImage' => Webkul\Product\Facades\ProductImage::class,
         'ProductVideo' => Webkul\Product\Facades\ProductVideo::class,
-        'Redis'        => Illuminate\Support\Facades\Redis::class,
+        'Redis' => Illuminate\Support\Facades\Redis::class,
     ])->toArray(),
 ];

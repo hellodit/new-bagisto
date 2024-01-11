@@ -92,7 +92,8 @@
             "Webkul\\User\\": "packages/Webkul/User/src",
             "Webkul\\Partner\\": "packages/Webkul/Partner/src",
             "Hellodit\\Location\\" : "packages/Hellodit/Location/src",
-            "Hellodit\\CustomerProduct\\": "packages/Hellodit/CustomerProduct/src"
+            "Hellodit\\CustomerProduct\\": "packages/Hellodit/CustomerProduct/src",
+            "Hellodit\\Partner\\": "packages/Hellodit/Partner/src"
         }
     },
     "autoload-dev": {

@@ -12,7 +12,7 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\Auth;
-use Webkul\Partner\DataGrids\PartnerDataGrid;
+use Hellodit\Partner\DataGrids\PartnerDataGrid;
 
 class LocationController extends Controller
 {

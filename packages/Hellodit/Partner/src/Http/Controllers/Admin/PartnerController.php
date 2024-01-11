@@ -3,6 +3,7 @@
 namespace Hellodit\Partner\Http\Controllers\Admin;
 
 use Hellodit\Partner\DataGrids\PartnerDataGrid;
+use Hellodit\Partner\Models\Partner;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
@@ -114,17 +115,49 @@ class PartnerController extends Controller
      */
     public function edit($id)
     {
-        return view($this->_config['view']);
+        $partner = Partner::whereId($id)->firstOrFail();
+        return view('partner::admin.create', compact('partner'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param int $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function update($id)
+    public function update(Request $request, $id)
     {
+        $request->validate([
+            'language' => 'required',
+            'solution' => 'required',
+            'title' => 'required',
+            'last_name' => 'required',
+            'first_name' => 'required',
+            'telephone' => 'required',
+            'mobile' => 'required',
+            'famille' => 'required',
+            'email' => 'required',
+            'website' => 'required',
+            'description' => 'required',
+        ]);
+
+        $data = $request->only([
+            'language',
+            'solution',
+            'title',
+            'last_name',
+            'first_name',
+            'telephone',
+            'mobile',
+            'famille',
+            'email',
+            'website',
+            'description'
+        ]);
+
+        $this->partnerRepository->update($data, $id);
+
+        return redirect()->route('admin.partner.index')->with('success','Success update partner');
 
     }
 

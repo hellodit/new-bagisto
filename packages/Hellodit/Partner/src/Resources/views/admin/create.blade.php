@@ -3,8 +3,13 @@
         @lang('partner::app.admin.page-title')
     </x-slot:title>
 
-    <x-admin::form action="{{ route('admin.partner.store') }}" enctype="multipart/form-data">
+    <x-admin::form
+        action="{{ $partner ? route('admin.partner.update',['partner' => $partner->id]) : route('admin.partner.store') }}"
+        enctype="multipart/form-data">
 
+        @if( $partner)
+            @method('PUT')
+        @endif
         {!! view_render_event('admin.settings.channels.create.create_form_controls.before') !!}
 
         <div class="flex justify-between items-center">
@@ -26,7 +31,7 @@
                     type="submit"
                     class="primary-button"
                 >
-                    @lang('partner::app.admin.create-title')
+                    {{ $partner ? "Update Partner" : "Create Partner" }}
                 </button>
             </div>
         </div>
@@ -70,7 +75,7 @@
                                     <x-admin::form.control-group.control
                                         type="text"
                                         name="language"
-                                        :value="old('language')"
+                                        :value="$partner->language ?? old('language')"
                                         id="language"
                                         rules="required"
                                         :label="trans('partner::app.admin.create.language')"
@@ -91,7 +96,7 @@
                                     <x-admin::form.control-group.control
                                         type="text"
                                         name="solution"
-                                        :value="old('solution')"
+                                        :value="$partner->solution ?? old('solution')"
                                         id="solution"
                                         rules="required"
                                         :label="trans('partner::app.admin.create.solution')"
@@ -112,7 +117,7 @@
                                     <x-admin::form.control-group.control
                                         type="text"
                                         name="title"
-                                        :value="old('title')"
+                                        :value="$partner->title ?? old('title')"
                                         id="title"
                                         rules="required"
                                         :label="trans('partner::app.admin.create.title')"
@@ -133,7 +138,7 @@
                                     <x-admin::form.control-group.control
                                         type="text"
                                         name="last_name"
-                                        :value="old('last_name')"
+                                        :value="$partner->last_name ?? old('last_name')"
                                         id="last_name"
                                         rules="required"
                                         :label="trans('partner::app.admin.create.last_name')"
@@ -154,7 +159,7 @@
                                     <x-admin::form.control-group.control
                                         type="text"
                                         name="first_name"
-                                        :value="old('first_name')"
+                                        :value="$partner->first_name ?? old('first_name')"
                                         id="first_name"
                                         rules="required"
                                         :label="trans('partner::app.admin.create.first_name')"
@@ -181,7 +186,7 @@
                                     <x-admin::form.control-group.control
                                         type="text"
                                         name="telephone"
-                                        :value="old('telephone')"
+                                        :value="$partner->telephone ?? old('telephone')"
                                         id="telephone"
                                         rules="required"
                                         :label="trans('partner::app.admin.create.telephone')"
@@ -202,7 +207,7 @@
                                     <x-admin::form.control-group.control
                                         type="text"
                                         name="mobile"
-                                        :value="old('mobile')"
+                                        :value="$partner->mobile ?? old('mobile')"
                                         id="mobile"
                                         rules="required"
                                         :label="trans('partner::app.admin.create.mobile')"
@@ -223,7 +228,7 @@
                                     <x-admin::form.control-group.control
                                         type="text"
                                         name="famille"
-                                        :value="old('famille')"
+                                        :value=" $partner->famille ?? old('famille')"
                                         id="famille"
                                         rules="required"
                                         :label="trans('partner::app.admin.create.famille')"
@@ -244,7 +249,7 @@
                                     <x-admin::form.control-group.control
                                         type="text"
                                         name="email"
-                                        :value="old('email')"
+                                        :value=" $partner->email ?? old('email')"
                                         id="email"
                                         rules="required"
                                         :label="trans('partner::app.admin.create.email')"
@@ -265,7 +270,7 @@
                                     <x-admin::form.control-group.control
                                         type="text"
                                         name="website"
-                                        :value="old('website')"
+                                        :value="$partner->website ?? old('website')"
                                         id="website"
                                         rules="required"
                                         :label="trans('partner::app.admin.create.website')"
@@ -287,7 +292,7 @@
                                     <x-admin::form.control-group.control
                                         type="textarea"
                                         name="description"
-                                        :value="old('description')"
+                                        :value="$partner->description ?? old('description')"
                                         id="description"
                                         rules="required"
                                         :label="trans('partner::app.admin.create.description')"

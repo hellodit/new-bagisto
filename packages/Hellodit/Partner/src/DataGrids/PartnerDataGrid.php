@@ -62,14 +62,25 @@ class PartnerDataGrid extends DataGrid
 
     public function prepareActions()
     {
-//        $this->addAction([
-//            'icon' => 'icon-edit',
-//            'title' => 'Edit',
-//            'method' => 'GET',
-//            'url' => function ($row) {
-//                return route('admin.partner.edit', $row->id);
-//            },
-//        ]);
+
+        $this->addAction([
+            'icon' => 'icon-gear',
+            'title' => 'Add Address',
+            'method' => 'GET',
+            'url' => function ($row) {
+                return route('admin.partner.edit', $row->id);
+            },
+        ]);
+
+
+        $this->addAction([
+            'icon' => 'icon-edit',
+            'title' => 'Edit',
+            'method' => 'GET',
+            'url' => function ($row) {
+                return route('admin.partner.edit', $row->id);
+            },
+        ]);
 
 
 

@@ -256,6 +256,17 @@
 
         {!! view_render_event('bagisto.shop.products.view.after', ['product' => $product]) !!}
 
+        <x-shop::partners.carousel
+            :title="trans('shop::app.products.view.partners')"
+            :src="route('shop.api.partners.index', $data['filters'] ?? [])"
+            :navigation-link="route('shop.home.index')"
+        >
+        </x-shop::partners.carousel>
+
+        <div class="flex justify-center items-center mt-2">
+            <a href="{{ route('shop.partners.index') }}" class="secondary-button">View All Partners</a>
+        </div>
+
         @pushOnce('scripts')
             <script type="text/x-template" id="v-product-template">
                 <x-shop::form

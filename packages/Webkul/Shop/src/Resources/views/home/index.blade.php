@@ -56,7 +56,7 @@
 
 
                 @case ($customization::PARTNER_CAROUSEL)
-                    {{-- Categories carousel --}}
+                    {{-- PARTNER_CAROUSEL --}}
                     <x-shop::partners.carousel
                         :title="$data['title'] ?? ''"
                         :src="route('shop.api.partners.index', $data['filters'] ?? [])"

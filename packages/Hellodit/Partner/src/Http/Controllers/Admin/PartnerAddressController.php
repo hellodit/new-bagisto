@@ -3,15 +3,14 @@
 namespace Hellodit\Partner\Http\Controllers\Admin;
 
 use Hellodit\Partner\DataGrids\PartnerAddressDataGrid;
-use Hellodit\Partner\DataGrids\PartnerDataGrid;
 use Hellodit\Partner\Models\PartnerAddress;
+use Hellodit\Partner\Repositories\PartnerRepository;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
-use Webkul\Partner\Repositories\PartnerRepository;
 
 class PartnerAddressController extends Controller
 {

@@ -2,14 +2,8 @@
 
 namespace Webkul\Shop\Http\Controllers\API;
 
+use Hellodit\Partner\Repositories\PartnerRepository;
 use Illuminate\Http\Resources\Json\JsonResource;
-use Webkul\Attribute\Repositories\AttributeRepository;
-use Webkul\Category\Repositories\CategoryRepository;
-use Webkul\Partner\Repositories\PartnerRepository;
-use Webkul\Product\Repositories\ProductRepository;
-use Webkul\Shop\Http\Resources\AttributeResource;
-use Webkul\Shop\Http\Resources\CategoryResource;
-use Webkul\Shop\Http\Resources\CategoryTreeResource;
 use Webkul\Shop\Http\Resources\PartnerResource;
 
 class PartnerController extends  APIController

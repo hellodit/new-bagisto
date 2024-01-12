@@ -78,7 +78,8 @@
                                         >
                                         </x-admin::form.control-group.control>
 
-                                        <x-admin::form.control-group.error control-name="name"></x-admin::form.control-group.error>
+                                        <x-admin::form.control-group.error
+                                            control-name="name"></x-admin::form.control-group.error>
                                     </x-admin::form.control-group>
 
                                     <x-admin::form.control-group>
@@ -95,7 +96,8 @@
                                         >
                                         </x-admin::form.control-group.control>
 
-                                        <x-admin::form.control-group.error control-name="sort_order"></x-admin::form.control-group.error>
+                                        <x-admin::form.control-group.error
+                                            control-name="sort_order"></x-admin::form.control-group.error>
                                     </x-admin::form.control-group>
 
                                     <x-admin::form.control-group>
@@ -117,7 +119,8 @@
                                             </option>
                                         </x-admin::form.control-group.control>
 
-                                        <x-admin::form.control-group.error control-name="type"></x-admin::form.control-group.error>
+                                        <x-admin::form.control-group.error
+                                            control-name="type"></x-admin::form.control-group.error>
                                     </x-admin::form.control-group>
 
                                     <x-admin::form.control-group>
@@ -136,7 +139,8 @@
                                             @endforeach
                                         </x-admin::form.control-group.control>
 
-                                        <x-admin::form.control-group.error control-name="type"></x-admin::form.control-group.error>
+                                        <x-admin::form.control-group.error
+                                            control-name="type"></x-admin::form.control-group.error>
                                     </x-admin::form.control-group>
                                 </div>
                             </x-slot:content>
@@ -167,6 +171,8 @@
                         themeTypes: {
                             product_carousel: "@lang('admin::app.settings.themes.create.type.product-carousel')",
                             partner_carousel: "Partner Carousel",
+                            location_carousel: "Location Carousel",
+                            customer_carousel: "Customer Carousel",
                             category_carousel: "@lang('admin::app.settings.themes.create.type.category-carousel')",
                             static_content: "@lang('admin::app.settings.themes.create.type.static-content')",
                             image_carousel: "@lang('admin::app.settings.themes.create.type.image-carousel')",
@@ -176,7 +182,7 @@
                 },
 
                 methods: {
-                    create(params, { setErrors }) {
+                    create(params, {setErrors}) {
                         this.$axios.post('{{ route('admin.settings.themes.store') }}', params)
                             .then((response) => {
                                 if (response.data.redirect_url) {

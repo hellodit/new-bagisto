@@ -1,5 +1,7 @@
 <?php
 
+use Hellodit\CustomerProduct\Http\Controllers\Shop\CustomerProductController;
+use Hellodit\Location\Http\Controllers\Shop\LocationController;
 use Illuminate\Support\Facades\Route;
 use Webkul\Shop\Http\Controllers\API\CoreController;
 use Webkul\Shop\Http\Controllers\API\CategoryController;
@@ -32,6 +34,16 @@ Route::group(['middleware' => ['locale', 'theme', 'currency'], 'prefix' => 'api'
     Route::controller(PartnerController::class)->prefix('partners')->group(function () {
         Route::get('', 'index')->name('shop.api.partners.index');
 
+    });
+
+
+    Route::controller(LocationController::class)->prefix('locations')->group(function () {
+        Route::get('', 'locations')->name('shop.api.locations.index');
+    });
+
+
+    Route::controller(CustomerProductController::class)->prefix('customer-product')->group(function () {
+        Route::get('', 'customerProduct')->name('shop.api.customer-product.index');
     });
 
     Route::controller(ProductController::class)->prefix('products')->group(function () {

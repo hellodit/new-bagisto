@@ -49,6 +49,8 @@ class ThemeCustomization extends TranslatableModel implements ThemeCustomization
      */
     public const CATEGORY_CAROUSEL = 'category_carousel';
     public const PARTNER_CAROUSEL = 'partner_carousel';
+    public const LOCATION_CAROUSEL = 'location_carousel';
+    public const CUSTOMER_CAROUSEL = 'customer_carousel';
 
     /**
      * Footer links precision.

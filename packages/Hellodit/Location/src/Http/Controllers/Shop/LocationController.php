@@ -2,11 +2,15 @@
 
 namespace Hellodit\Location\Http\Controllers\Shop;
 
+use Hellodit\Location\Http\Resources\LocationResource;
 use Hellodit\Location\Models\Location;
+use Hellodit\Partner\Repositories\PartnerRepository;
+use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Routing\Controller;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Webkul\Partner\Models\Partner;
+use Webkul\Shop\Http\Resources\PartnerResource;
 
 class LocationController extends Controller
 {
@@ -50,4 +54,12 @@ class LocationController extends Controller
         }
         return view($this->_config['view'], compact('location'));
     }
+
+
+    public function locations()
+    {
+        $locations = Location::orderBy('created_at')->limit(5)->get();
+        return LocationResource::collection($locations);
+    }
+
 }

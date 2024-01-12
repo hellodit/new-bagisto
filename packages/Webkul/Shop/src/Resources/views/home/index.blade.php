@@ -5,54 +5,54 @@
 
 {{-- SEO Meta Content --}}
 @push ('meta')
-    <meta name="title" content="{{ $channel->home_seo['meta_title'] ?? '' }}" />
+    <meta name="title" content="{{ $channel->home_seo['meta_title'] ?? '' }}"/>
 
-    <meta name="description" content="{{ $channel->home_seo['meta_description'] ?? '' }}" />
+    <meta name="description" content="{{ $channel->home_seo['meta_description'] ?? '' }}"/>
 
-    <meta name="keywords" content="{{ $channel->home_seo['meta_keywords'] ?? '' }}" />
+    <meta name="keywords" content="{{ $channel->home_seo['meta_keywords'] ?? '' }}"/>
 @endPush
 
 <x-shop::layouts>
     {{-- Page Title --}}
     <x-slot:title>
         {{  $channel->home_seo['meta_title'] ?? '' }}
-    </x-slot>
+        </x-slot>
 
-    {{-- Loop over the theme customization --}}
-    @foreach ($customizations as $customization)
-        @php ($data = $customization->options)
+        {{-- Loop over the theme customization --}}
+        @foreach ($customizations as $customization)
+            @php ($data = $customization->options)
 
-        {{-- Static content --}}
-        @switch ($customization->type)
-            {{-- Image Carousel --}}
-            @case ($customization::IMAGE_CAROUSEL)
-                <x-shop::carousel :options="$data"></x-shop::carousel>
+            {{-- Static content --}}
+            @switch ($customization->type)
+                {{-- Image Carousel --}}
+                @case ($customization::IMAGE_CAROUSEL)
+                    <x-shop::carousel :options="$data"></x-shop::carousel>
 
-                @break
+                    @break
 
-            @case ($customization::STATIC_CONTENT)
-                {{-- push style --}}
-                @push ('styles')
-                    <style>
-                        {{ $data['css'] }}
-                    </style>
-                @endpush
+                @case ($customization::STATIC_CONTENT)
+                    {{-- push style --}}
+                    @push ('styles')
+                        <style>
+                            {{ $data['css'] }}
+                        </style>
+                    @endpush
 
-                {{-- render html --}}
-                {!! $data['html'] !!}
+                    {{-- render html --}}
+                    {!! $data['html'] !!}
 
-                @break
+                    @break
 
-            @case ($customization::CATEGORY_CAROUSEL)
-                {{-- Categories carousel --}}
-                <x-shop::categories.carousel
-                    :title="$data['title'] ?? ''"
-                    :src="route('shop.api.categories.index', $data['filters'] ?? [])"
-                    :navigation-link="route('shop.home.index')"
-                >
-                </x-shop::categories.carousel>
+                @case ($customization::CATEGORY_CAROUSEL)
+                    {{-- Categories carousel --}}
+                    <x-shop::categories.carousel
+                        :title="$data['title'] ?? ''"
+                        :src="route('shop.api.categories.index', $data['filters'] ?? [])"
+                        :navigation-link="route('shop.home.index')"
+                    >
+                    </x-shop::categories.carousel>
 
-                @break
+                    @break
 
 
                 @case ($customization::PARTNER_CAROUSEL)
@@ -69,17 +69,48 @@
                     </div>
 
                     @break
-            @case ($customization::PRODUCT_CAROUSEL)
-                {{-- Product Carousel --}}
-                <x-shop::products.carousel
-                    {{-- title="Men's Collections" --}}
-                    :title="$data['title'] ?? ''"
-                    :src="route('shop.api.products.index', $data['filters'] ?? [])"
-                    :navigation-link="route('shop.home.index')"
-                >
-                </x-shop::products.carousel>
 
-                @break
-        @endswitch
+
+                @case ($customization::CUSTOMER_CAROUSEL)
+                    {{-- PARTNER_CAROUSEL --}}
+                    <x-shop::partners.carousel
+                        :title="$data['title'] ?? ''"
+                        :src="route('shop.api.customer-product.index', $data['filters'] ?? [])"
+                        :navigation-link="route('shop.home.index')"
+                    >
+                    </x-shop::partners.carousel>
+
+                    <div class="flex justify-center items-center mt-2">
+                        <a href="{{ route('shop.partners.index') }}" class="secondary-button">View All Partners</a>
+                    </div>
+
+                    @break
+
+                @case ($customization::LOCATION_CAROUSEL)
+                    {{-- LOCATION_CAROUSEL --}}
+                    <x-shop::location.carousel
+                        :title="$data['title'] ?? ''"
+                        :src="route('shop.api.locations.index', $data['filters'] ?? [])"
+                        :navigation-link="route('shop.home.index')"
+                    >
+                    </x-shop::location.carousel>
+
+                    <div class="flex justify-center items-center mt-2">
+                        <a href="{{ route('shop.partners.index') }}" class="secondary-button">View All Locations</a>
+                    </div>
+
+                    @break
+                @case ($customization::PRODUCT_CAROUSEL)
+                    {{-- Product Carousel --}}
+                    <x-shop::products.carousel
+                        {{-- title="Men's Collections" --}}
+                        :title="$data['title'] ?? ''"
+                        :src="route('shop.api.products.index', $data['filters'] ?? [])"
+                        :navigation-link="route('shop.home.index')"
+                    >
+                    </x-shop::products.carousel>
+
+    @break
+    @endswitch
     @endforeach
 </x-shop::layouts>

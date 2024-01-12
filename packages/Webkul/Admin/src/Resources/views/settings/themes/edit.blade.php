@@ -785,6 +785,8 @@
             </div>
         </script>
 
+    @include('admin::settings.themes.location_template')
+    @include('admin::settings.themes.customer_template')
         {{-- Partner Template --}}
         <script type="text/x-template" id="v-partner-theme-template">
             <div class="flex gap-[10px] mt-[14px] max-xl:flex-wrap">
@@ -2152,6 +2154,8 @@
                         themeType: {
                             product_carousel: 'v-product-theme',
                             partner_carousel: 'v-partner-theme',
+                            location_carousel: 'v-location-theme',
+                            customer_carousel: 'v-customer-theme',
                             category_carousel: 'v-category-theme',
                             static_content: 'v-static-theme',
                             image_carousel: 'v-slider-theme',

@@ -50,7 +50,7 @@ class ThemeController extends Controller
         $this->validate(request(), [
             'name'       => 'required',
             'sort_order' => 'required|numeric',
-            'type'       => 'in:product_carousel,category_carousel,static_content,image_carousel,footer_links,partner_carousel',
+            'type'       => 'in:location_carousel,customer_carousel,product_carousel,category_carousel,static_content,image_carousel,footer_links,partner_carousel',
             'channel_id' => 'required|in:'.implode(',', (core()->getAllChannels()->pluck("id")->toArray())),
         ]);
 

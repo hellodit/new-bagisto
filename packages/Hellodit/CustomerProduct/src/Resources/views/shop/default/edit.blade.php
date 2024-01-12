@@ -123,6 +123,48 @@
                                       placeholder="Description">{{ old('description') ?? $product->description }}</textarea>
                         </div>
 
+
+                        <div class="flex gap-[10px] mt-[14px] max-xl:flex-wrap">
+                            @foreach ($product->attribute_family->attribute_groups->groupBy('column') as $column => $groups)
+                                <div
+
+                                        @if ($column == 1) class="flex flex-col gap-[8px] flex-1 max-xl:flex-auto"
+                                        @endif
+                                        @if ($column == 2) class="flex flex-col gap-[8px] w-[360px] max-w-full max-sm:w-full" @endif
+                                >
+                                    @foreach ($groups->where('name','General') as $group)
+                                        @php
+                                            $customAttributes = $product->getEditableAttributes($group);
+                                        @endphp
+
+
+                                        <div
+                                                class="relative p-[16px] bg-white dark:bg-gray-900 rounded-[4px] box-shadow">
+                                            <p class="text-[16px] text-gray-800 dark:text-white font-semibold mb-[16px]">
+                                                {{ $group->name }}
+                                            </p>
+                                            @foreach ($customAttributes->whereNotIn('code',['sku','product_number','name','url_key','meta_title',
+                                                        'meta_keywords','meta_description','description','short_description']) as $attribute)
+                                                <x-admin::form.control-group>
+                                                    <x-admin::form.control-group.label>
+                                                        {{ $attribute->admin_name . ($attribute->is_required ? '*' : '') }}
+                                                    </x-admin::form.control-group.label>
+                                                    @include ('customerproduct::shop.default.edit.control_2', [
+                                                        'attribute' => $attribute,
+                                                        'product'   => $product,
+                                                    ])
+                                                </x-admin::form.control-group>
+
+                                            @endforeach
+                                        </div>
+                                    @endforeach
+
+                                </div>
+
+                            @endforeach
+                        </div>
+
+
                         @include('customerproduct::shop.default.component.add_categories',['categories' => $categories ,'ids' => $product->categories->pluck('id')->toArray()])
                         <p class="text-16px text-gray-800 dark:text-white font-semibold mb-5px"> Price Info </p>
 

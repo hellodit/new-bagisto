@@ -75,4 +75,7 @@ class ProductFlat extends Model implements ProductFlatContract
     {
         return $this->product->getTypeInstance();
     }
+
+
+
 }

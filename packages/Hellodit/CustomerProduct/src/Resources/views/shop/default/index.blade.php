@@ -187,14 +187,14 @@
                                     </span>
                                 </p>
 
-                                <p
-                                    class="text-gray-600 dark:text-gray-300"
-                                    v-else
-                                >
-                                    <span class="text-red-600">
-                                        @lang('admin::app.catalog.products.index.datagrid.out-of-stock')
-                                    </span>
-                                </p>
+{{--                                <p--}}
+{{--                                    class="text-gray-600 dark:text-gray-300"--}}
+{{--                                    v-else--}}
+{{--                                >--}}
+{{--                                    <span class="text-red-600">--}}
+{{--                                        @lang('admin::app.catalog.products.index.datagrid.out-of-stock')--}}
+{{--                                    </span>--}}
+{{--                                </p>--}}
                             </div>
 
                             <p class="text-gray-600 dark:text-gray-300">

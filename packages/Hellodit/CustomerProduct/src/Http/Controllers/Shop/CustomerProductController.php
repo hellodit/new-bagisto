@@ -99,7 +99,7 @@ class CustomerProductController extends Controller
         return new JsonResponse([
             'data' => [
                 'status' => 'success',
-                'redirect_url' => route('shop.customer_product.index', ['id' => $product->id]),
+                'redirect_url' => route('shop.customer_product.edit', ['id' => $product->id]),
             ]
         ]);
     }

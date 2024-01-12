@@ -7,7 +7,27 @@ use Hellodit\Partner\Contracts\Partner as PartnerContract;
 
 class Partner extends Model implements PartnerContract
 {
-    protected $fillable = [];
+    protected $fillable = [
+        'language',
+        'solution',
+        'title',
+        'last_name',
+        'first_name',
+        'street',
+        'zip_code',
+        'city',
+        'country',
+        'state',
+        'telephone',
+        'mobile',
+        'famille',
+        'email',
+        'website',
+        'company',
+        'company_id',
+        'image',
+        'description',
+    ];
 
 
 

@@ -46,7 +46,6 @@ class LocationController extends Controller
             $location = Location::whereSlug($slug)->firstOrFail();
         } else {
             $location = Location::whereSlug($slug)
-                ->where('status','=','published')
                 ->firstOrFail();
         }
         return view($this->_config['view'], compact('location'));

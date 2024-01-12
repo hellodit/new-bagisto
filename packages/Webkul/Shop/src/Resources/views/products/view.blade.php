@@ -403,7 +403,7 @@
 
                                         @if($product->author)
 
-                                            <a href="{{$product->author->phone}}" target="_blank" class="secondary-button w-full max-w-full">
+                                            <a href="http://wa.me/{{$product->author->phone}}" target="_blank" class="secondary-button w-full max-w-full">
                                                 Gaskeun (Send WhatsApp)
                                             </a>
                                         @endif

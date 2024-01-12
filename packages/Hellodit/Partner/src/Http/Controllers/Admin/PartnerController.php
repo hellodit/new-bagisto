@@ -60,7 +60,8 @@ class PartnerController extends Controller
      */
     public function create()
     {
-        return view('partner::admin.create');
+        $partner = null;
+        return view('partner::admin.create', compact('partner'));
     }
 
     /**

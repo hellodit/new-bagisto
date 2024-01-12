@@ -58,6 +58,7 @@ class Customer extends Authenticatable implements CustomerContract
         'subscribed_to_news_letter',
         'status',
         'is_verified',
+        'description',
         'is_suspended',
     ];
 

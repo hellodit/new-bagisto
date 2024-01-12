@@ -94,6 +94,7 @@ return [
                 'title' => 'Profile',
                 'unmatch' => 'The old password does not match.',
                 'wrong-password' => 'Wrong Password !',
+                'description' => 'Description'
             ],
 
             'addresses' => [

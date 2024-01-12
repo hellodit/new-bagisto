@@ -62,7 +62,8 @@
 
                         <a
                             class="absolute bottom-[15px] left-[50%] py-[11px] px-[43px] bg-white rounded-xl text-navyBlue text-xs w-max font-medium cursor-pointer -translate-x-[50%] translate-y-[54px] group-hover:translate-y-0 transition-all duration-300"
-                            href="#"
+                            :href="`http://wa.me/${product.phone_number}`"
+                            target="_blank"
                         >
                             Gaskeun (Send WhatsApp)
                         </a>

@@ -4,7 +4,6 @@ namespace Hellodit\Partner\DataGrids;
 
 use Webkul\DataGrid\DataGrid;
 use Illuminate\Support\Facades\DB;
-use Webkul\Partner\Models\Partner;
 
 class PartnerDataGrid extends DataGrid
 {

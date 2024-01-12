@@ -92,6 +92,28 @@
 
         <x-shop::form.control-group class="mb-4">
             <x-shop::form.control-group.label class="required">
+                Description
+            </x-shop::form.control-group.label>
+
+            <x-shop::form.control-group.control
+                type="textarea"
+                name="description"
+                :value="old('description') ?? $customer->description"
+                rules="required"
+                :label="trans('shop::app.customers.account.profile.description')"
+                :placeholder="trans('shop::app.customers.account.profile.description')"
+            >
+            </x-shop::form.control-group.control>
+
+            <x-shop::form.control-group.error
+                control-name="description"
+            >
+            </x-shop::form.control-group.error>
+        </x-shop::form.control-group>
+
+
+        <x-shop::form.control-group class="mb-4">
+            <x-shop::form.control-group.label class="required">
                 @lang('shop::app.customers.account.profile.email')
             </x-shop::form.control-group.label>
 
@@ -285,5 +307,5 @@
     </x-shop::form>
 
     {!! view_render_event('bagisto.shop.customers.account.profile.edit.after', ['customer' => $customer]) !!}
-    
+
 </x-shop::layouts.account>

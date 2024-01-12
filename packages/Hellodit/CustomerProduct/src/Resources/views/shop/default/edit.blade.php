@@ -5,6 +5,31 @@
     </x-slot:title>
 
 
+    <style>
+        <
+        link href
+
+        =
+        "https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css"
+        rel
+
+        =
+        "stylesheet"
+        /
+        >
+    </style>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+            integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+    <script>
+
+        $(document).ready(function () {
+            $('.js-example-basic-single').select2();
+        });
+    </script>
+
     <div class="flex justify-between items-center">
         <div class="">
             <h2 class="text-[26px] font-medium">
@@ -36,13 +61,17 @@
                             <div class="flex gap-2">
                                 @foreach($product->product->images as $images)
                                     <a href="{{Storage::url($images->path)}}">
-                                        <img src="{{Storage::url($images->path)}}" class="w-[200px] h-[200px] w-fit" alt="">
+                                        <img src="{{Storage::url($images->path)}}" class="w-[200px] h-[200px] w-fit"
+                                             alt="">
                                     </a>
                                 @endforeach
                             </div>
-
                         </ul>
 
+
+                        {{--                        @include('customerproduct::shop.default.edit.categories')--}}
+                        {{--                        @include('customerproduct::shop.default.edit.videos')--}}
+                        {{--                        @include('customerproduct::shop.default.edit.images')--}}
 
                         <div class="mb-2">
                             <label for="location_id"
@@ -51,7 +80,7 @@
                                     class="custom-select block w-full py-2 px-3 shadow bg-white border border-[#E9E9E9] rounded-lg text-[16px] transition-all hover:border-gray-400 focus:border-gray-400">
                                 @foreach(\Hellodit\Location\Models\Location::all() as $location)
                                     <option
-                                        value="{{ $location->id }}" {{ $location->id == $product->location_id ? 'selected' : '' }}>{{ $location->name }}</option>
+                                            value="{{ $location->id }}" {{ $location->id == $product->location_id ? 'selected' : '' }}>{{ $location->name }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -94,6 +123,7 @@
                                       placeholder="Description">{{ old('description') ?? $product->description }}</textarea>
                         </div>
 
+                        @include('customerproduct::shop.default.component.add_categories',['categories' => $categories ,'ids' => $product->categories->pluck('id')->toArray()])
                         <p class="text-16px text-gray-800 dark:text-white font-semibold mb-5px"> Price Info </p>
 
                         <div class="mb-2">
@@ -104,7 +134,11 @@
                                    required placeholder="Product Price">
                         </div>
 
-                        <div class="mb-2">
+
+                        <p class="text-16px text-gray-800 dark:text-white font-semibold mb-15px"> Meta Description</p>
+                        @include('customerproduct::shop.default.component.seo-component')
+
+                        <div class="mb-3">
                             <label for="status"
                                    class="block mb-15px mt-30px text-16px text-gray-800 dark:text-white required">Status</label>
                             <select name="status" id="status"
@@ -115,7 +149,6 @@
                                 </option>
                             </select>
                         </div>
-
 
                     </div>
                 </div>

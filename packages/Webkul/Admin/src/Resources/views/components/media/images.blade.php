@@ -209,7 +209,9 @@
 
             methods: {
                 add() {
+                    console.log(this.$refs)
                     let imageInput = this.$refs[this.$.uid + '_imageInput'];
+                    console.log(imageInput.files)
 
                     if (imageInput.files == undefined) {
                         return;

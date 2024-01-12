@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Str;
 use Webkul\Admin\Http\Resources\AttributeResource;
 use Webkul\Attribute\Repositories\AttributeFamilyRepository;
+use Webkul\Category\Models\Category;
 use Webkul\Core\Rules\Slug;
 use Webkul\Customer\Models\Customer;
 use Webkul\Inventory\Repositories\InventorySourceRepository;
@@ -116,10 +117,20 @@ class CustomerProductController extends Controller
 
     public function edit($id)
     {
+        $categories = \DB::table('categories')
+            ->leftJoin('category_translations', 'category_translations.category_id', '=', 'categories.id')
+            ->where('locale_id','=',core()->getCurrentChannel()->root_category_id)
+            ->where('status', 1)->get();
+
+
+
+//        $categories = $this->categoryRepository->getVisibleCategoryTree(core()->getCurrentChannel()->root_category_id);
+
+//        $categories = Catgeories
         $product = $this->productRepository->findOrFail($id);
         $inventorySources = $this->inventorySourceRepository->findWhere(['status' => self::ACTIVE_STATUS]);
 
-        return view('customerproduct::shop.default.edit', compact('product', 'inventorySources'));
+        return view('customerproduct::shop.default.edit', compact('product', 'inventorySources','categories'));
 
     }
 
@@ -130,7 +141,7 @@ class CustomerProductController extends Controller
         $data['channel'] = core()->getCurrentChannel()->code;
         $data['locale'] = core()->getCurrentLocale()->code;
         $data['visible_individually'] = true;
-        $data['url_key'] = Str::slug($data['name'],'-');
+        $data['url_key'] = Str::slug($data['name'], '-');
 
         $product = $this->productRepository->update($data, $id);
         Event::dispatch('catalog.product.update.after', $product);
@@ -142,7 +153,7 @@ class CustomerProductController extends Controller
 
     public function information($user_id)
     {
-       $author = Customer::whereId($user_id)->with('products')->firstOrFail();
-       return view("customerproduct::shop.default.information", compact('author'));
+        $author = Customer::whereId($user_id)->with('products')->firstOrFail();
+        return view("customerproduct::shop.default.information", compact('author'));
     }
 }

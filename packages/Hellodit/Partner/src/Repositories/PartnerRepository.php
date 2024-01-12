@@ -2,8 +2,8 @@
 
 namespace Hellodit\Partner\Repositories;
 
+use Hellodit\Partner\Models\Partner;
 use Webkul\Core\Eloquent\Repository;
-use Webkul\Partner\Models\Partner;
 
 class PartnerRepository extends Repository
 {

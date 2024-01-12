@@ -10,7 +10,7 @@ use Illuminate\Routing\Controller;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
-use Webkul\Partner\Repositories\PartnerRepository;
+use Hellodit\Partner\Repositories\PartnerRepository;
 
 class PartnerController extends Controller
 {

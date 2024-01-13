@@ -11,7 +11,8 @@
 
 {{-- SEO Meta Content --}}
 @push('meta')
-    <meta name="description" content="{{ trim($product->meta_description) != "" ? $product->meta_description : \Illuminate\Support\Str::limit(strip_tags($product->description), 120, '') }}"/>
+    <meta name="description"
+          content="{{ trim($product->meta_description) != "" ? $product->meta_description : \Illuminate\Support\Str::limit(strip_tags($product->description), 120, '') }}"/>
 
     <meta name="keywords" content="{{ $product->meta_keywords }}"/>
 
@@ -23,25 +24,25 @@
 
     <?php $productBaseImage = product_image()->getProductBaseImage($product); ?>
 
-    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:card" content="summary_large_image"/>
 
-    <meta name="twitter:title" content="{{ $product->name }}" />
+    <meta name="twitter:title" content="{{ $product->name }}"/>
 
-    <meta name="twitter:description" content="{!! htmlspecialchars(trim(strip_tags($product->description))) !!}" />
+    <meta name="twitter:description" content="{!! htmlspecialchars(trim(strip_tags($product->description))) !!}"/>
 
-    <meta name="twitter:image:alt" content="" />
+    <meta name="twitter:image:alt" content=""/>
 
-    <meta name="twitter:image" content="{{ $productBaseImage['medium_image_url'] }}" />
+    <meta name="twitter:image" content="{{ $productBaseImage['medium_image_url'] }}"/>
 
-    <meta property="og:type" content="og:product" />
+    <meta property="og:type" content="og:product"/>
 
-    <meta property="og:title" content="{{ $product->name }}" />
+    <meta property="og:title" content="{{ $product->name }}"/>
 
-    <meta property="og:image" content="{{ $productBaseImage['medium_image_url'] }}" />
+    <meta property="og:image" content="{{ $productBaseImage['medium_image_url'] }}"/>
 
-    <meta property="og:description" content="{!! htmlspecialchars(trim(strip_tags($product->description))) !!}" />
+    <meta property="og:description" content="{!! htmlspecialchars(trim(strip_tags($product->description))) !!}"/>
 
-    <meta property="og:url" content="{{ route('shop.product_or_category.index', $product->url_key) }}" />
+    <meta property="og:url" content="{{ route('shop.product_or_category.index', $product->url_key) }}"/>
 @endPush
 
 {{-- Page Layout --}}
@@ -156,7 +157,6 @@
                 </x-shop::tabs.item>
 
 
-
             </x-shop::tabs>
         </div>
 
@@ -258,7 +258,7 @@
 
         <x-shop::partners.carousel
             :title="trans('shop::app.products.view.partners')"
-            :src="route('shop.api.partners.index', $data['filters'] ?? [])"
+            :src="route('shop.api.partners.recommendation',['location_id'=> $product->location_id])"
             :navigation-link="route('shop.home.index')"
         >
         </x-shop::partners.carousel>
@@ -301,7 +301,8 @@
                                 @include('shop::products.view.gallery')
 
                                 <!-- Details -->
-                                <div class="max-w-[590px] relative max-1180:w-full max-1180:max-w-full max-1180:px-[20px]">
+                                <div
+                                    class="max-w-[590px] relative max-1180:w-full max-1180:max-w-full max-1180:px-[20px]">
                                     {!! view_render_event('bagisto.shop.products.name.before', ['product' => $product]) !!}
 
                                     <div class="flex gap-[15px] justify-between">
@@ -383,7 +384,7 @@
                                         </p>
 
                                     @endif
-                                        <p class="mt-[25px] text-[18px] text-[#6E6E6E] max-sm:text-[14px] max-sm:mt-[15px]">
+                                    <p class="mt-[25px] text-[18px] text-[#6E6E6E] max-sm:text-[14px] max-sm:mt-[15px]">
                                         {!! $product->short_description !!}
                                     </p>
 
@@ -403,7 +404,8 @@
 
                                         @if($product->author)
 
-                                            <a href="http://wa.me/{{$product->author->phone}}" target="_blank" class="secondary-button w-full max-w-full">
+                                            <a href="http://wa.me/{{$product->author->phone}}" target="_blank"
+                                               class="secondary-button w-full max-w-full">
                                                 Gaskeun (Send WhatsApp)
                                             </a>
                                         @endif
@@ -480,16 +482,23 @@
                                     if (response.data.message) {
                                         this.$emitter.emit('update-mini-cart', response.data.data);
 
-                                        this.$emitter.emit('add-flash', { type: 'success', message: response.data.message });
+                                        this.$emitter.emit('add-flash', {
+                                            type: 'success',
+                                            message: response.data.message
+                                        });
 
                                         if (response.data.redirect) {
-                                            window.location.href= response.data.redirect;
+                                            window.location.href = response.data.redirect;
                                         }
                                     } else {
-                                        this.$emitter.emit('add-flash', { type: 'warning', message: response.data.data.message });
+                                        this.$emitter.emit('add-flash', {
+                                            type: 'warning',
+                                            message: response.data.data.message
+                                        });
                                     }
                                 })
-                                .catch(error => {});
+                                .catch(error => {
+                                });
                         },
 
                         addToWishlist() {
@@ -498,11 +507,15 @@
                                     product_id: "{{ $product->id }}"
                                 })
                                     .then(response => {
-                                        this.isWishlist = ! this.isWishlist;
+                                        this.isWishlist = !this.isWishlist;
 
-                                        this.$emitter.emit('add-flash', { type: 'success', message: response.data.data.message });
+                                        this.$emitter.emit('add-flash', {
+                                            type: 'success',
+                                            message: response.data.data.message
+                                        });
                                     })
-                                    .catch(error => {});
+                                    .catch(error => {
+                                    });
                             } else {
                                 window.location.href = "{{ route('shop.customer.session.index')}}";
                             }
@@ -517,16 +530,25 @@
                                     'product_id': productId
                                 })
                                     .then(response => {
-                                        this.$emitter.emit('add-flash', { type: 'success', message: response.data.data.message });
+                                        this.$emitter.emit('add-flash', {
+                                            type: 'success',
+                                            message: response.data.data.message
+                                        });
                                     })
                                     .catch(error => {
                                         if ([400, 422].includes(error.response.status)) {
-                                            this.$emitter.emit('add-flash', { type: 'warning', message: error.response.data.data.message });
+                                            this.$emitter.emit('add-flash', {
+                                                type: 'warning',
+                                                message: error.response.data.data.message
+                                            });
 
                                             return;
                                         }
 
-                                        this.$emitter.emit('add-flash', { type: 'error', message: error.response.data.message});
+                                        this.$emitter.emit('add-flash', {
+                                            type: 'error',
+                                            message: error.response.data.message
+                                        });
                                     });
 
                                 return;
@@ -538,19 +560,28 @@
                             let existingItems = this.getStorageValue(this.getCompareItemsStorageKey()) ?? [];
 
                             if (existingItems.length) {
-                                if (! existingItems.includes(productId)) {
+                                if (!existingItems.includes(productId)) {
                                     existingItems.push(productId);
 
                                     this.setStorageValue(this.getCompareItemsStorageKey(), existingItems);
 
-                                    this.$emitter.emit('add-flash', { type: 'success', message: "@lang('shop::app.products.view.add-to-compare')" });
+                                    this.$emitter.emit('add-flash', {
+                                        type: 'success',
+                                        message: "@lang('shop::app.products.view.add-to-compare')"
+                                    });
                                 } else {
-                                    this.$emitter.emit('add-flash', { type: 'warning', message: "@lang('shop::app.products.view.already-in-compare')" });
+                                    this.$emitter.emit('add-flash', {
+                                        type: 'warning',
+                                        message: "@lang('shop::app.products.view.already-in-compare')"
+                                    });
                                 }
                             } else {
                                 this.setStorageValue(this.getCompareItemsStorageKey(), [productId]);
 
-                                this.$emitter.emit('add-flash', { type: 'success', message: "@lang('shop::app.products.view.add-to-compare')" });
+                                this.$emitter.emit('add-flash', {
+                                    type: 'success',
+                                    message: "@lang('shop::app.products.view.add-to-compare')"
+                                });
                             }
                         },
 

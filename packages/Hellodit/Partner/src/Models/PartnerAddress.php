@@ -22,7 +22,8 @@ class PartnerAddress extends Model implements PartnerAddressContract
         'company',
         'company_id',
         'image',
-        'description'
+        'description',
+        'location_id'
     ];
     public function partner()
     {

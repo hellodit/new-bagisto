@@ -2,6 +2,7 @@
 
 namespace Webkul\Partner\Models;
 
+use Hellodit\Partner\Models\PartnerAddress;
 use Illuminate\Database\Eloquent\Model;
 use Webkul\Partner\Contracts\Partner as PartnerContract;
 
@@ -29,6 +30,13 @@ class Partner extends Model implements PartnerContract
         'image',
         'description',
     ];
+
+
+    public function address()
+    {
+        return $this->hasMany(PartnerAddress::class,'partner_id');
+
+    }
 
 
     public function setImageAttribute($value)

@@ -1,6 +1,7 @@
 <x-shop::layouts>
     <x-slot:title>
-        Users Product
+        All Locations
+
     </x-slot:title>
     <section class="mx-auto">
         <div class="container">
@@ -10,7 +11,7 @@
 
             <div class="grid grid-cols-3 gap-3">
                 @foreach($locations as $location)
-                    <a href="{{route('shop.customer_product.information',['user_id' => $location->id])}}"
+                    <a href="{{route('shop.location.detail',['slug' => $location->slug])}}"
                        class="p-4 flex flex-col items-center justify-center">
                         <img src="{{$location->imageAssets()}}" alt="Image 1" class="w-[50%]">
                         <p class="mt-2 text-center text-gray-800">{{$location->name}}</p>

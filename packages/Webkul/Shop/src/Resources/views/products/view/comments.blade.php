@@ -1,5 +1,5 @@
 
-@foreach($product->reviews as $review)
+@foreach($product->reviews->where('status','approved') as $review)
     <div class="flex gap-[20px] p-[25px] border border-[#e5e5e5] rounded-[12px] max-sm:flex-wrap max-xl:mb-[20px]">
 
 

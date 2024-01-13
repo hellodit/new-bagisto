@@ -70,6 +70,32 @@
                             <div class="flex flex-col gap-[8px] flex-1 max-xl:flex-auto">
                                 <p class="text-[16px] text-gray-800 dark:text-white font-semibold mb-[16px]">
                                     Compnay Detail </p>
+
+
+                                <div class="mb-10">
+                                    <label for="location_id" class="block text-sm font-medium text-gray-700 required">
+                                        Location
+                                    </label>
+
+                                    <select
+                                        name="location_id"
+                                        id="location_id"
+                                        class="mt-1 block w-full p-2 border border-gray-300 rounded-md bg-white text-sm"
+                                        required
+                                    >
+                                        <option value="" disabled selected>
+                                            Select a Locations
+                                        </option>
+
+                                        @foreach(\Hellodit\Location\Models\Location::all() as $location)
+                                            <option value="{{ $location->id }}">{{ $location->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+
+
+
+
                                 <x-admin::form.control-group class="mb-[10px]">
                                     <x-admin::form.control-group.label class="required">
                                         Company

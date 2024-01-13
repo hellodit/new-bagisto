@@ -144,7 +144,7 @@
                 </x-shop::tabs.item>
 
 
-                {{-- Reviews Tab --}}
+                {{-- comments Tab --}}
                 <x-shop::tabs.item
                     class="container mt-[60px] !p-0 max-1180:hidden"
                     :title="trans('shop::app.products.view.comments')"

@@ -25,7 +25,7 @@
                         <a
                             :href="partner.link"
                             class="w-[110px] h-[110px] bg-[#F5F5F5] rounded-full"
-                            :aria-label="partner.company"
+                            :aria-label="partner.title"
                         >
                             <template v-if="partner.image">
                                 <x-shop::media.images.lazy
@@ -33,7 +33,7 @@
                                     width="110"
                                     height="110"
                                     class="w-[110px] h-[110px] rounded-full"
-                                    ::alt="partner.company"
+                                    ::alt="partner.title"
                                 ></x-shop::media.images.lazy>
                             </template>
                         </a>
@@ -44,7 +44,7 @@
                         >
                             <p
                                 class="text-center text-black text-[18px] max-sm:font-normal"
-                                v-text="partner.company"
+                                v-text="partner.title"
                             >
                             </p>
                         </a>

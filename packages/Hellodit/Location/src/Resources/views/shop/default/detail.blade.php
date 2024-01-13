@@ -24,6 +24,7 @@
     </section>
 
     <section class="pt-[25px]" id="product_location">
+    
         <div class="container">
             <div class="mt-[14px] mb-[25px] max-xl:flex-wrap">
                 {{-- Product Listing --}}
@@ -44,6 +45,7 @@
             <div class="container px-[60px] max-lg:px-[30px] max-sm:px-[15px]">
                 <div class="flex gap-[40px] items-start md:mt-[40px] max-lg:gap-[20px]">
                     <!-- Product Listing Filters -->
+                    @include('shop::categories.filters')
 
                     <!-- Product Listing Container -->
                     <div class="flex-1">

@@ -16,8 +16,7 @@ Route::group([
     Route::get('create', [CustomerProductController::class, 'create'])->name('shop.customer_product.create');
     Route::post('store', [CustomerProductController::class, 'store'])->name('shop.customer_product.store');
     Route::get('information/{user_id}', [CustomerProductController::class, 'information'])->name('shop.customer_product.information');
-
-
+    Route::get('all',[CustomerProductController::class,'UserProducts'])->name('shop.customer_product.list');
 //
 
 });

@@ -2,6 +2,7 @@
 
 namespace Hellodit\CustomerProduct\Http\Controllers\Shop;
 
+use Hellodit\CustomerProduct\Http\Controllers\Resource\CustomerProductResource;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Event;
@@ -119,9 +120,8 @@ class CustomerProductController extends Controller
     {
         $categories = \DB::table('categories')
             ->leftJoin('category_translations', 'category_translations.category_id', '=', 'categories.id')
-            ->where('locale_id','=',core()->getCurrentChannel()->root_category_id)
+            ->where('locale_id', '=', core()->getCurrentChannel()->root_category_id)
             ->where('status', 1)->get();
-
 
 
 //        $categories = $this->categoryRepository->getVisibleCategoryTree(core()->getCurrentChannel()->root_category_id);
@@ -130,7 +130,7 @@ class CustomerProductController extends Controller
         $product = $this->productRepository->findOrFail($id);
         $inventorySources = $this->inventorySourceRepository->findWhere(['status' => self::ACTIVE_STATUS]);
 
-        return view('customerproduct::shop.default.edit', compact('product', 'inventorySources','categories'));
+        return view('customerproduct::shop.default.edit', compact('product', 'inventorySources', 'categories'));
 
     }
 
@@ -148,6 +148,19 @@ class CustomerProductController extends Controller
 
         session()->flash('success', trans('admin::app.catalog.products.update-success'));
         return redirect()->route('shop.customer_product.index', ['id' => $product->id]);
+    }
+
+    public function customerProduct()
+    {
+        $customers = Customer::whereHas('products')->orderBy('created_at')->limit(5)->get();
+        return CustomerProductResource::collection($customers);
+    }
+
+
+    public function UserProducts()
+    {
+        $customers = Customer::whereHas('products')->orderBy('created_at')->get();
+        return view("customerproduct::shop.default.customers", compact('customers'));
     }
 
 

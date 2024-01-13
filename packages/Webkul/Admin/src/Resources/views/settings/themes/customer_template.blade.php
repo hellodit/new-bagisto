@@ -5,7 +5,7 @@
                 <div class="flex gap-x-[10px] justify-between items-center mb-[10px]">
                     <div class="flex flex-col gap-[4px]">
                         <p class="text-[16px] text-gray-800 dark:text-white font-semibold">
-                            Partner Carousel
+                            Customer Product Carousel
                         </p>
 
                         <p class="text-[12px] text-gray-500 dark:text-gray-300 font-medium">

@@ -62,4 +62,10 @@ class LocationController extends Controller
         return LocationResource::collection($locations);
     }
 
+
+    public function list_locations()
+    {
+        $locations = Location::orderBy('created_at')->get();
+        return view('location::shop.default.locations', compact('locations'));
+    }
 }

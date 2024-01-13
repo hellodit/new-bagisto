@@ -1,4 +1,4 @@
-<v-partners-carousel
+<v-customers-carousel
     src="{{ $src }}"
     title="{{ $title }}"
     navigation-link="{{ $navigationLink ?? '' }}"
@@ -8,11 +8,11 @@
         :navigation-link="$navigationLink ?? false"
     ></x-shop::shimmer.partners.carousel>
 
-</v-partners-carousel>
+</v-customers-carousel>
 
 @pushOnce('scripts')
-    <script type="text/x-template" id="v-partners-carousel-template">
-        <div class="container mt-[60px] max-lg:px-[30px] max-sm:mt-[20px]" v-if="! isLoading && partners?.length">
+    <script type="text/x-template" id="v-customers-carousel-template">
+        <div class="container mt-[60px] max-lg:px-[30px] max-sm:mt-[20px]" v-if="! isLoading && customers?.length">
             <div class="relative">
                 <div
                     ref="swiperContainer"
@@ -20,31 +20,31 @@
                 >
                     <div
                         class="grid grid-cols-1 gap-[15px] justify-items-center min-w-[120px] max-w-[120px] font-medium"
-                        v-for="partner in partners"
+                        v-for="customer in customers"
                     >
                         <a
-                            :href="partner.link"
+                            :href="customer.link"
                             class="w-[110px] h-[110px] bg-[#F5F5F5] rounded-full"
-                            :aria-label="partner.company"
+                            :aria-label="customer.firs_name"
                         >
-                            <template v-if="partner.image">
+                            <template v-if="customer.image">
                                 <x-shop::media.images.lazy
-                                    ::src="partner.image"
+                                    ::src="customer.image"
                                     width="110"
                                     height="110"
                                     class="w-[110px] h-[110px] rounded-full"
-                                    ::alt="partner.company"
+                                    ::alt="customer.name"
                                 ></x-shop::media.images.lazy>
                             </template>
                         </a>
 
                         <a
-                            :href="partner.link"
+                            :href="customer.link"
                             class=""
                         >
                             <p
                                 class="text-center text-black text-[18px] max-sm:font-normal"
-                                v-text="partner.company"
+                                v-text="customer.name"
                             >
                             </p>
                         </a>
@@ -76,8 +76,8 @@
     </script>
 
     <script type="module">
-        app.component('v-partners-carousel', {
-            template: '#v-partners-carousel-template',
+        app.component('v-customers-carousel', {
+            template: '#v-customers-carousel-template',
 
             props: [
                 'src',
@@ -89,23 +89,24 @@
                 return {
                     isLoading: true,
 
-                    partners: [],
+                    customers: [],
 
                     offset: 323,
                 };
             },
 
             mounted() {
-                this.getpartners();
+                this.getcustomers();
             },
 
             methods: {
-                getpartners() {
+                getcustomers() {
                     this.$axios.get(this.src)
                         .then(response => {
                             this.isLoading = false;
 
-                            this.partners = response.data.data;
+                            console.log(response.data.data)
+                            this.customers = response.data.data;
                         }).catch(error => {
                         console.log(error);
                     });

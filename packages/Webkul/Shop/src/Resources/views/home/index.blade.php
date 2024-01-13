@@ -72,16 +72,16 @@
 
 
                 @case ($customization::CUSTOMER_CAROUSEL)
-                    {{-- PARTNER_CAROUSEL --}}
-                    <x-shop::partners.carousel
+                    {{-- CUSTOMER_CAROUSEL --}}
+                    <x-shop::customer.carousel
                         :title="$data['title'] ?? ''"
                         :src="route('shop.api.customer-product.index', $data['filters'] ?? [])"
                         :navigation-link="route('shop.home.index')"
                     >
-                    </x-shop::partners.carousel>
+                    </x-shop::customer.carousel>
 
                     <div class="flex justify-center items-center mt-2">
-                        <a href="{{ route('shop.partners.index') }}" class="secondary-button">View All Partners</a>
+                        <a href="{{ route('shop.customer_product.list') }}" class="secondary-button">View User Products</a>
                     </div>
 
                     @break
@@ -96,7 +96,7 @@
                     </x-shop::location.carousel>
 
                     <div class="flex justify-center items-center mt-2">
-                        <a href="{{ route('shop.partners.index') }}" class="secondary-button">View All Locations</a>
+                        <a href="{{ route('shop.location.list-locations') }}" class="secondary-button">View All Locations</a>
                     </div>
 
                     @break

@@ -14,7 +14,7 @@
                     <a href="{{route('shop.partner.detail',['id' => $partner->id])}}"
                        class="p-4 flex flex-col items-center justify-center">
                         <img src="{{$partner->imageAssets()}}" alt="Image 1" class="w-[50%]">
-                        <p class="mt-2 text-center text-gray-800">{{$partner->company}}</p>
+                        <p class="mt-2 text-center text-gray-800">{{$partner->title}}</p>
                     </a>
                 @endforeach
             </div>

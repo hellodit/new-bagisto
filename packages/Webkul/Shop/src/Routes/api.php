@@ -32,8 +32,8 @@ Route::group(['middleware' => ['locale', 'theme', 'currency'], 'prefix' => 'api'
     });
 
     Route::controller(PartnerController::class)->prefix('partners')->group(function () {
-        Route::get('', 'index')->name('shop.api.partners.index');
-        Route::get('', 'recommendation')->name('shop.api.partners.recommendation');
+        Route::get('/partners', 'index')->name('shop.api.partners.index');
+        Route::get('/recommendation', 'recommendation')->name('shop.api.partners.recommendation');
 
     });
 

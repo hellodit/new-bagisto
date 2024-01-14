@@ -64,6 +64,7 @@
                                         <img src="{{Storage::url($images->path)}}" class="w-[200px] h-[200px] w-fit"
                                              alt="">
                                     </a>
+                                    <input type="hidden" name="images[files][{{$images->id}}]">
                                 @endforeach
                             </div>
                         </ul>

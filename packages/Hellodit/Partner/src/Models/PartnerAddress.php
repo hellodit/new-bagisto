@@ -2,6 +2,7 @@
 
 namespace Hellodit\Partner\Models;
 
+use Hellodit\Location\Models\Location;
 use Illuminate\Database\Eloquent\Model;
 use Hellodit\Partner\Contracts\PartnerAddress as PartnerAddressContract;
 
@@ -28,5 +29,11 @@ class PartnerAddress extends Model implements PartnerAddressContract
     public function partner()
     {
         return $this->belongsTo(Partner::class);
+    }
+
+    public function location()
+    {
+        return $this->belongsTo(Location::class,'location_id');
+
     }
 }

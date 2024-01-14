@@ -2,6 +2,7 @@
 
 namespace Hellodit\Partner\Http\Controllers\Shop;
 
+use Hellodit\Location\Models\Location;
 use Hellodit\Partner\Models\Partner;
 use Illuminate\Routing\Controller;
 use Illuminate\Foundation\Bus\DispatchesJobs;
@@ -35,8 +36,8 @@ class PartnerController extends Controller
      */
     public function index($id)
     {
-        $partners = Partner::all();
-        return view($this->_config['view'], compact('partners'));
+        $locations = Location::whereHas('partner_address')->get();
+        return view($this->_config['view'], compact('locations'));
     }
 
     public function detail($id)

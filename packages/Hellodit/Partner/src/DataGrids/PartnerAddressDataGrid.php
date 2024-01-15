@@ -2,10 +2,12 @@
 
 namespace Hellodit\Partner\DataGrids;
 
+use Hellodit\Partner\Models\PartnerAddress;
 use Illuminate\Support\Facades\DB;
 use Webkul\DataGrid\DataGrid;
 
-class PartnerAddressDataGrid extends DataGrid {
+class PartnerAddressDataGrid extends DataGrid
+{
 
     public function prepareQueryBuilder()
     {
@@ -56,13 +58,13 @@ class PartnerAddressDataGrid extends DataGrid {
 //        ]);
 
 
-
         $this->addAction([
             'icon' => 'icon-view',
             'title' => 'Detail',
             'method' => 'GET',
             'url' => function ($row) {
-                return route('shop.partner.detail', $row->id);
+                $partnerAddress = PartnerAddress::whereId($row->id)->first();
+                return route('shop.partner.detail', $partnerAddress->partner->id);
             },
         ]);
 

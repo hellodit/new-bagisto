@@ -64,7 +64,7 @@ Route::group(['middleware' => ['locale', 'theme', 'currency']], function () {
          * Customer authenticated routes. All the below routes only be accessible
          * if customer is authenticated.
          */
-        Route::group(['middleware' => ['customer']], function () {
+        Route::group(['middleware' => ['customer','isVerify']], function () {
             /**
              * Datagrid routes.
              */

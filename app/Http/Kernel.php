@@ -2,6 +2,7 @@
 
 namespace App\Http;
 
+use Hellodit\CustomerProduct\Http\Middleware\IsUserVerify;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -63,5 +64,6 @@ class Kernel extends HttpKernel
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'cacheResponse' => \Spatie\ResponseCache\Middlewares\CacheResponse::class,
+        'isVerify' => IsUserVerify::class,
     ];
 }

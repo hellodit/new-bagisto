@@ -2,6 +2,8 @@
 
 namespace Webkul\Customer\Models;
 
+use Hellodit\CustomerProduct\Helpers\OtpHelper;
+use Hellodit\CustomerProduct\Mail\SendOTPMail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -22,6 +24,22 @@ use Webkul\Sales\Models\InvoiceProxy;
 class Customer extends Authenticatable implements CustomerContract
 {
     use HasFactory, Notifiable, Visitor;
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::created(function ($customer){
+
+            $newOtp = OtpHelper::GenerateOTPDigit();
+            $customer->update([
+                'otp' => $newOtp,
+                'otp_created_at' => now()
+            ]);
+
+            \Mail::to($customer)->send(new SendOTPMail($newOtp));
+        });
+    }
 
     /**
      * The table associated with the model.
@@ -60,6 +78,9 @@ class Customer extends Authenticatable implements CustomerContract
         'is_verified',
         'description',
         'is_suspended',
+        'otp_created_at',
+        'is_verify',
+        'otp',
     ];
 
     /**
@@ -93,13 +114,13 @@ class Customer extends Authenticatable implements CustomerContract
 
     public function products()
     {
-        return $this->hasMany(Product::class,'customer_id');
+        return $this->hasMany(Product::class, 'customer_id');
     }
 
     /**
      * Send the password reset notification.
      *
-     * @param  string  $token
+     * @param string $token
      * @return void
      */
     public function sendPasswordResetNotification($token): void
@@ -134,7 +155,7 @@ class Customer extends Authenticatable implements CustomerContract
      */
     public function image_url()
     {
-        if (! $this->image) {
+        if (!$this->image) {
             return;
         }
 
@@ -144,7 +165,7 @@ class Customer extends Authenticatable implements CustomerContract
     /**
      * Is email exists or not.
      *
-     * @param  string  $email
+     * @param string $email
      * @return bool
      */
     public function emailExists($email): bool
@@ -189,12 +210,13 @@ class Customer extends Authenticatable implements CustomerContract
             ->where('default_address', 1);
     }
 
-     /**
+    /**
      * Customer's relation with invoice .
      *
      * @return \Illuminate\Database\Eloquent\Relations\hasManyThrough
      */
-    public function invoices() {
+    public function invoices()
+    {
         return $this->hasManyThrough(InvoiceProxy::modelClass(), OrderProxy::modelClass());
     }
 
@@ -215,7 +237,7 @@ class Customer extends Authenticatable implements CustomerContract
      */
     public function isWishlistShared(): bool
     {
-        return (bool) $this->wishlist_items()->where('shared', 1)->first();
+        return (bool)$this->wishlist_items()->where('shared', 1)->first();
     }
 
     /**

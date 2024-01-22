@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::group([
     'prefix' => 'customer/product',
-    'middleware' => ['web', 'theme', 'locale', 'currency']
+    'middleware' => ['web', 'theme', 'locale', 'currency','customer','isVerify']
 ], function () {
 
     Route::get('/', [CustomerProductController::class, 'index'])
@@ -26,7 +26,7 @@ Route::group([
 
 Route::group([
     'prefix' => 'customer/otp-verification',
-    'middleware' => ['web', 'theme', 'locale', 'currency']
+    'middleware' => ['web', 'theme', 'locale', 'currency','customer']
 ], function () {
     Route::get('', [CustomerOTPController::class,'index'])->name('shop.otp.index');
     Route::post('/new-request', [CustomerOTPController::class,'sendNewOtp'])->name('shop.otp.request');

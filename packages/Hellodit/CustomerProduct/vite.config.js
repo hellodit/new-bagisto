@@ -1,5 +1,4 @@
 import { defineConfig, loadEnv } from "vite";
-import vue from "@vitejs/plugin-vue";
 import laravel from "laravel-vite-plugin";
 import path from "path";
 
@@ -21,16 +20,13 @@ export default defineConfig(({ mode }) => {
         },
 
         plugins: [
-            vue(),
-
             laravel({
-                hotFile: "../../../public/admin-default-vite.hot",
+                hotFile: "../../../public/customer-product-vite.hot",
                 publicDirectory: "../../../public",
-                buildDirectory: "themes/customer-product/default/build",
+                buildDirectory: "themes/customer-product/build",
                 input: [
                     "src/Resources/assets/css/app.css",
                     "src/Resources/assets/js/app.js",
-                    "src/Resources/assets/js/chart.js",
                 ],
                 refresh: true,
             }),

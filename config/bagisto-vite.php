@@ -25,7 +25,7 @@ return [
         ],
         'customer-product' => [
             'hot_file' => 'customer-product.hot',
-            'build_directory' => 'themes/customer-product/default/build',
+            'build_directory' => 'themes/customer-product/build',
             'package_assets_directory' => 'src/Resources/assets',
         ],
 

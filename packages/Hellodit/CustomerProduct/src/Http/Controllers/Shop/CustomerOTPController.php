@@ -39,21 +39,23 @@ class CustomerOTPController extends Controller
             'otp' => 'required'
         ]);
 
-        $current_user = auth()->guard('customer')->user();
-        $current_time = Carbon::now();
-        $otp_time = Carbon::parse($current_time->otp_created_at);
+        $userOtp = implode('', $request->otp);
 
-        if ($otp_time->diffInMinutes($current_time) <= 5){
-            if ($current_user->otp == $request->otp){
-                $current_user->update([
-                    'is_verify' => true,
-                    'otp' => null,
-                    'otp_created_at' => null
-                ]);
-                return redirect()->route('shop.customers.account.profile.index');
-            }
+        $currentUser = auth()->guard('customer')->user();
+        $currentTime = Carbon::now();
+        $otpTime = Carbon::parse($currentUser->otp_created_at);
+
+        if ($otpTime->diffInMinutes($currentTime) <= 5 && $currentUser->otp == $userOtp) {
+            $currentUser->update([
+                'is_verify' => true,
+                'otp' => null,
+                'otp_created_at' => null
+            ]);
+
+            return redirect()->route('shop.customers.account.profile.index');
         }
-        return redirect()->back()->with('warning', 'OTP is expired, please request new one');
+
+        return redirect()->back()->with('warning', 'Invalid OTP please request new ');
     }
 
 }

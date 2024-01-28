@@ -30,4 +30,16 @@ class ProductReviewRepository extends Repository
 
         return $reviews;
     }
+
+    public function getProductAndMyReview()
+    {
+        $myProducts = auth()->guard('customer')->user()->products()->pluck('id')->toArray();
+        $reviews = $this->model
+            ->where(['customer_id' => auth()->guard('customer')->user()->id])
+            ->orWhereIn('product_id',$myProducts)
+            ->with('product')
+            ->paginate(5);
+
+        return $reviews;
+    }
 }

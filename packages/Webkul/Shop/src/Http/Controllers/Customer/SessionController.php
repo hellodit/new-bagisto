@@ -58,8 +58,7 @@ class SessionController extends Controller
          * Event passed to prepare cart after login.
          */
         Event::dispatch('customer.after.login', $loginRequest->get('email'));
-
-        return redirect()->route('shop.home.index');
+        return redirect()->intended('shop.customers.account.profile.index');
     }
 
     /**

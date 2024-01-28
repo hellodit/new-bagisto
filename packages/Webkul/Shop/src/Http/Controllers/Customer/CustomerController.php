@@ -132,7 +132,7 @@ class CustomerController extends Controller
                     if (! empty($data['image'])) {
                         Storage::delete((string)$customer->image);
                     }
-                
+
                     $customer->image = null;
 
                     $customer->save();
@@ -193,7 +193,7 @@ class CustomerController extends Controller
      */
     public function reviews()
     {
-        $reviews = $this->productReviewRepository->getCustomerReview();
+        $reviews = $this->productReviewRepository->getProductAndMyReview();
 
         return view('shop::customers.account.reviews.index', compact('reviews'));
     }

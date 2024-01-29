@@ -1,6 +1,6 @@
 @switch($attribute->type)
     @case('select')
-        <select class="custom-select block w-full py-2 px-3 shadow bg-white border border-[#E9E9E9] rounded-lg text-[16px] transition-all hover:border-gray-400 focus:border-gray-400" name="{{$attribute->code}}" id="{{$attribute->code}}" >
+        <select class="custom-select block w-full py-2 px-3 shadow bg-white border border-[#E9E9E9] rounded-lg text-[16px] transition-all " name="{{$attribute->code}}" id="{{$attribute->code}}" >
             @php
                 $selectedOption = old($attribute->code) ?: $product[$attribute->code];
 

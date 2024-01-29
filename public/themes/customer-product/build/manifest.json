@@ -1,6 +1,6 @@
 {
   "src/Resources/assets/css/app.css": {
-    "file": "assets/app-7fd18f71.css",
+    "file": "assets/app-5b497408.css",
     "isEntry": true,
     "src": "src/Resources/assets/css/app.css"
   },
@@ -177,7 +177,7 @@
     "src": "src/Resources/assets/images/unpaid-invoices.svg"
   },
   "src/Resources/assets/js/app.js": {
-    "file": "assets/app-4ed993c7.js",
+    "file": "assets/app-73740a47.js",
     "isEntry": true,
     "src": "src/Resources/assets/js/app.js"
   }

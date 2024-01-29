@@ -3,7 +3,13 @@
     <x-slot:title>
         Create Customer Product
     </x-slot:title>
+    @push('styles')
 
+        @bagistoVite([
+          'src/Resources/assets/css/app.css',
+          'src/Resources/assets/js/app.js'
+        ], 'customer-product')
+    @endpush
 
     <style>
         <
@@ -76,19 +82,19 @@
 
                         <div class="mb-2">
                             <label for="location_id"
-                                   class="block mb-15px mt-30px text-16px text-gray-800 dark:text-white required">Location</label>
+                                   class="block mb-15px mt-30px text-16px  required">Location</label>
                             <select name="location_id" id="location_id"
                                     class="custom-select block w-full py-2 px-3 shadow bg-white border border-[#E9E9E9] rounded-lg text-[16px] transition-all hover:border-gray-400 focus:border-gray-400">
                                 @foreach(\Hellodit\Location\Models\Location::all() as $location)
                                     <option
-                                            value="{{ $location->id }}" {{ $location->id == $product->location_id ? 'selected' : '' }}>{{ $location->name }}</option>
+                                        value="{{ $location->id }}" {{ $location->id == $product->location_id ? 'selected' : '' }}>{{ $location->name }}</option>
                                 @endforeach
                             </select>
                         </div>
 
                         <div class="mb-2">
                             <label for="sku"
-                                   class="block mb-15px mt-30px text-16px text-gray-800 dark:text-white required">SKU</label>
+                                   class="block mb-15px mt-30px text-16px  required">SKU</label>
                             <input type="text" name="sku" id="sku" value="{{ old('sku') ?? $product->sku }}"
                                    class="w-full mb-3 py-2 px-3 shadow border rounded text-[14px] text-gray-600 transition-all hover:border-gray-400 focus:border-gray-400"
                                    required placeholder="Product SKU">
@@ -96,7 +102,7 @@
 
                         <div class="mb-2">
                             <label for="name"
-                                   class="block mb-15px mt-30px text-16px text-gray-800 dark:text-white required">Product
+                                   class="block mb-15px mt-30px text-16px  required">Product
                                 Name</label>
                             <input type="text" name="name" id="name" value="{{ old('name') ?? $product->name }}"
                                    class="w-full mb-3 py-2 px-3 shadow border rounded text-[14px] text-gray-600 transition-all hover:border-gray-400 focus:border-gray-400"
@@ -105,7 +111,7 @@
 
                         <div class="mb-2">
                             <label for="short_description"
-                                   class="block mb-15px mt-30px text-16px text-gray-800 dark:text-white required">Short
+                                   class="block mb-15px mt-30px text-16px  required">Short
                                 Description</label>
                             <textarea name="short_description" id="short_description"
                                       class="w-full mb-3 py-2 px-3 shadow border rounded text-14px text-gray-600 transition-all hover:border-gray-400 focus:border-gray-400"
@@ -115,7 +121,7 @@
 
                         <div class="mb-2">
                             <label for="description"
-                                   class="block mb-15px mt-30px text-16px text-gray-800 dark:text-white required">Description</label>
+                                   class="block mb-15px mt-30px text-16px  required">Description</label>
 
                             <textarea name="description" id="description"
                                       class="w-full mb-3 py-2 px-3 shadow border rounded text-14px text-gray-600 transition-all hover:border-gray-400 focus:border-gray-400"
@@ -129,9 +135,9 @@
                             @foreach ($product->attribute_family->attribute_groups->groupBy('column') as $column => $groups)
                                 <div
 
-                                        @if ($column == 1) class="flex flex-col gap-[8px] flex-1 max-xl:flex-auto"
-                                        @endif
-                                        @if ($column == 2) class="flex flex-col gap-[8px] w-[360px] max-w-full max-sm:w-full" @endif
+                                    @if ($column == 1) class="flex flex-col gap-[8px] flex-1 max-xl:flex-auto"
+                                    @endif
+                                    @if ($column == 2) class="flex flex-col gap-[8px] w-[360px] max-w-full max-sm:w-full" @endif
                                 >
                                     @foreach ($groups->where('name','General') as $group)
                                         @php
@@ -140,16 +146,19 @@
 
 
                                         <div
-                                                class="relative p-[16px] bg-white dark:bg-gray-900 rounded-[4px] box-shadow">
-                                            <p class="text-[16px] text-gray-800 dark:text-white font-semibold mb-[16px]">
+                                            class="relative bg-white  rounded-[4px] box-shadow">
+                                            <p class="text-[16px]  font-semibold mb-[16px]">
                                                 {{ $group->name }}
                                             </p>
                                             @foreach ($customAttributes->whereNotIn('code',['sku','product_number','name','url_key','meta_title',
                                                         'meta_keywords','meta_description','description','short_description']) as $attribute)
                                                 <x-admin::form.control-group>
-                                                    <x-admin::form.control-group.label>
+
+                                                    <label class="block leading-[24px] text-[12px] font-medium">
                                                         {{ $attribute->admin_name . ($attribute->is_required ? '*' : '') }}
-                                                    </x-admin::form.control-group.label>
+                                                    </label>
+
+
                                                     @include ('customerproduct::shop.default.edit.control_2', [
                                                         'attribute' => $attribute,
                                                         'product'   => $product,
@@ -166,24 +175,26 @@
                         </div>
 
 
-                        @include('customerproduct::shop.default.component.add_categories',['categories' => $categories ,'ids' => $product->categories->pluck('id')->toArray()])
-                        <p class="text-16px text-gray-800 dark:text-white font-semibold mb-5px"> Price Info </p>
+                        {{--                        @include('customerproduct::shop.default.component.add_categories',['categories' => $categories ,'ids' => $product->categories->pluck('id')->toArray()])--}}
+
+                        @include('customerproduct::shop.default.edit.categories',['product' => $product])
+                        <p class="text-16px text-gray-800  font-semibold mb-5px"> Price Info </p>
 
                         <div class="mb-2">
                             <label for="price"
-                                   class="block mb-15px mt-30px text-16px text-gray-800 dark:text-white required">Price</label>
+                                   class="block mb-15px mt-30px text-16px text-gray-800  required">Price</label>
                             <input type="number" name="price" id="price" value="{{ old('price') ?? $product->price }}"
                                    class="w-full mb-3 py-2 px-3 shadow border rounded text-[14px] text-gray-600 transition-all hover:border-gray-400 focus:border-gray-400"
                                    required placeholder="Product Price">
                         </div>
 
 
-                        <p class="text-16px text-gray-800 dark:text-white font-semibold mb-15px"> Meta Description</p>
+                        <p class="text-16px   font-semibold mb-15px"> Meta Description</p>
                         @include('customerproduct::shop.default.component.seo-component')
 
                         <div class="mb-3">
                             <label for="status"
-                                   class="block mb-15px mt-30px text-16px text-gray-800 dark:text-white required">Status</label>
+                                   class="block mb-15px mt-30px text-16px text-gray-800  required">Status</label>
                             <select name="status" id="status"
                                     class="custom-select block w-full py-2 px-3 shadow bg-white border border-[#E9E9E9] rounded-lg text-[16px] transition-all hover:border-gray-400 focus:border-gray-400">
                                 <option value="1" {{ old('status') ?? $product->status ? 'selected' : '' }}>Active
@@ -200,7 +211,7 @@
                     <div class="flex gap-16px justify-between items-center max-sm:flex-wrap">
                         <div class="flex gap-x-10px items-center">
 
-                            <button type="submit" class="primary-button">
+                            <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
                                 @lang('admin::app.catalog.products.edit.save-btn')
                             </button>
                         </div>

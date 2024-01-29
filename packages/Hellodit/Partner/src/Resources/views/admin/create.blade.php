@@ -69,25 +69,26 @@
 
                                 <x-admin::form.control-group class="mb-[10px]">
                                     <x-admin::form.control-group.label class="required">
-                                        Language
+                                        Title
                                     </x-admin::form.control-group.label>
 
                                     <x-admin::form.control-group.control
                                         type="text"
-                                        name="language"
-                                        :value="$partner->language ?? old('language')"
-                                        id="language"
+                                        name="title"
+                                        :value="$partner->title ?? old('title')"
+                                        id="title"
                                         rules="required"
-                                        :label="trans('partner::app.admin.create.language')"
-                                        :placeholder="trans('partner::app.admin.create.language')"
+                                        :label="trans('partner::app.admin.create.title')"
+                                        :placeholder="trans('partner::app.admin.create.title')"
                                     >
                                     </x-admin::form.control-group.control>
 
                                     <x-admin::form.control-group.error
-                                        control-name="language"
+                                        control-name="title"
                                     >
                                     </x-admin::form.control-group.error>
                                 </x-admin::form.control-group>
+
                                 <x-admin::form.control-group class="mb-[10px]">
                                     <x-admin::form.control-group.label class="required">
                                         Solution
@@ -109,27 +110,31 @@
                                     >
                                     </x-admin::form.control-group.error>
                                 </x-admin::form.control-group>
+
+
                                 <x-admin::form.control-group class="mb-[10px]">
                                     <x-admin::form.control-group.label class="required">
-                                        Title
+                                        Language
                                     </x-admin::form.control-group.label>
 
                                     <x-admin::form.control-group.control
                                         type="text"
-                                        name="title"
-                                        :value="$partner->title ?? old('title')"
-                                        id="title"
+                                        name="language"
+                                        :value="$partner->language ?? old('language')"
+                                        id="language"
                                         rules="required"
-                                        :label="trans('partner::app.admin.create.title')"
-                                        :placeholder="trans('partner::app.admin.create.title')"
+                                        :label="trans('partner::app.admin.create.language')"
+                                        :placeholder="trans('partner::app.admin.create.language')"
                                     >
                                     </x-admin::form.control-group.control>
 
                                     <x-admin::form.control-group.error
-                                        control-name="title"
+                                        control-name="language"
                                     >
                                     </x-admin::form.control-group.error>
                                 </x-admin::form.control-group>
+
+
                                 <x-admin::form.control-group class="mb-[10px]">
                                     <x-admin::form.control-group.label class="required">
                                         Last name

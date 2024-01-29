@@ -161,6 +161,75 @@
                                     </x-admin::form.control-group.error>
                                 </x-admin::form.control-group>
 
+
+                                <x-admin::form.control-group class="mb-[10px]">
+                                    <x-admin::form.control-group.label class="required">
+                                        Telephone
+                                    </x-admin::form.control-group.label>
+
+                                    <x-admin::form.control-group.control
+                                        type="text"
+                                        name="telephone"
+                                        :value="old('telephone')"
+                                        id="telephone"
+                                        rules="required"
+                                        :label="trans('partner::app.admin.create.telephone')"
+                                        :placeholder="trans('partner::app.admin.create.telephone')"
+                                    >
+                                    </x-admin::form.control-group.control>
+
+                                    <x-admin::form.control-group.error
+                                        control-name="telephone"
+                                    >
+                                    </x-admin::form.control-group.error>
+                                </x-admin::form.control-group>
+
+
+                                <x-admin::form.control-group class="mb-[10px]">
+                                    <x-admin::form.control-group.label class="required">
+                                        Mobile
+                                    </x-admin::form.control-group.label>
+
+                                    <x-admin::form.control-group.control
+                                        type="text"
+                                        name="mobile"
+                                        :value="old('mobile')"
+                                        id="mobile"
+                                        rules="required"
+                                        :label="trans('partner::app.admin.create.mobile')"
+                                        :placeholder="trans('partner::app.admin.create.mobile')"
+                                    >
+                                    </x-admin::form.control-group.control>
+
+                                    <x-admin::form.control-group.error
+                                        control-name="mobile"
+                                    >
+                                    </x-admin::form.control-group.error>
+                                </x-admin::form.control-group>
+
+
+                                <x-admin::form.control-group class="mb-[10px]">
+                                    <x-admin::form.control-group.label class="required">
+                                        Email
+                                    </x-admin::form.control-group.label>
+
+                                    <x-admin::form.control-group.control
+                                        type="text"
+                                        name="email"
+                                        :value="old('email')"
+                                        id="email"
+                                        rules="required"
+                                        :label="trans('partner::app.admin.create.email')"
+                                        :placeholder="trans('partner::app.admin.create.email')"
+                                    >
+                                    </x-admin::form.control-group.control>
+
+                                    <x-admin::form.control-group.error
+                                        control-name="email"
+                                    >
+                                    </x-admin::form.control-group.error>
+                                </x-admin::form.control-group>
+
                             </div>
 
                             <div class="flex flex-col gap-[8px] flex-1 max-xl:flex-auto">
@@ -231,27 +300,7 @@
                                     >
                                     </x-admin::form.control-group.error>
                                 </x-admin::form.control-group>
-                                <x-admin::form.control-group class="mb-[10px]">
-                                    <x-admin::form.control-group.label class="required">
-                                        Country
-                                    </x-admin::form.control-group.label>
 
-                                    <x-admin::form.control-group.control
-                                        type="text"
-                                        name="country"
-                                        :value="old('country')"
-                                        id="country"
-                                        rules="required"
-                                        :label="trans('partner::app.admin.create.country')"
-                                        :placeholder="trans('partner::app.admin.create.country')"
-                                    >
-                                    </x-admin::form.control-group.control>
-
-                                    <x-admin::form.control-group.error
-                                        control-name="country"
-                                    >
-                                    </x-admin::form.control-group.error>
-                                </x-admin::form.control-group>
                                 <x-admin::form.control-group class="mb-[10px]">
                                     <x-admin::form.control-group.label class="required">
                                         State
@@ -273,6 +322,30 @@
                                     >
                                     </x-admin::form.control-group.error>
                                 </x-admin::form.control-group>
+
+
+                                <x-admin::form.control-group class="mb-[10px]">
+                                    <x-admin::form.control-group.label class="required">
+                                        Country
+                                    </x-admin::form.control-group.label>
+
+                                    <x-admin::form.control-group.control
+                                        type="text"
+                                        name="country"
+                                        :value="old('country')"
+                                        id="country"
+                                        rules="required"
+                                        :label="trans('partner::app.admin.create.country')"
+                                        :placeholder="trans('partner::app.admin.create.country')"
+                                    >
+                                    </x-admin::form.control-group.control>
+
+                                    <x-admin::form.control-group.error
+                                        control-name="country"
+                                    >
+                                    </x-admin::form.control-group.error>
+                                </x-admin::form.control-group>
+
                             </div>
                         </div>
 

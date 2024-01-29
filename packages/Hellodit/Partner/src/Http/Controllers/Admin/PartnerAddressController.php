@@ -89,7 +89,10 @@ class PartnerAddressController extends Controller
             'city',
             'country',
             'state',
-            'location_id'
+            'location_id',
+            'telephone',
+            'mobile',
+            'email',
         ]);
 
         PartnerAddress::create($data);

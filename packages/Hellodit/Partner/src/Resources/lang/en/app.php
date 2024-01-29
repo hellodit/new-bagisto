@@ -22,6 +22,7 @@ return [
             'famille' => 'Family',
             'email' => 'Email',
             'website' => 'Website',
+            'description' => 'Description',
             'company' => 'Company',
             'company_id' => 'Company id',
         ],

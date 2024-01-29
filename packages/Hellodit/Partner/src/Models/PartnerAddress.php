@@ -24,8 +24,12 @@ class PartnerAddress extends Model implements PartnerAddressContract
         'company_id',
         'image',
         'description',
-        'location_id'
+        'location_id',
+        'telephone',
+        'mobile',
+        'email'
     ];
+
     public function partner()
     {
         return $this->belongsTo(Partner::class);
@@ -33,7 +37,7 @@ class PartnerAddress extends Model implements PartnerAddressContract
 
     public function location()
     {
-        return $this->belongsTo(Location::class,'location_id');
+        return $this->belongsTo(Location::class, 'location_id');
 
     }
 }

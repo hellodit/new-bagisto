@@ -48,14 +48,14 @@ class PartnerAddressDataGrid extends DataGrid
 //        ]);
 
 //
-//        $this->addAction([
-//            'icon' => 'icon-edit',
-//            'title' => 'Edit',
-//            'method' => 'GET',
-//            'url' => function ($row) {
-//                return route('admin.partner_address.edit', $row->id);
-//            },
-//        ]);
+        $this->addAction([
+            'icon' => 'icon-edit',
+            'title' => 'Edit',
+            'method' => 'GET',
+            'url' => function ($row) {
+                return route('admin.partner_address.edit', $row->id);
+            },
+        ]);
 
 
         $this->addAction([

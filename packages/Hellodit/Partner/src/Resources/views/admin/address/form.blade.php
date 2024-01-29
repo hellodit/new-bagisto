@@ -1,15 +1,30 @@
+@php
+    $title = "Create Partner Address";
+        $route = route('admin.partner_address.store');
+        if (!empty($address)){
+                $title = "Update Partner Address";
+
+            $route = route('admin.partner_address.update',['partner' => $address->id]);
+        }
+
+@endphp
+
 <x-admin::layouts>
     <x-slot:title>
-        @lang('partner::app.admin.page-title')
+        {{$title}}
     </x-slot:title>
 
-    <x-admin::form action="{{ route('admin.partner_address.store') }}" enctype="multipart/form-data">
+    <x-admin::form action="{{ $route }}" enctype="multipart/form-data">
+
+        @if($address)
+            @method('PUT')
+        @endif
 
         {!! view_render_event('admin.settings.channels.create.create_form_controls.before') !!}
 
         <div class="flex justify-between items-center">
             <p class="text-[20px] text-gray-800 dark:text-white font-bold">
-                @lang('partner::app.admin.create-title')
+                {{$title}}
             </p>
 
             <div class="flex gap-x-[10px] items-center">
@@ -26,7 +41,7 @@
                     type="submit"
                     class="primary-button"
                 >
-                    @lang('partner::app.admin.create-title')
+                    {{$title}}
                 </button>
             </div>
         </div>
@@ -59,7 +74,8 @@
                                 </option>
 
                                 @foreach(\Hellodit\Partner\Models\Partner::all() as $partner)
-                                    <option value="{{ $partner->id }}">{{ $partner->title }}</option>
+                                    <option
+                                        value="{{ $partner->id }}" {{ $partner->id == $address->partner_id ? 'selected' : '' }}>{{ $partner->title }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -88,12 +104,11 @@
                                         </option>
 
                                         @foreach(\Hellodit\Location\Models\Location::all() as $location)
-                                            <option value="{{ $location->id }}">{{ $location->name }}</option>
+                                            <option
+                                                value="{{ $location->id }}" {{ $address->location_id == $location->id ? 'selected' : '' }}>{{ $location->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
-
-
 
 
                                 <x-admin::form.control-group class="mb-[10px]">
@@ -104,7 +119,7 @@
                                     <x-admin::form.control-group.control
                                         type="text"
                                         name="company"
-                                        :value="old('company')"
+                                        :value="$address->company ?? old('company')"
                                         id="company"
                                         rules="required"
                                         :label="trans('partner::app.admin.create.company')"
@@ -125,7 +140,7 @@
                                     <x-admin::form.control-group.control
                                         type="text"
                                         name="company_id"
-                                        :value="old('company_id')"
+                                        :value="$address->company_id ?? old('company_id')"
                                         id="company_id"
                                         rules="required"
                                         :label="trans('partner::app.admin.create.company_id')"
@@ -139,27 +154,6 @@
                                     </x-admin::form.control-group.error>
                                 </x-admin::form.control-group>
 
-                                <x-admin::form.control-group class="mb-[10px]">
-                                    <x-admin::form.control-group.label class="required">
-                                        Description
-                                    </x-admin::form.control-group.label>
-
-                                    <x-admin::form.control-group.control
-                                        type="textarea"
-                                        name="description"
-                                        :value="old('description')"
-                                        id="description"
-                                        rules="required"
-                                        :label="trans('partner::app.admin.create.description')"
-                                        :placeholder="trans('partner::app.admin.create.description')"
-                                    >
-                                    </x-admin::form.control-group.control>
-
-                                    <x-admin::form.control-group.error
-                                        control-name="description"
-                                    >
-                                    </x-admin::form.control-group.error>
-                                </x-admin::form.control-group>
 
 
                                 <x-admin::form.control-group class="mb-[10px]">
@@ -170,7 +164,7 @@
                                     <x-admin::form.control-group.control
                                         type="text"
                                         name="telephone"
-                                        :value="old('telephone')"
+                                        :value="$address->telephone ?? old('telephone')"
                                         id="telephone"
                                         rules="required"
                                         :label="trans('partner::app.admin.create.telephone')"
@@ -193,7 +187,7 @@
                                     <x-admin::form.control-group.control
                                         type="text"
                                         name="mobile"
-                                        :value="old('mobile')"
+                                        :value="$address->mobile ?? old('mobile')"
                                         id="mobile"
                                         rules="required"
                                         :label="trans('partner::app.admin.create.mobile')"
@@ -216,7 +210,7 @@
                                     <x-admin::form.control-group.control
                                         type="text"
                                         name="email"
-                                        :value="old('email')"
+                                        :value="$address->email ?? old('email')"
                                         id="email"
                                         rules="required"
                                         :label="trans('partner::app.admin.create.email')"
@@ -244,7 +238,7 @@
                                     <x-admin::form.control-group.control
                                         type="text"
                                         name="street"
-                                        :value="old('street')"
+                                        :value="$address->street ?? old('street')"
                                         id="street"
                                         rules="required"
                                         :label="trans('partner::app.admin.create.street')"
@@ -266,7 +260,7 @@
                                     <x-admin::form.control-group.control
                                         type="text"
                                         name="zip_code"
-                                        :value="old('zip_code')"
+                                        :value="$address->zip_code ?? old('zip_code')"
                                         id="zip_code"
                                         rules="required"
                                         :label="trans('partner::app.admin.create.zip_code')"
@@ -287,7 +281,7 @@
                                     <x-admin::form.control-group.control
                                         type="text"
                                         name="city"
-                                        :value="old('city')"
+                                        :value="$address->city ?? old('city')"
                                         id="city"
                                         rules="required"
                                         :label="trans('partner::app.admin.create.city')"
@@ -309,7 +303,7 @@
                                     <x-admin::form.control-group.control
                                         type="text"
                                         name="state"
-                                        :value="old('state')"
+                                        :value="$address->state ?? old('state')"
                                         id="state"
                                         rules="required"
                                         :label="trans('partner::app.admin.create.state')"
@@ -332,7 +326,7 @@
                                     <x-admin::form.control-group.control
                                         type="text"
                                         name="country"
-                                        :value="old('country')"
+                                        :value="$address->country ?? old('country')"
                                         id="country"
                                         rules="required"
                                         :label="trans('partner::app.admin.create.country')"

@@ -3,6 +3,7 @@
 namespace Hellodit\Partner\Http\Controllers\Admin;
 
 use Hellodit\Partner\DataGrids\PartnerAddressDataGrid;
+use Hellodit\Partner\Models\Partner;
 use Hellodit\Partner\Models\PartnerAddress;
 use Hellodit\Partner\Repositories\PartnerRepository;
 use Illuminate\Http\JsonResponse;
@@ -110,7 +111,8 @@ class PartnerAddressController extends Controller
      */
     public function edit($id)
     {
-        return view($this->_config['view']);
+        $address = PartnerAddress::where('id', '=', $id)->firstOrFail();
+        return view('partner::admin.address.form', compact('address'));
     }
 
     /**
@@ -119,8 +121,41 @@ class PartnerAddressController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function update($id)
+    public function update(Request $request, $id)
     {
+        $request->validate([
+            'partner_id' => 'required',
+            'company' => 'required',
+            'company_id' => 'required',
+            'street' => 'required',
+            'zip_code' => 'required',
+            'city' => 'required',
+            'country' => 'required',
+            'state' => 'required',
+            'telephone' => 'required',
+            'mobile' => 'required',
+            'email' => 'required',
+        ]);
+
+        $data = $request->only([
+            'partner_id',
+            'company',
+            'company_id',
+            'street',
+            'zip_code',
+            'city',
+            'country',
+            'state',
+            'location_id',
+            'telephone',
+            'mobile',
+            'email',
+        ]);
+
+        $address = PartnerAddress::whereId($id)->firstOrFail();
+        $address->update($data);
+
+        return redirect()->route('admin.partner_address.index')->with('success', 'Success update partner Address');
 
     }
 

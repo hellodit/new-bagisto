@@ -29,12 +29,11 @@
                 <div class="flex flex-col gap-[8px] flex-1 max-xl:flex-auto">
                     <p class="text-[25px] text-gray-800 dark:text-white font-semibold mb-[16px]"> Personal Data </p>
                     <div class="mb-[10px] flex items-center">
-                        <p class="font-bold m-0"> Language</p>
+                        <p class="font-bold m-0"> Title</p>
                         <p class="font-medium m-0 ml-[10px]">
-                            <span class="underline-text">{{$partner->language}}</span>
+                            <span class="underline-text">{{$partner->title}}</span>
                         </p>
                     </div>
-
                     <div class="mb-[10px] flex items-center">
                         <p class="font-bold m-0"> Solution</p>
                         <p class="font-medium m-0 ml-[10px]">
@@ -43,9 +42,9 @@
                     </div>
 
                     <div class="mb-[10px] flex items-center">
-                        <p class="font-bold m-0"> Title</p>
+                        <p class="font-bold m-0"> Language</p>
                         <p class="font-medium m-0 ml-[10px]">
-                            <span class="underline-text">{{$partner->title}}</span>
+                            <span class="underline-text">{{$partner->language}}</span>
                         </p>
                     </div>
 
@@ -79,10 +78,14 @@
                         <p class="font-medium m-0 ml-[10px] mr-5 ">
                             <span class="underline-text">{{$partner->mobile}}</span>
                         </p>
-                        <a href="https://wa.me/{{$partner->mobile}}" target="_blank"
-                           class="primary-button h-[30px] flex items-center justify-center text-sm">
-                            Send WhatsApp
-                        </a>
+
+                        @if($partner->mobile)
+                            <a href="https://wa.me/{{$partner->mobile}}" target="_blank"
+                               class="primary-button h-[30px] flex items-center justify-center text-sm">
+                                Send WhatsApp
+                            </a>
+                        @endif
+
 
 
                     </div>
@@ -161,7 +164,8 @@
                     </div>
 
                     <div class="flex flex-col gap-[8px] flex-1 max-xl:flex-auto">
-                        <p class="text-[25px] text-gray-800 dark:text-white font-semibold mb-[16px]"> Company Detail </p>
+                        <p class="text-[25px] text-gray-800 dark:text-white font-semibold mb-[16px]"> Company
+                            Detail </p>
                         <div class="mb-[10px] flex items-center">
                             <p class="font-bold m-0"> Company</p>
                             <p class="font-medium m-0 ml-[10px]">
@@ -173,6 +177,36 @@
                             <p class="font-bold m-0"> ID </p>
                             <p class="font-medium m-0 ml-[10px]">
                                 <span class="underline-text">{{$partner_address->company_id  ?? '-'}}</span>
+                            </p>
+                        </div>
+
+
+                        <div class="mb-[10px] flex items-center">
+                            <p class="font-bold m-0"> Telephone</p>
+                            <p class="font-medium m-0 ml-[10px]">
+                                <span class="underline-text">{{$partner_address->telephone  ?? '-'}}</span>
+                            </p>
+                        </div>
+
+                        <div class="mb-[10px] flex items-center gap-[10px]">
+                            <p class="font-bold m-0"> Mobile</p>
+                            <p class="font-medium m-0 ml-[10px]">
+                                <span class="underline-text">{{$partner_address->mobile  ?? '-'}}</span>
+                            </p>
+                            @if($partner_address->mobile)
+                                <a href="https://wa.me/{{$partner_address->mobile}}" target="_blank"
+                                   class="primary-button h-[30px] flex items-center justify-center text-sm">
+                                    Send WhatsApp
+                                </a>
+                            @endif
+                        </div>
+
+
+
+                        <div class="mb-[10px] flex items-center">
+                            <p class="font-bold m-0"> Email</p>
+                            <p class="font-medium m-0 ml-[10px]">
+                                <span class="underline-text">{{$partner_address->email  ?? '-'}}</span>
                             </p>
                         </div>
 

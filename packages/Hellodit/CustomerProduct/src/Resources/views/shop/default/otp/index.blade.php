@@ -5,7 +5,6 @@
     </x-slot:title>
 
     @push('styles')
-        <script src="https://cdn.tailwindcss.com"></script>
 
         @bagistoVite([
           'src/Resources/assets/css/app.css',
@@ -14,7 +13,7 @@
     @endpush
 
 
-    <div class="relative flex min-h-screen flex-col justify-center overflow-hidden  py-12">
+    <div class="relative flex  flex-col justify-center overflow-hidden py-12">
         <div class="relative bg-white px-6 pt-10 pb-9 shadow-xl mx-auto w-full max-w-lg rounded-2xl">
 
             @if(session('warning'))
@@ -60,6 +59,7 @@
                                         class="w-full h-full flex flex-col items-center justify-center text-center px-5 outline-none rounded-xl border border-gray-200 text-lg bg-white focus:bg-gray-50 focus:ring-1 ring-blue-700"
                                         type="text" name="otp[]" id="">
                                 </div>
+
                             </div>
 
                             <div class="flex flex-col space-y-5">
@@ -94,30 +94,25 @@
             let progressBar = document.getElementById('loading-otp')
             progressBar.innerText = 'loading ...'
 
-            // Example data to send in the request body
-            var dataToSend = {
-                key1: 'value1',
-                key2: 'value2'
-            };
-
             fetch('/customer/otp-verification/new-request', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(dataToSend)
             })
                 .then(response => {
                     if (!response.ok) {
                         throw new Error('Network response was not ok');
                     }
+                    progressBar.innerText = 'Success'
+
                     return response.json();
                 })
                 .then(data => {
                     console.log(data);
                 })
                 .catch(error => {
-                    progressBar.innerText = 'There was a problem with the fetch operation'
+                    progressBar.innerText = 'There was a problem with server'
                     console.error('There was a problem with the fetch operation:', error);
                 });
 

@@ -29,7 +29,7 @@ class CustomerOTPController extends Controller
 
         \Mail::to($current_user)->send(new SendOTPMail($newOtp));
 
-        return redirect()->back('success', "Success end new otp");
+        return response()->json('ok');
     }
 
 
@@ -52,7 +52,7 @@ class CustomerOTPController extends Controller
                 'otp_created_at' => null
             ]);
 
-            return redirect()->route('shop.customers.account.profile.index');
+            return redirect()->route('shop.customers.account.profile.index')->with('success','Success verify using OTP');
         }
 
         return redirect()->back()->with('warning', 'Invalid OTP please request new ');

@@ -2,56 +2,70 @@
 
 namespace Webkul\Product\Helpers;
 
+use Hellodit\Location\Models\Location;
 use Illuminate\Support\Collection;
+use Webkul\Customer\Models\Customer;
 
 class Toolbar
 {
     /**
      * Returns available sort orders.
      */
+
+    public function getAvailableLocation()
+    {
+        return Location::select(['id', 'name'])->whereHas('products')->get();
+    }
+
+    public function getAvailableCustomer()
+    {
+        return Customer::select(['id', 'first_name', 'last_name'])->whereHas('products')->get();
+
+    }
+
     public function getAvailableOrders(): Collection
     {
         return collect([
             [
-                'title'    => trans('shop::app.products.sort-by.options.from-a-z'),
-                'value'    => 'name-asc',
-                'sort'     => 'name',
-                'order'    => 'asc',
+                'title' => trans('shop::app.products.sort-by.options.from-a-z'),
+                'value' => 'name-asc',
+                'sort' => 'name',
+                'order' => 'asc',
                 'position' => 1,
             ],
             [
-                'title'    => trans('shop::app.products.sort-by.options.from-z-a'),
-                'value'    => 'name-desc',
-                'sort'     => 'name',
-                'order'    => 'desc',
+                'title' => trans('shop::app.products.sort-by.options.from-z-a'),
+                'value' => 'name-desc',
+                'sort' => 'name',
+                'order' => 'desc',
                 'position' => 2,
             ],
             [
-                'title'    => trans('shop::app.products.sort-by.options.latest-first'),
-                'value'    => 'created_at-desc',
-                'sort'     => 'created_at',
-                'order'    => 'desc',
+                'title' => trans('shop::app.products.sort-by.options.latest-first'),
+                'value' => 'created_at-desc',
+                'sort' => 'created_at',
+                'order' => 'desc',
                 'position' => 3,
             ],
             [
-                'title'    => trans('shop::app.products.sort-by.options.oldest-first'),
-                'value'    => 'created_at-asc',
-                'sort'     => 'created_at',
-                'order'    => 'asc',
+                'title' => trans('shop::app.products.sort-by.options.oldest-first'),
+                'value' => 'created_at-asc',
+                'sort' => 'created_at',
+                'order' => 'asc',
                 'position' => 4,
             ],
             [
-                'title'    => trans('shop::app.products.sort-by.options.cheapest-first'),
-                'value'    => 'price-asc',
-                'sort'     => 'price',
-                'order'    => 'asc',
+                'title' => trans('shop::app.products.sort-by.options.cheapest-first'),
+                'value' => 'price-asc',
+                'sort' => 'price',
+                'order' => 'asc',
                 'position' => 5,
             ],
             [
-                'title'    => trans('shop::app.products.sort-by.options.expensive-first'),
-                'value'    => 'price-desc',
-                'sort'     => 'price',
-                'order'    => 'desc',
+                'title' => trans('shop::app.products.sort-by.options.expensive-first'),
+                'value' => 'price-desc',
+                'sort' => 'price',
+                'order' => 'desc',
                 'position' => 6,
             ],
         ]);
@@ -73,7 +87,7 @@ class Toolbar
      */
     public function getOrder(array $params = []): array
     {
-        if (! isset($params['sort'])) {
+        if (!isset($params['sort'])) {
             return $this->getDefaultOrder();
         }
 
@@ -118,7 +132,7 @@ class Toolbar
          * Set a default value for the 'limit' parameter,
          * in case it is not provided or is not a valid integer.
          */
-        $limit = (int) ($params['limit'] ?? $this->getDefaultLimit());
+        $limit = (int)($params['limit'] ?? $this->getDefaultLimit());
 
         /**
          * If the 'limit' parameter is present but value not present

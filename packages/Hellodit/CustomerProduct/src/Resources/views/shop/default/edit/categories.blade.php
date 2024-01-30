@@ -1,7 +1,7 @@
 {!! view_render_event('bagisto.admin.catalog.product.edit.form.categories.before', ['product' => $product]) !!}
 
 {{-- Panel --}}
-<div class="p-[16px] bg-white dark:bg-gray-900 rounded-[4px] box-shadow">
+<div class=" bg-white dark:bg-gray-900 rounded-[4px] ">
     {{-- Panel Header --}}
     <p class="flex justify-between text-[16px] text-gray-800 dark:text-white font-semibold mb-[16px]">
         @lang('admin::app.catalog.products.edit.categories.title')
@@ -65,7 +65,7 @@
 
             methods: {
                 get() {
-                    this.$axios.get("{{ route('admin.catalog.categories.tree') }}")
+                    this.$axios.get("{{ route('shop.customer_product.categories') }}")
                         .then(response => {
                             this.isLoading = false;
 

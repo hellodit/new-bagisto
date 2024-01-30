@@ -8,8 +8,12 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Str;
 use Webkul\Admin\Http\Resources\AttributeResource;
+use Webkul\Admin\Http\Resources\CategoryTreeResource;
 use Webkul\Attribute\Repositories\AttributeFamilyRepository;
+use Webkul\Attribute\Repositories\AttributeRepository;
 use Webkul\Category\Models\Category;
+use Webkul\Category\Repositories\CategoryRepository;
+use Webkul\Core\Repositories\ChannelRepository;
 use Webkul\Core\Rules\Slug;
 use Webkul\Customer\Models\Customer;
 use Webkul\Inventory\Repositories\InventorySourceRepository;
@@ -36,7 +40,9 @@ class CustomerProductController extends Controller
         protected ProductAttributeValueRepository     $productAttributeValueRepository,
         protected ProductDownloadableLinkRepository   $productDownloadableLinkRepository,
         protected ProductDownloadableSampleRepository $productDownloadableSampleRepository,
-        protected ProductInventoryRepository          $productInventoryRepository
+        protected ProductInventoryRepository          $productInventoryRepository,
+        protected CategoryRepository                  $categoryRepository,
+
     )
     {
     }
@@ -148,6 +154,12 @@ class CustomerProductController extends Controller
 
         session()->flash('success', trans('admin::app.catalog.products.update-success'));
         return redirect()->route('shop.customer_product.index', ['id' => $product->id]);
+    }
+
+    public function tree()
+    {
+        $data = $this->categoryRepository->getVisibleCategoryTree(core()->getCurrentChannel()->root_category_id);
+        return CategoryTreeResource::collection($data);
     }
 
     public function customerProduct()

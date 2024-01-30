@@ -146,7 +146,7 @@
 
 
                                         <div
-                                            class="relative bg-white  rounded-[4px] box-shadow">
+                                            class="relative bg-white  rounded-[4px]">
                                             <p class="text-[16px]  font-semibold mb-[16px]">
                                                 {{ $group->name }}
                                             </p>
@@ -175,7 +175,7 @@
                         </div>
 
 
-                        {{--                        @include('customerproduct::shop.default.component.add_categories',['categories' => $categories ,'ids' => $product->categories->pluck('id')->toArray()])--}}
+{{--                        @include('customerproduct::shop.default.component.add_categories',['categories' => $categories ,'ids' => $product->categories->pluck('id')->toArray()])--}}
 
                         @include('customerproduct::shop.default.edit.categories',['product' => $product])
                         <p class="text-16px text-gray-800  font-semibold mb-5px"> Price Info </p>

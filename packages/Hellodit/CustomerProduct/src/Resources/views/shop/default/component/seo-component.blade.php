@@ -1,4 +1,4 @@
-<div class="relative rounded-[4px] box-shadow">
+<div class="relative rounded-[4px] ">
     <div class="mb-[10px]">
         <label for="meta_title"
                class="block mb-15px mt-30px text-16px  required">Meta

@@ -24,7 +24,6 @@ class SessionController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
      */
     public function create(LoginRequest $loginRequest)
     {
@@ -58,7 +57,7 @@ class SessionController extends Controller
          * Event passed to prepare cart after login.
          */
         Event::dispatch('customer.after.login', $loginRequest->get('email'));
-        return redirect()->intended('shop.customers.account.profile.index');
+        return redirect()->route('shop.customers.account.profile.index');
     }
 
     /**

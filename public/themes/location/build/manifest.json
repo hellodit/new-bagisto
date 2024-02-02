@@ -1,0 +1,24 @@
+{
+  "src/Resources/assets/css/app.css": {
+    "file": "assets/app-45150c42.css",
+    "isEntry": true,
+    "src": "src/Resources/assets/css/app.css"
+  },
+  "src/Resources/assets/fonts/velicon.woff": {
+    "file": "assets/velicon-2b79b97c.woff",
+    "src": "src/Resources/assets/fonts/velicon.woff"
+  },
+  "src/Resources/assets/images/Icon-Temp-Active.svg": {
+    "file": "assets/Icon-Temp-Active-0382a171.svg",
+    "src": "src/Resources/assets/images/Icon-Temp-Active.svg"
+  },
+  "src/Resources/assets/images/Icon-Temp.svg": {
+    "file": "assets/Icon-Temp-439e6462.svg",
+    "src": "src/Resources/assets/images/Icon-Temp.svg"
+  },
+  "src/Resources/assets/js/app.js": {
+    "file": "assets/app-4ed993c7.js",
+    "isEntry": true,
+    "src": "src/Resources/assets/js/app.js"
+  }
+}

@@ -28,6 +28,11 @@ return [
             'build_directory' => 'themes/customer-product/build',
             'package_assets_directory' => 'src/Resources/assets',
         ],
+        'location' => [
+            'hot_file' => 'location.hot',
+            'build_directory' => 'themes/location/build',
+            'package_assets_directory' => 'src/Resources/assets',
+        ],
 
         'installer' => [
             'hot_file' => 'installer-default-vite.hot',

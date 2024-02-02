@@ -21,7 +21,7 @@
 .collection-card-wrapper {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: space-between;
     gap: 30px;
     padding-bottom: 50px;
     padding-top: 50px;

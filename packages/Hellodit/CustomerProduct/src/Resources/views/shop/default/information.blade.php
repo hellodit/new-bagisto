@@ -3,25 +3,33 @@
     <x-slot:title>
         {{ $author->first_name." ".$author->last_name ?? '' }}
     </x-slot:title>
+
+    @push('styles')
+        @bagistoVite([
+            'src/Resources/assets/css/app.css',
+            'src/Resources/assets/js/app.js'
+          ], 'location')
+    @endpush
+
+
     <section class="mx-auto bg-lightOrange">
-        <div class="container">
-            <div class="items-start gap-10 pt-[28px] pb-[21px]">
-                <div class="flex justify-between  ">
-                    <div class="flex flex-col flex-1 ">
-                        <p class="text-[20px] text-gray-800 dark:text-white font-bold">
-                            {{ $author->first_name." ".$author->last_name }}
-                        </p>
-                        <p>
-                            {{$author->description}}
-                        </p>
-                    </div>
-                    <div class="flex flex-col flex-1 items-end justify-center">
-                        <img class='w-[25%]' src="{{$author->image_url()}}" alt="">
-                    </div>
+        <div class="container section-gap">
+            <div class="collection-card-wrapper">
+                <div class="single-collection-card">
+                    <p class="text-[20px] font-bold">
+                        {{ $author->first_name." ".$author->last_name }}
+                    </p>
+                    <p class="">
+                        {{$author->description}}
+                    </p>
+                </div>
+                <div class="single-collection-card">
+                    <img src="{{$author->image_url()}}" width="250px">
                 </div>
             </div>
         </div>
     </section>
+
 
     <section class="pt-[25px]" id="product_location">
         <div class="container">
@@ -74,7 +82,8 @@
 
                                 <!-- Empty Products Container -->
                                 <template v-else>
-                                    <div class="grid items-center justify-items-center place-content-center w-[100%] m-auto h-[476px] text-center">
+                                    <div
+                                        class="grid items-center justify-items-center place-content-center w-[100%] m-auto h-[476px] text-center">
                                         <img src="{{ bagisto_asset('images/thank-you.png') }}"/>
 
                                         <p class="text-[20px]">
@@ -89,15 +98,18 @@
                         <div v-else>
                             <!-- Product Card Shimmer Effect -->
                             <template v-if="isLoading">
-                                <div class="grid grid-cols-3 gap-8 mt-[30px] max-sm:mt-[20px] max-1060:grid-cols-2 max-sm:justify-items-center max-sm:gap-[16px]">
-                                    <x-shop::shimmer.products.cards.grid count="12"></x-shop::shimmer.products.cards.grid>
+                                <div
+                                    class="grid grid-cols-3 gap-8 mt-[30px] max-sm:mt-[20px] max-1060:grid-cols-2 max-sm:justify-items-center max-sm:gap-[16px]">
+                                    <x-shop::shimmer.products.cards.grid
+                                        count="12"></x-shop::shimmer.products.cards.grid>
                                 </div>
                             </template>
 
                             <!-- Product Card Listing -->
                             <template v-else>
                                 <template v-if="products.length">
-                                    <div class="grid grid-cols-3 gap-8 mt-[30px] max-sm:mt-[20px] max-1060:grid-cols-2 max-sm:justify-items-center max-sm:gap-[16px]">
+                                    <div
+                                        class="grid grid-cols-3 gap-8 mt-[30px] max-sm:mt-[20px] max-1060:grid-cols-2 max-sm:justify-items-center max-sm:gap-[16px]">
                                         <x-shop::products.card
                                             ::mode="'grid'"
                                             v-for="product in products"
@@ -108,7 +120,8 @@
 
                                 <!-- Empty Products Container -->
                                 <template v-else>
-                                    <div class="grid items-center justify-items-center place-content-center w-[100%] m-auto h-[476px] text-center">
+                                    <div
+                                        class="grid items-center justify-items-center place-content-center w-[100%] m-auto h-[476px] text-center">
                                         <img src="{{ bagisto_asset('images/thank-you.png') }}"/>
 
                                         <p class="text-[20px]">
@@ -226,7 +239,7 @@
 
                     removeJsonEmptyValues(params) {
                         Object.keys(params).forEach(function (key) {
-                            if ((! params[key] && params[key] !== undefined)) {
+                            if ((!params[key] && params[key] !== undefined)) {
                                 delete params[key];
                             }
 

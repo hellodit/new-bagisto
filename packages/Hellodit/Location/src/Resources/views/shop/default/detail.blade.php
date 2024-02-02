@@ -27,26 +27,6 @@
                 </div>
             </div>
         </div>
-
-
-        {{--        <div class="container">--}}
-        {{--            <div class="pt-[28px] pb-[21px]">--}}
-        {{--                <div--}}
-        {{--                    class="grid grid-cols-2 1060:grind-cols-1 gap-8 mt-[30px] max-sm:mt-[20px] max-1060:grid-cols-1 max-sm:gap-[16px] ">--}}
-        {{--                    <div class="grid-cols-1	gap-2.5 content-start w-full relative">--}}
-        {{--                        <p class="text-[20px] text-gray-800 dark:text-white font-bold">--}}
-        {{--                            {{$location->name}}--}}
-        {{--                        </p>--}}
-        {{--                        <p>--}}
-        {{--                            {{$location->description}}--}}
-        {{--                        </p>--}}
-        {{--                    </div>--}}
-        {{--                    <div class="grid-cols-1	gap-2.5 flex items-center justify-center md:col-span-1">--}}
-        {{--                        <img class='' src="{{$location->imageAssets()}}" alt="">--}}
-        {{--                    </div>--}}
-        {{--                </div>--}}
-        {{--            </div>--}}
-        {{--        </div>--}}
     </section>
 
 

@@ -69,7 +69,7 @@
 
                                 <x-admin::form.control-group class="mb-[10px]">
                                     <x-admin::form.control-group.label class="required">
-                                        Title
+                                        Company
                                     </x-admin::form.control-group.label>
 
                                     <x-admin::form.control-group.control
@@ -114,7 +114,7 @@
 
                                 <x-admin::form.control-group class="mb-[10px]">
                                     <x-admin::form.control-group.label class="required">
-                                        Language
+                                        Number of branches
                                     </x-admin::form.control-group.label>
 
                                     <x-admin::form.control-group.control
@@ -158,7 +158,7 @@
                                 </x-admin::form.control-group>
                                 <x-admin::form.control-group class="mb-[10px]">
                                     <x-admin::form.control-group.label class="required">
-                                        First Name
+                                        Area Coverage
                                     </x-admin::form.control-group.label>
 
                                     <x-admin::form.control-group.control

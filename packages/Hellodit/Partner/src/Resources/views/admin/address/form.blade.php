@@ -113,7 +113,7 @@
 
                                 <x-admin::form.control-group class="mb-[10px]">
                                     <x-admin::form.control-group.label class="required">
-                                        Company
+                                        Branches
                                     </x-admin::form.control-group.label>
 
                                     <x-admin::form.control-group.control
@@ -134,7 +134,7 @@
                                 </x-admin::form.control-group>
                                 <x-admin::form.control-group class="mb-[10px]">
                                     <x-admin::form.control-group.label class="required">
-                                        Company ID
+                                        PIC
                                     </x-admin::form.control-group.label>
 
                                     <x-admin::form.control-group.control
@@ -297,7 +297,7 @@
 
                                 <x-admin::form.control-group class="mb-[10px]">
                                     <x-admin::form.control-group.label class="required">
-                                        State
+                                        Province
                                     </x-admin::form.control-group.label>
 
                                     <x-admin::form.control-group.control

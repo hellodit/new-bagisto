@@ -10,97 +10,15 @@
         {{-- Category Filter Shimmer Effect --}}
         <x-shop::shimmer.categories.filters/>
     </v-filters>
+
+    <v-additional-filter
+        @filter-applied='setFilters("filter", $event)'
+    ></v-additional-filter>
+
 </div>
 @inject('toolbar' , 'Webkul\Product\Helpers\Toolbar')
 
-<!-- Mobile Filters Naviation -->
-<div
-    class="grid grid-cols-[1fr_auto_1fr] justify-items-center items-center w-full max-w-full fixed bottom-0 left-0 px-[20px] bg-white border-t-[1px] border-[#E9E9E9] z-50"
-    v-if="isMobile"
->
-    <!-- Filter Drawer -->
-    <x-shop::drawer
-        position="left"
-        width="100%"
-        ::is-active="isDrawerActive.filter"
-    >
-        <!-- Drawer Toggler -->
-        <x-slot:toggle>
-            <div
-                class="flex items-center gap-x-[10px] px-[10px] py-[14px] text-[16px] font-medium uppercase cursor-pointer"
-                @click="isDrawerActive.filter = true"
-            >
-                <span class="icon-filter-1 text-[24px]"></span>
-
-                @lang('shop::app.categories.filters.filter')
-            </div>
-        </x-slot:toggle>
-
-        <!-- Drawer Header -->
-        <x-slot:header>
-            <div class="flex justify-between items-center pb-[20px] border-b-[1px] border-[#E9E9E9]">
-                <p class="text-[18px] font-semibold">
-                    @lang('shop::app.categories.filters.filters')
-                </p>
-
-                <p
-                    class="mr-[50px] text-[12px] font-medium cursor-pointer"
-                    @click="clearFilters('filter', '')"
-                >
-                    @lang('shop::app.categories.filters.clear-all')
-                </p>
-            </div>
-        </x-slot:header>
-
-        <!-- Drawer Content -->
-        <x-slot:content>
-            <!-- Filters Vue Compoment -->
-            <v-filters
-                @filter-applied="setFilters('filter', $event)"
-                @filter-clear="clearFilters('filter', $event)"
-            >
-                {{-- Category Filter Shimmer Effect --}}
-                <x-shop::shimmer.categories.filters/>
-            </v-filters>
-        </x-slot:content>
-    </x-shop::drawer>
-
-    <!-- Seperator -->
-    <span class="h-[20px] w-[2px] bg-[#E9E9E9]"></span>
-
-    <!-- Sort Drawer -->
-    <x-shop::drawer
-        position="bottom"
-        width="100%"
-        ::is-active="isDrawerActive.toolbar"
-    >
-        <!-- Drawer Toggler -->
-        <x-slot:toggle>
-            <div
-                class="flex items-center gap-x-[10px] px-[10px] py-[14px] text-[16px] font-medium uppercase cursor-pointer"
-                @click="isDrawerActive.toolbar = true"
-            >
-                <span class="icon-sort-1 text-[24px]"></span>
-
-                @lang('shop::app.categories.filters.sort')
-            </div>
-        </x-slot:toggle>
-
-        <!-- Drawer Header -->
-        <x-slot:header>
-            <div class="flex justify-between items-center pb-[20px] border-b-[1px] border-[#E9E9E9]">
-                <p class="text-[18px] font-semibold">
-                    @lang('shop::app.categories.filters.sort')
-                </p>
-            </div>
-        </x-slot:header>
-
-        <!-- Drawer Content -->
-        <x-slot:content>
-            @include('shop::categories.toolbar')
-        </x-slot:content>
-    </x-shop::drawer>
-</div>
+@include('shop::categories._mobile')
 
 {!!view_render_event('bagisto.shop.categories.view.filters.after') !!}
 
@@ -139,6 +57,7 @@
                 </v-filter-item>
 
             </div>
+
         </template>
     </script>
 
@@ -173,9 +92,7 @@
                         </li>
 
                         <li>
-                            <v-additional-filter
-                                @filter-applied="applyValue($event)"
-                            ></v-additional-filter>
+
                         </li>
 
                     </ul>
@@ -230,9 +147,8 @@
                     <x-slot:toggle>
                         <!-- Dropdown Toggler -->
                         <button
-                            class="flex justify-between items-center gap-[15px] max-w-[200px] w-full p-[14px] rounded-lg bg-white border border-[#E9E9E9] text-[16px] transition-all hover:border-gray-400 focus:border-gray-400 max-md:pr-[10px] max-md:pl-[10px] max-md:border-0 max-md:w-[110px] cursor-pointer">
-                            @{{ locationLabel ?? "Location" }}
-
+                            class="flex justify-between items-center gap-[15px] max-w-[220px] w-full p-[14px] rounded-lg bg-white border border-[#E9E9E9] text-[16px] transition-all hover:border-gray-400 focus:border-gray-400 max-md:pr-[10px] max-md:pl-[10px] max-md:border-0 max-md:w-[110px] cursor-pointer">
+                            @{{ locationLabel ?? "@lang('shop::app.products.filter.location')" }}
                             <span class="icon-arrow-down text-[24px]"></span>
                         </button>
                     </x-slot:toggle>
@@ -241,7 +157,7 @@
                     <x-slot:menu>
                         <x-shop::dropdown.menu.item
                             v-for="(location, key) in filters.available.locations"
-                            ::class="{'bg-gray-100': location.id == filters.applied.location}"
+                            ::class="{'bg-gray-100': location.id == filters.applied.location_id}"
                             @click="apply('location_id', location.id)"
                         >
                             @{{ location.name }}
@@ -258,8 +174,8 @@
                     <x-slot:toggle>
                         <!-- Dropdown Toggler -->
                         <button
-                            class="flex justify-between items-center gap-[15px] max-w-[200px] w-full p-[14px] rounded-lg bg-white border border-[#E9E9E9] text-[16px] transition-all hover:border-gray-400 focus:border-gray-400 max-md:pr-[10px] max-md:pl-[10px] max-md:border-0 max-md:w-[110px] cursor-pointer">
-                            @{{ customerLabel ?? "User Products" }}
+                            class="flex justify-between items-center gap-[15px] max-w-[220px] w-full p-[14px] rounded-lg bg-white border border-[#E9E9E9] text-[16px] transition-all hover:border-gray-400 focus:border-gray-400 max-md:pr-[10px] max-md:pl-[10px] max-md:border-0 max-md:w-[110px] cursor-pointer">
+                            @{{ customerLabel ?? "Users" }}
 
                             <span class="icon-arrow-down text-[24px]"></span>
                         </button>
@@ -357,7 +273,6 @@
 
                     this.$emit('filter-applied', this.filters.applied);
                 },
-
                 applyFilter(filter, values) {
                     if (values.length) {
                         this.filters.applied[filter.code] = values;
@@ -458,43 +373,43 @@
                             locations: @json($toolbar->getAvailableLocation()),
                         },
                         applied: {
-                            location: '{{$toolbar->getLocation()}}',
-                        }
+                            location_id: '{{$toolbar->getLocation()}}',
+                            customer_id: '{{$toolbar->getCustomer()}}',
+                        },
                     }
                 };
             },
             mounted() {
-                this.$emit('filter-applied', this.filters.applied);
+                this.$emit('additional-filter-applied', this.filters.applied);
             },
-
             computed: {
                 locationLabel() {
                     let final_label;
-                    let label = this.filters.available.locations.find(location => location.id === this.filters.applied.location)
+                    let label = this.filters.available.locations.find(location => location.id === this.filters.applied.location_id)
                     if (label !== undefined) {
                         final_label = label.name
                     }
                     return final_label;
+                }, customerLabel() {
+                    let final_label;
+                    let label = this.filters.available.customers.find(customer => customer.id === this.filters.applied.customer_id)
+                    if (label !== undefined) {
+                        final_label = label.first_name
+                    }
+                    return final_label;
                 },
             },
-
             methods: {
                 apply(type, value) {
                     this.filters.applied[type] = value;
+                    console.log('apply', this.filters.applied)
+
+
                     this.$emit('filter-applied', this.filters.applied);
+
                 },
-                applyValue($event) {
-                    if (this.filter.code === 'price') {
-                        this.appliedValues = $event;
-
-                        this.$emit('values-applied', this.appliedValues);
-
-                        return;
-                    }
 
 
-                    this.$emit('values-applied', this.appliedValues);
-                },
             },
         })
 

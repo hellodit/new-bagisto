@@ -98,9 +98,14 @@ class Toolbar
         return $order ?: $this->getDefaultOrder();
     }
 
-    public function getLocation(): int
+    public function getLocation()
     {
-        return (int)request('location_id');
+        return request('location_id') ;
+    }
+
+    public function getCustomer()
+    {
+        return request('customer_id') ;
     }
 
     /**

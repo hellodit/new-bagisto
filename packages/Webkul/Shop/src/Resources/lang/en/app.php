@@ -436,6 +436,10 @@ return [
     ],
 
     'products' => [
+        'filter' => [
+            'location' => ' Location',
+            'users' => ' users',
+        ],
         'prices' => [
             'grouped' => [
                 'starting-at' => 'Starting at',

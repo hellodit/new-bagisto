@@ -149,7 +149,6 @@
             methods: {
                 apply(type, value) {
                     this.filters.applied[type] = value;
-
                     this.$emit('filter-applied', this.filters.applied);
                 },
 

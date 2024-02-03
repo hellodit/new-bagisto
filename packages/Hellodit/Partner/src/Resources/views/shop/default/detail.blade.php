@@ -38,7 +38,7 @@
                     <div class="single-collection-card">
                         <p class="text-[25px] text-gray-800 dark:text-white font-semibold mb-[16px]"> Personal Data </p>
                         <div class="mb-[10px] flex items-center">
-                            <p class="font-bold m-0"> Title</p>
+                            <p class="font-bold m-0"> Company </p>
                             <p class="font-medium m-0 ml-[10px]">
                                 <span class="underline-text">{{$partner->title}}</span>
                             </p>
@@ -51,21 +51,21 @@
                         </div>
 
                         <div class="mb-[10px] flex items-center">
-                            <p class="font-bold m-0"> Language</p>
+                            <p class="font-bold m-0"> Opening Hours</p>
                             <p class="font-medium m-0 ml-[10px]">
                                 <span class="underline-text">{{$partner->language}}</span>
                             </p>
                         </div>
 
                         <div class="mb-[10px] flex items-center">
-                            <p class="font-bold m-0"> Last Name</p>
+                            <p class="font-bold m-0"> Number of branches</p>
                             <p class="font-medium m-0 ml-[10px]">
                                 <span class="underline-text">{{$partner->last_name}}</span>
                             </p>
                         </div>
 
                         <div class="mb-[10px] flex items-center">
-                            <p class="font-bold m-0"> First Name</p>
+                            <p class="font-bold m-0"> Area Coverage</p>
                             <p class="font-medium m-0 ml-[10px]">
                                 <span class="underline-text">{{$partner->first_name}}</span>
                             </p>
@@ -165,7 +165,7 @@
 
 
                         <div class="mb-[10px] flex items-center">
-                            <p class="font-bold m-0"> State</p>
+                            <p class="font-bold m-0"> Province</p>
                             <p class="font-medium m-0 ml-[10px]">
                                 <span class="underline-text">{{$partner_address->state  ?? '-'}}</span>
                             </p>
@@ -176,14 +176,14 @@
                         <p class="text-[25px] text-gray-800 dark:text-white font-semibold mb-[16px]"> Company
                             Detail </p>
                         <div class="mb-[10px] flex items-center">
-                            <p class="font-bold m-0"> Company</p>
+                            <p class="font-bold m-0"> Branches</p>
                             <p class="font-medium m-0 ml-[10px]">
                                 <span class="underline-text">{{$partner_address->company  ?? '-'}}</span>
                             </p>
                         </div>
 
                         <div class="mb-[10px] flex items-center">
-                            <p class="font-bold m-0"> ID </p>
+                            <p class="font-bold m-0"> PIC  </p>
                             <p class="font-medium m-0 ml-[10px]">
                                 <span class="underline-text">{{$partner_address->company_id  ?? '-'}}</span>
                             </p>

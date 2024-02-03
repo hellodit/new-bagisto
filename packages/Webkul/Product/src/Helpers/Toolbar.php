@@ -98,6 +98,11 @@ class Toolbar
         return $order ?: $this->getDefaultOrder();
     }
 
+    public function getLocation(): int
+    {
+        return (int)request('location_id');
+    }
+
     /**
      * Returns available limits.
      */

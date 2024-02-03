@@ -27,7 +27,7 @@
         <div class="grid pb-3 z-10 bg-white rounded-lg">
             <div class="flex items-center gap-x-[15px] pl-2 ">
                 <div class="shimmer w-[20px] h-[20px] rounded"></div>
-                
+
                 <div class="p-2 pl-0">
                     <div class="shimmer w-[100px] h-[20px]"></div>
                 </div>
@@ -77,7 +77,7 @@
         <div class="grid pb-3 z-10 bg-white rounded-lg">
             <div class="flex items-center gap-x-[15px] pl-2 ">
                 <div class="shimmer w-[20px] h-[20px] rounded"></div>
-                
+
                 <div class="p-2 pl-0">
                     <div class="shimmer w-[100px] h-[20px]"></div>
                 </div>

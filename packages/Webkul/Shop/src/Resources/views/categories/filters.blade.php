@@ -11,6 +11,7 @@
         <x-shop::shimmer.categories.filters/>
     </v-filters>
 </div>
+@inject('toolbar' , 'Webkul\Product\Helpers\Toolbar')
 
 <!-- Mobile Filters Naviation -->
 <div
@@ -113,9 +114,11 @@
 
         <!-- Filters Container -->
         <template v-else>
-            <div class="panel-side grid grid-cols-[1fr] max-h-[1320px] overflow-y-auto overflow-x-hidden journal-scroll min-w-[342px] max-xl:min-w-[270px] md:max-w-[400px] md:pr-[26px]">
+            <div
+                class="panel-side grid grid-cols-[1fr] max-h-[1320px] overflow-y-auto overflow-x-hidden journal-scroll min-w-[342px] max-xl:min-w-[270px] md:max-w-[400px] md:pr-[26px]">
                 <!-- Filters Header Container -->
-                <div class="flex justify-between items-center h-[50px] pb-[10px] border-b-[1px] border-[#E9E9E9] max-md:hidden">
+                <div
+                    class="flex justify-between items-center h-[50px] pb-[10px] border-b-[1px] border-[#E9E9E9] max-md:hidden">
                     <p class="text-[18px] font-semibold">
                         @lang('shop::app.categories.filters.filters')
                     </p>
@@ -134,6 +137,7 @@
                     @values-applied="applyFilter(filter, $event)"
                 >
                 </v-filter-item>
+
             </div>
         </template>
     </script>
@@ -156,6 +160,8 @@
                 <!-- Filter Item Content -->
                 <x-slot:content>
                     <!-- Price Range Filter -->
+
+
                     <ul v-if="filter.type === 'price'">
                         <li>
                             <v-price-filter
@@ -165,10 +171,19 @@
                             >
                             </v-price-filter>
                         </li>
+
+                        <li>
+                            <v-additional-filter
+                                @filter-applied="applyValue($event)"
+                            ></v-additional-filter>
+                        </li>
+
                     </ul>
 
                     <!-- Checkbox Filter Options -->
                     <ul class="pb-3 text-sm text-gray-700" v-else>
+
+
                         <li
                             :key="option.id"
                             v-for="(option, optionIndex) in filter.options"
@@ -203,9 +218,73 @@
         </template>
     </script>
 
+    <script type="text/x-template" id="v-additional-filter-template">
+        <div>
+            <div class="border-t-[1px] border-[#E9E9E9] mb-3">
+                <div class="flex justify-between items-center py-[10px] cursor-pointer select-none active">
+                    <div class="flex justify-between items-center"><p class="text-[18px] font-semibold">Product Location
+                        </p></div>
+                    <span class="text-[24px] icon-arrow-up"></span></div>
+
+                <x-shop::dropdown position="bottom-left">
+                    <x-slot:toggle>
+                        <!-- Dropdown Toggler -->
+                        <button
+                            class="flex justify-between items-center gap-[15px] max-w-[200px] w-full p-[14px] rounded-lg bg-white border border-[#E9E9E9] text-[16px] transition-all hover:border-gray-400 focus:border-gray-400 max-md:pr-[10px] max-md:pl-[10px] max-md:border-0 max-md:w-[110px] cursor-pointer">
+                            @{{ locationLabel ?? "Location" }}
+
+                            <span class="icon-arrow-down text-[24px]"></span>
+                        </button>
+                    </x-slot:toggle>
+
+                    <!-- Dropdown Content -->
+                    <x-slot:menu>
+                        <x-shop::dropdown.menu.item
+                            v-for="(location, key) in filters.available.locations"
+                            ::class="{'bg-gray-100': location.id == filters.applied.location}"
+                            @click="apply('location_id', location.id)"
+                        >
+                            @{{ location.name }}
+                        </x-shop::dropdown.menu.item>
+                    </x-slot:menu>
+                </x-shop::dropdown>
+            </div>
+            <div class="border-t-[1px] border-[#E9E9E9] mb-3">
+                <div class="flex justify-between items-center py-[10px] cursor-pointer select-none active">
+                    <div class="flex justify-between items-center"><p class="text-[18px] font-semibold">User Product
+                        </p></div>
+                    <span class="text-[24px] icon-arrow-up"></span></div>
+                <x-shop::dropdown position="bottom-left">
+                    <x-slot:toggle>
+                        <!-- Dropdown Toggler -->
+                        <button
+                            class="flex justify-between items-center gap-[15px] max-w-[200px] w-full p-[14px] rounded-lg bg-white border border-[#E9E9E9] text-[16px] transition-all hover:border-gray-400 focus:border-gray-400 max-md:pr-[10px] max-md:pl-[10px] max-md:border-0 max-md:w-[110px] cursor-pointer">
+                            @{{ customerLabel ?? "User Products" }}
+
+                            <span class="icon-arrow-down text-[24px]"></span>
+                        </button>
+                    </x-slot:toggle>
+
+                    <!-- Dropdown Content -->
+                    <x-slot:menu>
+                        <x-shop::dropdown.menu.item
+                            v-for="(customer, key) in filters.available.customers"
+                            ::class="{'bg-gray-100': customer.id == filters.applied.customer}"
+                            @click="apply('customer_id', customer.id)"
+                        >
+                            @{{ customer.first_name }}
+                        </x-shop::dropdown.menu.item>
+                    </x-slot:menu>
+                </x-shop::dropdown>
+
+            </div>
+        </div>
+
+    </script>
+
+
     <script type="text/x-template" id="v-price-filter-template">
         <div>
-
             <!-- Price range filter shimmer -->
             <template v-if="isLoading">
                 <x-shop::shimmer.range-slider/>
@@ -250,10 +329,10 @@
             methods: {
                 getFilters() {
                     this.$axios.get('{{ route("shop.api.categories.attributes") }}', {
-                            params: {
-                                category_id: "{{ isset($category) ? $category->id : ''  }}",
-                            }
-                        })
+                        params: {
+                            category_id: "{{ isset($category) ? $category->id : ''  }}",
+                        }
+                    })
                         .then((response) => {
                             this.isLoading = false;
 
@@ -271,7 +350,7 @@
                         /**
                          * Removed all toolbar filters in order to prevent key duplication.
                          */
-                        if (! ['sort', 'limit'].includes(filter)) {
+                        if (!['sort', 'limit'].includes(filter)) {
                             this.filters.applied[filter] = value.split(',');
                         }
                     });
@@ -328,7 +407,7 @@
 
             watch: {
                 appliedValues() {
-                    if (this.filter.code === 'price' && ! this.appliedValues) {
+                    if (this.filter.code === 'price' && !this.appliedValues) {
                         ++this.refreshKey;
                     }
                 },
@@ -340,7 +419,6 @@
                      * Improvisation needed here for `this.$parent.$data`.
                      */
                     this.appliedValues = this.$parent.$data.filters.applied[this.filter.code]?.join(',');
-
                     ++this.refreshKey;
 
                     return;
@@ -362,10 +440,63 @@
                         return;
                     }
 
+
                     this.$emit('values-applied', this.appliedValues);
                 },
             },
         });
+
+        app.component('v-additional-filter', {
+            template: '#v-additional-filter-template',
+            props: ['filter'],
+
+            data() {
+                return {
+                    filters: {
+                        available: {
+                            customers: @json($toolbar->getAvailableCustomer()),
+                            locations: @json($toolbar->getAvailableLocation()),
+                        },
+                        applied: {
+                            location: '{{$toolbar->getLocation()}}',
+                        }
+                    }
+                };
+            },
+            mounted() {
+                this.$emit('filter-applied', this.filters.applied);
+            },
+
+            computed: {
+                locationLabel() {
+                    let final_label;
+                    let label = this.filters.available.locations.find(location => location.id === this.filters.applied.location)
+                    if (label !== undefined) {
+                        final_label = label.name
+                    }
+                    return final_label;
+                },
+            },
+
+            methods: {
+                apply(type, value) {
+                    this.filters.applied[type] = value;
+                    this.$emit('filter-applied', this.filters.applied);
+                },
+                applyValue($event) {
+                    if (this.filter.code === 'price') {
+                        this.appliedValues = $event;
+
+                        this.$emit('values-applied', this.appliedValues);
+
+                        return;
+                    }
+
+
+                    this.$emit('values-applied', this.appliedValues);
+                },
+            },
+        })
 
         app.component('v-price-filter', {
             template: '#v-price-filter-template',
@@ -415,7 +546,7 @@
                                 this.allowedMaxPrice = response.data.data.max_price;
                             }
 
-                            if (! this.defaultPriceRange) {
+                            if (!this.defaultPriceRange) {
                                 this.priceRange = [0, this.allowedMaxPrice].join(',');
                             }
 
@@ -433,5 +564,7 @@
                 },
             },
         });
+
+
     </script>
 @endPushOnce

@@ -10,7 +10,7 @@
     <script type="text/x-template" id='v-toolbar-template'>
         <div>
             <!-- Desktop Toolbar -->
-            <div class="flex flex-row gap-2 max-md:hidden">
+            <div class="flex justify-between max-md:hidden">
                 <!-- Product Sorting Filters -->
                 <x-shop::dropdown position="bottom-left">
                     <x-slot:toggle>
@@ -34,51 +34,6 @@
                         </x-shop::dropdown.menu.item>
                     </x-slot:menu>
                 </x-shop::dropdown>
-                <x-shop::dropdown position="bottom-left">
-                    <x-slot:toggle>
-                        <!-- Dropdown Toggler -->
-                        <button
-                            class="flex justify-between items-center gap-[15px] max-w-[200px] w-full p-[14px] rounded-lg bg-white border border-[#E9E9E9] text-[16px] transition-all hover:border-gray-400 focus:border-gray-400 max-md:pr-[10px] max-md:pl-[10px] max-md:border-0 max-md:w-[110px] cursor-pointer">
-                            @{{ locationLabel ?? "Location" }}
-
-                            <span class="icon-arrow-down text-[24px]"></span>
-                        </button>
-                    </x-slot:toggle>
-
-                    <!-- Dropdown Content -->
-                    <x-slot:menu>
-                        <x-shop::dropdown.menu.item
-                            v-for="(location, key) in filters.available.locations"
-                            ::class="{'bg-gray-100': location.id == filters.applied.location}"
-                            @click="apply('location_id', location.id)"
-                        >
-                            @{{ location.name }}
-                        </x-shop::dropdown.menu.item>
-                    </x-slot:menu>
-                </x-shop::dropdown>
-                <x-shop::dropdown position="bottom-left">
-                    <x-slot:toggle>
-                        <!-- Dropdown Toggler -->
-                        <button
-                            class="flex justify-between items-center gap-[15px] max-w-[200px] w-full p-[14px] rounded-lg bg-white border border-[#E9E9E9] text-[16px] transition-all hover:border-gray-400 focus:border-gray-400 max-md:pr-[10px] max-md:pl-[10px] max-md:border-0 max-md:w-[110px] cursor-pointer">
-                            @{{ customerLabel ?? "User Products" }}
-
-                            <span class="icon-arrow-down text-[24px]"></span>
-                        </button>
-                    </x-slot:toggle>
-
-                    <!-- Dropdown Content -->
-                    <x-slot:menu>
-                        <x-shop::dropdown.menu.item
-                            v-for="(customer, key) in filters.available.customers"
-                            ::class="{'bg-gray-100': customer.id == filters.applied.customer}"
-                            @click="apply('customer_id', customer.id)"
-                        >
-                            @{{ customer.first_name }}
-                        </x-shop::dropdown.menu.item>
-                    </x-slot:menu>
-                </x-shop::dropdown>
-
                 <div id="item-filter" class="flex gap-[40px] items-center">
                     <!-- Product Pagination Limit -->
                     <x-shop::dropdown position="bottom-right">
@@ -172,23 +127,23 @@
                 sortLabel() {
                     return this.filters.available.sort.find(sort => sort.value === this.filters.applied.sort).title;
                 },
-                locationLabel() {
-                    let final_label;
-
-                    let label = this.filters.available.locations.find(location => location.id === this.filters.applied.location)
-                    if (label !== undefined) {
-                        final_label = label.name
-                    }
-                    return final_label;
-                },
-                customerLabel(){
-                    let final_customer_label;
-                    let label = this.filters.available.customers.find(customer => customer.id === this.filters.applied.customer)
-                    if (label !== undefined) {
-                        final_customer_label = label.first_name
-                    }
-                    return final_customer_label;
-                }
+                // locationLabel() {
+                //     let final_label;
+                //
+                //     let label = this.filters.available.locations.find(location => location.id === this.filters.applied.location)
+                //     if (label !== undefined) {
+                //         final_label = label.name
+                //     }
+                //     return final_label;
+                // },
+                // customerLabel(){
+                //     let final_customer_label;
+                //     let label = this.filters.available.customers.find(customer => customer.id === this.filters.applied.customer)
+                //     if (label !== undefined) {
+                //         final_customer_label = label.first_name
+                //     }
+                //     return final_customer_label;
+                // }
             },
 
             methods: {

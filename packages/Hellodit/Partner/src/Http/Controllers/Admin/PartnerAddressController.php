@@ -60,7 +60,8 @@ class PartnerAddressController extends Controller
      */
     public function create()
     {
-        return view('partner::admin.address.form');
+        $address = null;
+        return view('partner::admin.address.form', compact('address'));
     }
 
     /**

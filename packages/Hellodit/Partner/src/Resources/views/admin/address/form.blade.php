@@ -75,7 +75,7 @@
 
                                 @foreach(\Hellodit\Partner\Models\Partner::all() as $partner)
                                     <option
-                                        value="{{ $partner->id }}" {{ $partner->id == $address->partner_id ? 'selected' : '' }}>{{ $partner->title }}</option>
+                                        value="{{ $partner->id }}" {{ $partner->id == $address?->partner_id ? 'selected' : '' }}>{{ $partner->title }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -105,7 +105,7 @@
 
                                         @foreach(\Hellodit\Location\Models\Location::all() as $location)
                                             <option
-                                                value="{{ $location->id }}" {{ $address->location_id == $location->id ? 'selected' : '' }}>{{ $location->name }}</option>
+                                                value="{{ $location->id }}" {{ $address?->location_id == $location->id ? 'selected' : '' }}>{{ $location->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>

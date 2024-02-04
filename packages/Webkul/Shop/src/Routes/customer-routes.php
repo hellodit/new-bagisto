@@ -64,7 +64,7 @@ Route::group(['middleware' => ['locale', 'theme', 'currency']], function () {
          * Customer authenticated routes. All the below routes only be accessible
          * if customer is authenticated.
          */
-        Route::group(['middleware' => ['customer','isVerify']], function () {
+        Route::group(['middleware' => ['customer']], function () {
             /**
              * Datagrid routes.
              */
@@ -142,7 +142,7 @@ Route::group(['middleware' => ['locale', 'theme', 'currency']], function () {
 
                     Route::get('download/{id}', 'download')->name('shop.customers.account.downloadable_products.download');
                 });
-            });
+            })->middleware('isVerify');
         });
     });
 });

@@ -2,6 +2,8 @@
 
 namespace Webkul\Shop\Http\Controllers\Customer;
 
+use Hellodit\CustomerProduct\Helpers\OtpHelper;
+use Hellodit\CustomerProduct\Mail\SendOTPMail;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
@@ -86,6 +88,15 @@ class RegistrationController extends Controller
                 Event::dispatch('customer.subscription.after', $subscription);
             }
         }
+
+        $newOtp = OtpHelper::GenerateOTPDigit();
+        $customer->update([
+            'otp' => $newOtp,
+            'otp_created_at' => now()
+        ]);
+
+        \Mail::to($customer)->send(new SendOTPMail($newOtp));
+
 
         Event::dispatch('customer.registration.after', $customer);
 

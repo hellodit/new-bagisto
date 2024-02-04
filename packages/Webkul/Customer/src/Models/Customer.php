@@ -31,13 +31,13 @@ class Customer extends Authenticatable implements CustomerContract
 
         static::created(function ($customer){
 
-            $newOtp = OtpHelper::GenerateOTPDigit();
-            $customer->update([
-                'otp' => $newOtp,
-                'otp_created_at' => now()
-            ]);
-
-            \Mail::to($customer)->send(new SendOTPMail($newOtp));
+//            $newOtp = OtpHelper::GenerateOTPDigit();
+//            $customer->update([
+//                'otp' => $newOtp,
+//                'otp_created_at' => now()
+//            ]);
+//
+//            \Mail::to($customer)->send(new SendOTPMail($newOtp));
         });
     }
 

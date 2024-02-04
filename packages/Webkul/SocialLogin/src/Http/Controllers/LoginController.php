@@ -34,7 +34,6 @@ class LoginController extends Controller
      * Redirects to the social provider
      *
      * @param  string  $provider
-     * @return \Illuminate\Http\Response
      */
     public function redirectToProvider($provider)
     {
@@ -68,6 +67,6 @@ class LoginController extends Controller
         // Event passed to prepare cart after login
         Event::dispatch('customer.after.login', $customer->email);
 
-        return redirect()->intended('shop.customers.account.profile.index');
+        return redirect()->route('shop.customers.account.profile.index');
     }
 }

@@ -73,6 +73,8 @@ class CustomerSocialAccountRepository extends Repository
                 'customer_id' => $customer->id,
                 'provider_id' => $providerUser->getId(),
                 'provider_name' => $provider,
+                'is_verify' => 1,
+
             ]);
 
             return $customer;

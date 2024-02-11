@@ -221,12 +221,7 @@
                                 </a>
 
 
-                                <a
-                                    class="px-5 py-2 text-[16px] hover:bg-gray-100 cursor-pointer"
-                                    href="{{ route('shop.customers.account.orders.index') }}"
-                                >
-                                    @lang('shop::app.components.layouts.header.orders')
-                                </a>
+
 
                                 @if ($showWishlist)
                                     <a

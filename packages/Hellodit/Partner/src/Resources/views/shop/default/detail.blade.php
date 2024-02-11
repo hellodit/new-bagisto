@@ -34,8 +34,8 @@
 
         <section class="mx-auto">
             <div class="container section-gap">
-                <div class="collection-card-wrapper" style="    justify-content: start">
-                    <div class="single-collection-card">
+                <div class="collection-card-wrapper">
+                    <div class="single-collection-card mr-[10px]">
                         <p class="text-[25px] text-gray-800 dark:text-white font-semibold mb-[16px]"> Personal Data </p>
                         <div class="mb-[10px] flex items-center">
                             <p class="font-bold m-0"> Company </p>
@@ -130,7 +130,56 @@
 
         <div class="container section-gap">
             @foreach($partner->address as $partner_address)
-                <div class="collection-card-wrapper" style="    justify-content: start">
+                <div class="collection-card-wrapper">
+                    <div class="single-collection-card">
+                        <p class="text-[25px] text-gray-800 dark:text-white font-semibold mb-[16px]"> Company
+                            Detail </p>
+                        <div class="mb-[10px] flex items-center">
+                            <p class="font-bold m-0"> Branches</p>
+                            <p class="font-medium m-0 ml-[10px]">
+                                <span class="underline-text">{{$partner_address->company  ?? '-'}}</span>
+                            </p>
+                        </div>
+
+                        <div class="mb-[10px] flex items-center">
+                            <p class="font-bold m-0"> PIC </p>
+                            <p class="font-medium m-0 ml-[10px]">
+                                <span class="underline-text">{{$partner_address->company_id  ?? '-'}}</span>
+                            </p>
+                        </div>
+
+
+                        <div class="mb-[10px] flex items-center">
+                            <p class="font-bold m-0"> Telephone</p>
+                            <p class="font-medium m-0 ml-[10px]">
+                                <span class="underline-text">{{$partner_address->telephone  ?? '-'}}</span>
+                            </p>
+                        </div>
+
+                        <div class="mb-[10px] flex items-center gap-[10px]">
+                            <p class="font-bold m-0"> Mobile</p>
+                            <p class="font-medium m-0 ml-[10px]">
+                                <span class="underline-text">{{$partner_address->mobile  ?? '-'}}</span>
+                            </p>
+                            @if($partner_address->mobile)
+                                <a href="https://wa.me/{{$partner_address->mobile}}" target="_blank"
+                                   class="primary-button h-[30px] flex items-center justify-center text-sm">
+                                    Send WhatsApp
+                                </a>
+                            @endif
+                        </div>
+
+
+                        <div class="mb-[10px] flex items-center">
+                            <p class="font-bold m-0"> Email</p>
+                            <p class="font-medium m-0 ml-[10px]">
+                                <span class="underline-text">{{$partner_address->email  ?? '-'}}</span>
+                            </p>
+                        </div>
+
+
+                    </div>
+
                     <div class="single-collection-card">
 
                         <p class="text-[25px] text-gray-800 dark:text-white font-semibold mb-[16px]"> Address </p>
@@ -170,54 +219,6 @@
                                 <span class="underline-text">{{$partner_address->state  ?? '-'}}</span>
                             </p>
                         </div>
-
-                    </div>
-                    <div class="single-collection-card">
-                        <p class="text-[25px] text-gray-800 dark:text-white font-semibold mb-[16px]"> Company
-                            Detail </p>
-                        <div class="mb-[10px] flex items-center">
-                            <p class="font-bold m-0"> Branches</p>
-                            <p class="font-medium m-0 ml-[10px]">
-                                <span class="underline-text">{{$partner_address->company  ?? '-'}}</span>
-                            </p>
-                        </div>
-
-                        <div class="mb-[10px] flex items-center">
-                            <p class="font-bold m-0"> PIC  </p>
-                            <p class="font-medium m-0 ml-[10px]">
-                                <span class="underline-text">{{$partner_address->company_id  ?? '-'}}</span>
-                            </p>
-                        </div>
-
-
-                        <div class="mb-[10px] flex items-center">
-                            <p class="font-bold m-0"> Telephone</p>
-                            <p class="font-medium m-0 ml-[10px]">
-                                <span class="underline-text">{{$partner_address->telephone  ?? '-'}}</span>
-                            </p>
-                        </div>
-
-                        <div class="mb-[10px] flex items-center gap-[10px]">
-                            <p class="font-bold m-0"> Mobile</p>
-                            <p class="font-medium m-0 ml-[10px]">
-                                <span class="underline-text">{{$partner_address->mobile  ?? '-'}}</span>
-                            </p>
-                            @if($partner_address->mobile)
-                                <a href="https://wa.me/{{$partner_address->mobile}}" target="_blank"
-                                   class="primary-button h-[30px] flex items-center justify-center text-sm">
-                                    Send WhatsApp
-                                </a>
-                            @endif
-                        </div>
-
-
-                        <div class="mb-[10px] flex items-center">
-                            <p class="font-bold m-0"> Email</p>
-                            <p class="font-medium m-0 ml-[10px]">
-                                <span class="underline-text">{{$partner_address->email  ?? '-'}}</span>
-                            </p>
-                        </div>
-
 
                     </div>
                 </div>

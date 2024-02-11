@@ -78,8 +78,8 @@
                                         :value="$partner->title ?? old('title')"
                                         id="title"
                                         rules="required"
-                                        :label="trans('partner::app.admin.create.title')"
-                                        :placeholder="trans('partner::app.admin.create.title')"
+                                        label="Company"
+                                        placeholder="Company"
                                     >
                                     </x-admin::form.control-group.control>
 
@@ -137,7 +137,7 @@
 
                                 <x-admin::form.control-group class="mb-[10px]">
                                     <x-admin::form.control-group.label class="required">
-                                        Last name
+                                        Number of branches
                                     </x-admin::form.control-group.label>
 
                                     <x-admin::form.control-group.control
@@ -146,8 +146,8 @@
                                         :value="$partner->last_name ?? old('last_name')"
                                         id="last_name"
                                         rules="required"
-                                        :label="trans('partner::app.admin.create.last_name')"
-                                        :placeholder="trans('partner::app.admin.create.last_name')"
+                                        label="Number of branches"
+                                        placeholder="Number of branches"
                                     >
                                     </x-admin::form.control-group.control>
 
@@ -167,8 +167,8 @@
                                         :value="$partner->first_name ?? old('first_name')"
                                         id="first_name"
                                         rules="required"
-                                        :label="trans('partner::app.admin.create.first_name')"
-                                        :placeholder="trans('partner::app.admin.create.first_name')"
+                                        label="Area Coverage"
+                                        placeholder="Area Coverage"
                                     >
                                     </x-admin::form.control-group.control>
 

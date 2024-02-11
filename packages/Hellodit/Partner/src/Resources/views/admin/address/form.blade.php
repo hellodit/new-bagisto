@@ -122,8 +122,8 @@
                                         :value="$address->company ?? old('company')"
                                         id="company"
                                         rules="required"
-                                        :label="trans('partner::app.admin.create.company')"
-                                        :placeholder="trans('partner::app.admin.create.company')"
+                                        label="Branches"
+                                        placeholder="Branches"
                                     >
                                     </x-admin::form.control-group.control>
 
@@ -143,8 +143,8 @@
                                         :value="$address->company_id ?? old('company_id')"
                                         id="company_id"
                                         rules="required"
-                                        :label="trans('partner::app.admin.create.company_id')"
-                                        :placeholder="trans('partner::app.admin.create.company_id')"
+                                        label="PIC"
+                                        placeholder="PIC"
                                     >
                                     </x-admin::form.control-group.control>
 

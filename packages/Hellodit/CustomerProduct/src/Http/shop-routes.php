@@ -16,7 +16,6 @@ Route::group([
     Route::post('destroy', [CustomerProductController::class, 'destroy'])->name('shop.customer_product.destroy');
     Route::get('create', [CustomerProductController::class, 'create'])->name('shop.customer_product.create');
     Route::post('store', [CustomerProductController::class, 'store'])->name('shop.customer_product.store');
-    Route::get('information/{user_id}', [CustomerProductController::class, 'information'])->name('shop.customer_product.information');
     Route::get('categories',[CustomerProductController::class,'tree'])->name('shop.customer_product.categories');
 //
 });
@@ -26,6 +25,8 @@ Route::group([
     'middleware' => ['web', 'theme', 'locale', 'currency']
 ], function () {
     Route::get('all',[CustomerProductController::class,'UserProducts'])->name('shop.customer_product.list');
+    Route::get('information/{user_id}', [CustomerProductController::class, 'information'])->name('shop.customer_product.information');
+
 });
 
 

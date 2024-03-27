@@ -510,7 +510,7 @@ return [
                     'configurable-attributes' => 'Configurable Attributes',
                     'create-btn'              => 'Create Product',
                     'downloadable'            => 'Downloadable',
-                    'family'                  => 'Family',
+                    'family'                  => 'Channel',
                     'grouped'                 => 'Grouped',
                     'simple'                  => 'Simple',
                     'save-btn'                => 'Save Product',
@@ -521,8 +521,8 @@ return [
                 ],
 
                 'datagrid' => [
-                    'attribute-family'       => 'Attribute Family',
-                    'attribute-family-value' => 'Attribute Family - :attribute_family',
+                    'attribute-family'       => 'Channel',
+                    'attribute-family-value' => 'Channel - :attribute_family',
                     'active'                 => 'Active',
                     'category'               => 'Category',
                     'copy-of'                => ':value',

@@ -339,7 +339,7 @@ return [
                 'customer-service' => 'Customer Service',
                 'contact-us' => 'Contact Us',
                 'currency' => 'Currency',
-                'footer-text' => '© Copyright 2010 - 2023, Webkul Software (Registered in India). All rights reserved.',
+                'footer-text' => '©Copyright 2024, Software Pegadaian (GSI Software). All rights reserved',
                 'locale' => 'Locale',
                 'newsletter-text' => 'Get Ready for our Fun Newsletter!',
                 'order-return' => 'Order and Returns',

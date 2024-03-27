@@ -18,24 +18,24 @@
         </x-slot:content>
     </x-shop::dropdown>
 
-    <p class="text-xs font-medium">Get UPTO 40% OFF on your 1st order <a href="#" class="underline">SHOP NOW</a></p>
+    <p class="text-xs font-medium">Marketplace Pergadaian Pertama Untuk Kamu, Mulai Untuk  <a href="/customer/register" class="underline">REGISTER</a></p>
 
     {{-- Locales Switcher --}}
     <x-shop::dropdown position="bottom-right">
         <x-slot:toggle>
             {{-- Dropdown Toggler --}}
             <div class="flex items-center gap-[10px] cursor-pointer">
-                <img 
-                    src="{{ ! empty(core()->getCurrentLocale()->logo_url) 
-                            ? core()->getCurrentLocale()->logo_url 
-                            : bagisto_asset('images/default-language.svg') 
+                <img
+                    src="{{ ! empty(core()->getCurrentLocale()->logo_url)
+                            ? core()->getCurrentLocale()->logo_url
+                            : bagisto_asset('images/default-language.svg')
                         }}"
                     class="h-full"
                     alt="Default locale"
                     width="24"
                     height="16"
                 />
-                
+
                 <span>
                     {{ core()->getCurrentChannel()->locales()->orderBy('name')->where('code', app()->getLocale())->value('name') }}
                 </span>
@@ -43,7 +43,7 @@
                 <span class="icon-arrow-down text-[24px]"></span>
             </div>
         </x-slot:toggle>
-    
+
         <!-- Dropdown Content -->
         <x-slot:content class="!p-[0px]">
             <v-locale-switcher></v-locale-switcher>
@@ -71,7 +71,7 @@
                 class="flex items-center gap-[10px] px-5 py-2 text-[16px] cursor-pointer hover:bg-gray-100"
                 v-for="locale in locales"
                 :class="{'bg-gray-100': locale.code == '{{ app()->getLocale() }}'}"
-                @click="change(locale)"                  
+                @click="change(locale)"
             >
                 <img
                     :src="locale.logo_url || '{{ bagisto_asset('images/default-language.svg') }}'"

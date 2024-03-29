@@ -1,4 +1,5 @@
 @pushOnce('scripts')
+
     <script type="text/x-template" id="v-create-product-form-template">
         <div>
             <!-- Product Create Button -->
@@ -72,9 +73,11 @@
                                             rules="required"
                                             :label="trans('admin::app.catalog.products.index.create.family')"
                                         >
-                                            <option value="1">
-                                                Default
-                                            </option>
+                                            @foreach($families as $family)
+                                                <option value="{{ $family->id }}">
+                                                    {{ $family->name }}
+                                                </option>
+                                            @endforeach
                                         </x-shop::form.control-group.control>
 
                                         <x-shop::form.control-group.error
@@ -100,24 +103,18 @@
                                     </x-shop::form.control-group>
 
                                     {!! view_render_event('bagisto.admin.catalog.products.create_form.general.controls.before') !!}
-                                    <x-shop::form.control-group class="mb-[10px]">
-                                        <x-shop::form.control-group.label class="required text-left">
+
+
+                                    <div class="mb-[10px]">
+                                        <label class="block mb-[15px] mt-[30px] text-[16px] required text-left">
                                             Location
-                                        </x-shop::form.control-group.label>
-                                        <x-shop::form.control-group.control
-                                            type="select"
-                                            name="location_id"
-                                            :value="old('location_id')"
-                                            rules="required"
-                                            label="location"
-                                        >
+                                        </label>
+                                        <select required name="location_id" id="location_id" class="border border-red-500 custom-select block w-full py-2 px-3 shadow bg-white border border-[#E9E9E9] rounded-lg text-[16px] transition-all hover:border-gray-400 focus:border-gray-400 select2">
                                             @foreach(\Hellodit\Location\Models\Location::all() as $location)
                                                 <option value="{{$location->id}}">{{$location->name}}</option>
                                             @endforeach
-                                        </x-shop::form.control-group.control>
-                                    </x-shop::form.control-group>
-
-
+                                        </select>
+                                    </div>
                                 </div>
 
                                 <div v-show="attributes.length">
@@ -165,6 +162,8 @@
 
 
                     </x-shop::modal>
+
+
                 </form>
             </x-admin::form>
         </div>
@@ -173,7 +172,14 @@
     <script type="module">
         app.component('v-create-product-form', {
             template: '#v-create-product-form-template',
-
+            mounted() {
+                this.$nextTick(function () {
+                    // Code that will run only after the entire view has been rendered
+                    $('.select2').select2({
+                        placeholder: "Select Location"
+                    });
+                })
+            },
             data() {
                 return {
                     attributes: [],
@@ -189,6 +195,8 @@
 
                         params.super_attributes[attribute.code] = this.superAttributes[attribute.code];
                     });
+
+                    params.location_id = $('#location_id').val();
 
                     this.$axios.post("{{ route('shop.customer_product.store') }}", params)
                         .then((response) => {
@@ -228,5 +236,11 @@
                 }
             }
         })
+
+    </script>
+
+
+    <script type="text/javascript">
+
     </script>
 @endPushOnce

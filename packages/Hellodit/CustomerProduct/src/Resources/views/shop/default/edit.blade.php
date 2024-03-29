@@ -10,32 +10,10 @@
           'src/Resources/assets/js/app.js'
         ], 'customer-product')
     @endpush
+    <script type="text/javascript">
 
-    <style>
-        <
-        link href
 
-        =
-        "https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css"
-        rel
-
-        =
-        "stylesheet"
-        /
-        >
-    </style>
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
-            integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-
-    <script>
-
-        $(document).ready(function () {
-            $('.js-example-basic-single').select2();
-        });
     </script>
-
     <div class="flex justify-between items-center">
         <div class="">
             <h2 class="text-[26px] font-medium">
@@ -84,7 +62,7 @@
                             <label for="location_id"
                                    class="block mb-15px mt-30px text-16px  required">Location</label>
                             <select name="location_id" id="location_id"
-                                    class="custom-select block w-full py-2 px-3 shadow bg-white border border-[#E9E9E9] rounded-lg text-[16px] transition-all hover:border-gray-400 focus:border-gray-400">
+                                    class="select2 custom-select block w-full py-2 px-3 shadow bg-white border border-[#E9E9E9] rounded-lg text-[16px] transition-all hover:border-gray-400 focus:border-gray-400">
                                 @foreach(\Hellodit\Location\Models\Location::all() as $location)
                                     <option
                                         value="{{ $location->id }}" {{ $location->id == $product->location_id ? 'selected' : '' }}>{{ $location->name }}</option>
@@ -175,7 +153,7 @@
                         </div>
 
 
-{{--                        @include('customerproduct::shop.default.component.add_categories',['categories' => $categories ,'ids' => $product->categories->pluck('id')->toArray()])--}}
+                        {{--                        @include('customerproduct::shop.default.component.add_categories',['categories' => $categories ,'ids' => $product->categories->pluck('id')->toArray()])--}}
 
                         @include('customerproduct::shop.default.edit.categories',['product' => $product])
                         <p class="text-16px text-gray-800  font-semibold mb-5px"> Price Info </p>
@@ -211,7 +189,8 @@
                     <div class="flex gap-16px justify-between items-center max-sm:flex-wrap">
                         <div class="flex gap-x-10px items-center">
 
-                            <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                            <button type="submit"
+                                    class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
                                 @lang('admin::app.catalog.products.edit.save-btn')
                             </button>
                         </div>

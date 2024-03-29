@@ -52,12 +52,15 @@ class CustomerProductController extends Controller
         if (request()->ajax()) {
             return app(ProductDataGrind::class)->toJson();
         }
-        return view('customerproduct::shop.default.index');
+        $families = $this->attributeFamilyRepository->all();
+
+        return view('customerproduct::shop.default.index', compact('families'));
     }
 
     public function create()
     {
-        return view('customerproduct::shop.default.create');
+        $families = $this->attributeFamilyRepository->all();
+        return view('customerproduct::shop.default.create', compact('families'));
     }
 
     public function store(Request $request)

@@ -2,7 +2,7 @@
     'inputType' => 'checkbox'
 ])
 
-<v-tree-view 
+<v-tree-view
     {{ $attributes->except('input-type') }}
     input-type="{{ $inputType }}"
 >
@@ -96,7 +96,6 @@
                 }
             },
 
-
             methods: {
                 generateChildren () {
                     let childElements = [];
@@ -148,7 +147,7 @@
 @if ($inputType == 'checkbox')
     {{-- Tree Checkbox Component --}}
     <x-admin::tree.checkbox></x-admin::tree.checkbox>
-@else 
+@else
     {{-- Tree Radio component --}}
     <x-admin::tree.radio></x-admin::tree.radio>
 @endif

@@ -4,105 +4,117 @@
     'hasFooter'  => true,
 ])
 
-<!DOCTYPE html>
+    <!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}" dir="{{ core()->getCurrentLocale()->direction }}">
-    <head>
-        <title>{{ $title ?? '' }}</title>
+<head>
+    <title>{{ $title ?? '' }}</title>
 
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="csrf-token" content="{{ csrf_token() }}">
-        <meta name="base-url" content="{{ url()->to('/') }}">
-        <meta name="currency-code" content="{{ core()->getCurrentCurrencyCode() }}">
-        <meta http-equiv="content-language" content="{{ app()->getLocale() }}">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="base-url" content="{{ url()->to('/') }}">
+    <meta name="currency-code" content="{{ core()->getCurrentCurrencyCode() }}">
+    <meta http-equiv="content-language" content="{{ app()->getLocale() }}">
 
-        @stack('meta')
+    @stack('meta')
 
-        <link
-            rel="icon"
-            sizes="16x16"
-            href="{{ core()->getCurrentChannel()->favicon_url ?? bagisto_asset('images/favicon.ico') }}"
-        />
+    <link
+        rel="icon"
+        sizes="16x16"
+        href="{{ core()->getCurrentChannel()->favicon_url ?? bagisto_asset('images/favicon.ico') }}"
+    />
 
-        @bagistoVite(['src/Resources/assets/css/app.css', 'src/Resources/assets/js/app.js'])
-
-
-
-        <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" as="style">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap">
-
-        <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&display=swap" as="style">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&display=swap">
-
-        @stack('styles')
-
-        <style>
-            {!! core()->getConfigData('general.content.custom_scripts.custom_css') !!}
+    @bagistoVite(['src/Resources/assets/css/app.css', 'src/Resources/assets/js/app.js'])
 
 
-            .label-active-store{
-                color: white;
-                padding: 3px;
-                font-size: 13px;
-                align-content: center;
-                background-color: #04AA6D;
-                border-radius: 5px;
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
+          as="style">
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap">
 
-            }
-            .label-info-store{
-                font-size: 13px;
-                align-content: center;
-                border-radius: 5px;
-                padding: 3px;
-                background-color: #e7e7e7;
-                color: black;
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&display=swap" as="style">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&display=swap">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
-            }
-        </style>
 
-        {!! view_render_event('bagisto.shop.layout.head') !!}
-    </head>
+    @stack('styles')
 
-    <body>
-        {!! view_render_event('bagisto.shop.layout.body.before') !!}
+    <style>
+        {!! core()->getConfigData('general.content.custom_scripts.custom_css') !!}
 
-        <div id="app">
-            {{-- Flash Message Blade Component --}}
-            <x-shop::flash-group />
 
-            {{-- Confirm Modal Blade Component --}}
-            <x-shop::modal.confirm />
+            .label-active-store {
+            color: white;
+            padding: 3px;
+            font-size: 13px;
+            align-content: center;
+            background-color: #04AA6D;
+            border-radius: 5px;
 
-            {{-- Page Header Blade Component --}}
-            @if ($hasHeader)
-                <x-shop::layouts.header />
-            @endif
+        }
 
-            {!! view_render_event('bagisto.shop.layout.content.before') !!}
+        .label-info-store {
+            font-size: 13px;
+            align-content: center;
+            border-radius: 5px;
+            padding: 3px;
+            background-color: #e7e7e7;
+            color: black;
 
-            {{-- Page Content Blade Component --}}
-            {{ $slot }}
+        }
 
-            {!! view_render_event('bagisto.shop.layout.content.after') !!}
 
-            {{-- Page Features Blade Component --}}
-            @if ($hasFeature)
-                <x-shop::layouts.features />
-            @endif
 
-            {{-- Page Footer Blade Component --}}
-            @if ($hasFooter)
-                <x-shop::layouts.footer />
-            @endif
-        </div>
+    </style>
 
-        {!! view_render_event('bagisto.shop.layout.body.after') !!}
+    {!! view_render_event('bagisto.shop.layout.head') !!}
+</head>
 
-        @stack('scripts')
+<body>
+{!! view_render_event('bagisto.shop.layout.body.before') !!}
 
-        <script type="text/javascript">
-            {!! core()->getConfigData('general.content.custom_scripts.custom_javascript') !!}
-        </script>
-    </body>
+<div id="app">
+    {{-- Flash Message Blade Component --}}
+    <x-shop::flash-group/>
+
+    {{-- Confirm Modal Blade Component --}}
+    <x-shop::modal.confirm/>
+
+    {{-- Page Header Blade Component --}}
+    @if ($hasHeader)
+        <x-shop::layouts.header/>
+    @endif
+
+    {!! view_render_event('bagisto.shop.layout.content.before') !!}
+
+    {{-- Page Content Blade Component --}}
+    {{ $slot }}
+
+    {!! view_render_event('bagisto.shop.layout.content.after') !!}
+
+    {{-- Page Features Blade Component --}}
+    @if ($hasFeature)
+        <x-shop::layouts.features/>
+    @endif
+
+    {{-- Page Footer Blade Component --}}
+    @if ($hasFooter)
+        <x-shop::layouts.footer/>
+    @endif
+</div>
+
+{!! view_render_event('bagisto.shop.layout.body.after') !!}
+
+@stack('scripts')
+
+<script type="text/javascript">
+    {!! core()->getConfigData('general.content.custom_scripts.custom_javascript') !!}
+</script>
+
+<link href="{{asset('assets/css/select2.css')}}" rel="stylesheet"/>
+
+
+</body>
 </html>

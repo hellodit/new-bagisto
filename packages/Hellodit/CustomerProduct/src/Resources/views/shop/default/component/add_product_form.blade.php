@@ -93,6 +93,7 @@
                                         <x-shop::form.control-group.control
                                             type="text"
                                             name="sku"
+                                            value="{{\Illuminate\Support\Str::uuid()}}"
                                             ::rules="{ required: true, regex: /^[a-zA-Z0-9]+(?:-[a-zA-Z0-9]+)*$/ }"
                                             :label="trans('admin::app.catalog.products.index.create.sku')"
                                         >

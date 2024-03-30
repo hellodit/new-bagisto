@@ -202,5 +202,4 @@
         </div>
     </div>
 
-
 </x-shop::layouts.account>

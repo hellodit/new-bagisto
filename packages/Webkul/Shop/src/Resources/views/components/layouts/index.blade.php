@@ -16,6 +16,7 @@
     <meta name="base-url" content="{{ url()->to('/') }}">
     <meta name="currency-code" content="{{ core()->getCurrentCurrencyCode() }}">
     <meta http-equiv="content-language" content="{{ app()->getLocale() }}">
+    <link href="{{asset('assets/css/select2.css')}}" rel="stylesheet"/>
 
     @stack('meta')
 
@@ -113,7 +114,6 @@
     {!! core()->getConfigData('general.content.custom_scripts.custom_javascript') !!}
 </script>
 
-<link href="{{asset('assets/css/select2.css')}}" rel="stylesheet"/>
 
 
 </body>

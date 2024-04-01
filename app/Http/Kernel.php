@@ -65,5 +65,6 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'cacheResponse' => \Spatie\ResponseCache\Middlewares\CacheResponse::class,
         'isVerify' => IsUserVerify::class,
+        'basicAuth' => \App\Http\Middleware\BasicAuthLogger::class,
     ];
 }

@@ -175,9 +175,9 @@
                                    class="block mb-15px mt-30px text-16px text-gray-800  required">Status</label>
                             <select name="status" id="status"
                                     class="custom-select block w-full py-2 px-3 shadow bg-white border border-[#E9E9E9] rounded-lg text-[16px] transition-all hover:border-gray-400 focus:border-gray-400">
-                                <option value="1" {{ old('status') ?? $product->status ? 'selected' : '' }}>Active
+                                <option value="1" {{ $product->status ? 'selected' : '' }}>Active
                                 </option>
-                                <option value="0" {{ old('status') ?? !$product->status ? 'selected' : '' }}>Inactive
+                                <option value="0" {{ !$product->status ? 'selected' : '' }}>Inactive
                                 </option>
                             </select>
                         </div>

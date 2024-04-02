@@ -13,7 +13,7 @@
     <section class="mx-auto">
         <div class="container">
             <div class="mt-5 text-center mb-2">
-                <h2 class="font-medium text-gray-800 text-[25px]">All Users Product</h2>
+                <h2 class="font-medium text-gray-800 text-[25px]">All Customers Product</h2>
             </div>
 
             <div class="grid grid-cols-3 gap-8 mt-[30px] max-sm:mt-[20px] max-1060:grid-cols-2 max-sm:justify-items-center max-sm:gap-[16px]">

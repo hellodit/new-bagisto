@@ -13,8 +13,8 @@
     <script type="text/x-template" id="v-product-review-template">
         <div class="container max-1180:px-[20px]">
             <!-- Create Review Form Container -->
-            <div 
-                class="w-full" 
+            <div
+                class="w-full"
                 v-if="canReview"
             >
                 <x-shop::form
@@ -33,7 +33,7 @@
                                     type="image"
                                     name="attachments"
                                     class="!p-0 !mb-0"
-                                    rules="required"
+                                    rules=""
                                     ref="reviewImages"
                                     :label="trans('shop::app.products.view.reviews.attachments')"
                                     :is-multiple="true"
@@ -47,7 +47,7 @@
                                 </x-shop::form.control-group.error>
                             </x-shop::form.control-group>
                         </div>
-                        
+
                         <div>
                             <x-shop::form.control-group>
                                 <x-shop::form.control-group.label class="mt-[0] required">
@@ -146,7 +146,7 @@
                                 >
                                     @lang('shop::app.products.view.reviews.submit-review')
                                 </button>
-                                
+
                                 <button
                                     type="button"
                                     class="secondary-button items-center px-[30px] py-[10px] rounded-[18px] max-sm:w-full max-sm:max-w-[374px]"
@@ -173,7 +173,7 @@
                         <h3 class="font-dmserif text-[30px] max-sm:text-[22px]">
                             @lang('shop::app.products.view.reviews.customer-review')
                         </h3>
-                        
+
                         @if (
                             core()->getConfigData('catalog.products.review.guest_review')
                             || auth()->guard('customer')->user()
@@ -272,8 +272,8 @@
                     </p>
 
                     <div class="flex items-center">
-                        <x-shop::products.star-rating 
-                            ::name="review.name" 
+                        <x-shop::products.star-rating
+                            ::name="review.name"
                             ::value="review.rating"
                         >
                         </x-shop::products.star-rating>
@@ -406,7 +406,7 @@
                 },
             },
         });
-        
+
         app.component('v-product-review-item', {
             template: '#v-product-review-item-template',
 

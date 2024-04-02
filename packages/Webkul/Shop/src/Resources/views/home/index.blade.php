@@ -81,7 +81,7 @@
                     </x-shop::customer.carousel>
 
                     <div class="flex justify-center items-center mt-2">
-                        <a href="{{ route('shop.customer_product.list') }}" class="secondary-button">View User Products</a>
+                        <a href="{{ route('shop.customer_product.list') }}" class="secondary-button">View Customer Products</a>
                     </div>
 
                     @break

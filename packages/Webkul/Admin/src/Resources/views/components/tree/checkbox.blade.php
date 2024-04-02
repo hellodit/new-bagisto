@@ -2,14 +2,14 @@
     {{-- v-tree-checkbox template--}}
     <script type="text/x-template" id="v-tree-checkbox-template">
         <label
-            :for="id"
+            :for="id+nameField"
             class="inline-flex gap-[10px] w-max p-[6px] items-center cursor-pointer select-none group"
         >
             <input
                 type="checkbox"
                 :name="[nameField + '[]']"
                 :value="modelValue"
-                :id="id"
+                :id="id+nameField"
                 class="hidden peer"
                 @change="inputChanged()"
                 :checked="isActive"

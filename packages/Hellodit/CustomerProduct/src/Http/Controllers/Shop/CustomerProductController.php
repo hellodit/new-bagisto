@@ -150,7 +150,7 @@ class CustomerProductController extends Controller
         $data['channel'] = core()->getCurrentChannel()->code;
         $data['locale'] = core()->getCurrentLocale()->code;
         $data['visible_individually'] = true;
-        $data['url_key'] = Str::slug($data['name'], '-');
+        $data['url_key'] = Str::slug($data['name'], '-').'-'.uniqid();
 
         $product = $this->productRepository->update($data, $id);
         Event::dispatch('catalog.product.update.after', $product);

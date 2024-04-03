@@ -169,15 +169,14 @@
 
                         <p class="text-16px   font-semibold mb-15px"> Meta Description</p>
                         @include('customerproduct::shop.default.component.seo-component')
-
                         <div class="mb-3">
                             <label for="status"
                                    class="block mb-15px mt-30px text-16px text-gray-800  required">Status</label>
-                            <select name="status" id="status"
-                                    class="custom-select block w-full py-2 px-3 shadow bg-white border border-[#E9E9E9] rounded-lg text-[16px] transition-all hover:border-gray-400 focus:border-gray-400">
-                                <option value="1" {{ $product->status ? 'selected' : '' }}>Active
+                            <select name="status" id=""
+                                    class=" block w-full py-2 px-3 shadow bg-white border border-[#E9E9E9] rounded-lg text-[16px] transition-all hover:border-gray-400 focus:border-gray-400">
+                                <option value="1" @if($product->status == 1) selected @endif>Active
                                 </option>
-                                <option value="0" {{ !$product->status ? 'selected' : '' }}>Inactive
+                                <option value="0" @if($product->status == 0) selected @endif>Inactive
                                 </option>
                             </select>
                         </div>

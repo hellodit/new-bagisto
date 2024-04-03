@@ -208,7 +208,7 @@
                     <div class="flex gap-x-[16px] justify-between items-center">
                         <div class="flex flex-col gap-[6px]">
                             <p :class="[record.status ? 'label-active-store': 'label-info-store']" style="">
-                                @{{ record.status ? "@lang('admin::app.catalog.products.index.datagrid.active')" :
+                                @{{ record.status == 1 ? "@lang('admin::app.catalog.products.index.datagrid.active')" :
                                 "@lang('admin::app.catalog.products.index.datagrid.disable')" }}
                             </p>
 

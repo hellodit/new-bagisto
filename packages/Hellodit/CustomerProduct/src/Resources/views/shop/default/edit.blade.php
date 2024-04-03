@@ -9,7 +9,31 @@
           'src/Resources/assets/css/app.css',
           'src/Resources/assets/js/app.js'
         ], 'customer-product')
+
+
     @endpush
+    <style>
+        .toggle-checkbox:checked {
+            right: 0;
+            border-color: #4B5563;
+            background-color: #10B981;
+        }
+
+        .toggle-checkbox:checked + .toggle-label {
+            background-color: #A1A1AA;
+        }
+
+        .toggle-checkbox:focus {
+            outline: none;
+        }
+
+        .toggle-label {
+            width: 0.5rem;
+            height: 0.25rem;
+            background-color: #818CF8;
+            transition: background-color 0.2s ease-in;
+        }
+    </style>
     <script type="text/javascript">
 
 
@@ -65,7 +89,7 @@
                                     class="select2 custom-select block w-full py-2 px-3 shadow bg-white border border-[#E9E9E9] rounded-lg text-[16px] transition-all hover:border-gray-400 focus:border-gray-400">
                                 @foreach(\Hellodit\Location\Models\Location::all() as $location)
                                     <option
-                                        value="{{ $location->id }}" {{ $location->id == $product->location_id ? 'selected' : '' }}>{{ $location->name }}</option>
+                                            value="{{ $location->id }}" {{ $location->id == $product->location_id ? 'selected' : '' }}>{{ $location->name }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -109,13 +133,17 @@
                         </div>
 
 
+
+
+
+
                         <div class="flex gap-[10px] mt-[14px] max-xl:flex-wrap">
                             @foreach ($product->attribute_family->attribute_groups->groupBy('column') as $column => $groups)
                                 <div
 
-                                    @if ($column == 1) class="flex flex-col gap-[8px] flex-1 max-xl:flex-auto"
-                                    @endif
-                                    @if ($column == 2) class="flex flex-col gap-[8px] w-[360px] max-w-full max-sm:w-full" @endif
+                                        @if ($column == 1) class="flex flex-col gap-[8px] flex-1 max-xl:flex-auto"
+                                        @endif
+                                        @if ($column == 2) class="flex flex-col gap-[8px] w-[360px] max-w-full max-sm:w-full" @endif
                                 >
                                     @foreach ($groups->where('name','General') as $group)
                                         @php
@@ -124,7 +152,7 @@
 
 
                                         <div
-                                            class="relative bg-white  rounded-[4px]">
+                                                class="relative bg-white  rounded-[4px]">
                                             <p class="text-[16px]  font-semibold mb-[16px]">
                                                 {{ $group->name }}
                                             </p>
@@ -169,17 +197,36 @@
 
                         <p class="text-16px   font-semibold mb-15px"> Meta Description</p>
                         @include('customerproduct::shop.default.component.seo-component')
-                        <div class="mb-3">
-                            <label for="status"
-                                   class="block mb-15px mt-30px text-16px text-gray-800  required">Status</label>
-                            <select name="status" id=""
-                                    class=" block w-full py-2 px-3 shadow bg-white border border-[#E9E9E9] rounded-lg text-[16px] transition-all hover:border-gray-400 focus:border-gray-400">
-                                <option value="1" @if($product->status == 1) selected @endif>Active
-                                </option>
-                                <option value="0" @if($product->status == 0) selected @endif>Inactive
-                                </option>
-                            </select>
+
+                        <div class="mb-2">
+                            <p class="text-16px text-gray-800  font-semibold mb-3 ">Product Visibility </p>
+
+                            <!--Default checkbox-->
+                            <div class="mb-[0.125rem] block min-h-[1.5rem] ps-[1.5rem]">
+                                <input type="radio" name="status" id="product_hidden" value="0" @if($product->status == 0) checked @endif>
+
+                                <label
+                                    class="inline-block ps-[0.15rem] hover:cursor-pointer"
+                                    for="checkboxDefault">
+                                    Set Product Disabled
+                                </label>
+                            </div>
+
+                            <!--Default checked checkbox-->
+                            <div class="mb-[0.125rem] block min-h-[1.5rem] ps-[1.5rem]">
+                                <input type="radio" name="status" id="product_visible" value="1" @if($product->status == 1) checked @endif>
+
+                                <label
+                                    class="inline-block ps-[0.15rem] hover:cursor-pointer"
+                                    for="checkboxChecked">
+                                    Set Product Active
+                                </label>
+                            </div>
+
+
                         </div>
+
+
 
                     </div>
                 </div>

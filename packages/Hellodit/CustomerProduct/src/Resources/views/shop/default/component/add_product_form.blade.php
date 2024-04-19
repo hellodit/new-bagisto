@@ -86,12 +86,9 @@
 
                                     <input type="hidden" name="type" value="simple">
                                     <x-shop::form.control-group class="mb-[10px]">
-                                        <x-shop::form.control-group.label class="required text-left">
-                                            @lang('admin::app.catalog.products.index.create.sku')
-                                        </x-shop::form.control-group.label>
 
                                         <x-shop::form.control-group.control
-                                            type="text"
+                                            type="hidden"
                                             name="sku"
                                             value="{{\Illuminate\Support\Str::uuid()}}"
                                             ::rules="{ required: true, regex: /^[a-zA-Z0-9]+(?:-[a-zA-Z0-9]+)*$/ }"

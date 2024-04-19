@@ -57,7 +57,7 @@ return [
             'subscribe-to-newsletter' => 'Subscribe to newsletter',
             'success-verify' => 'Account created successfully, an e-mail has been sent for verification.',
             'success-verify-email-unsent' => 'Account created successfully, but verification e-mail unsent.',
-            'success' => 'Account created successfully.',
+            'success' => 'Account created successfully. please check your email to verify your account.',
             'verified' => 'Your account has been verified, try to login now.',
             'verify-failed' => 'We cannot verify your mail account.',
             'verification-not-sent' => 'Error! Problem in sending verification email, please try again later.',

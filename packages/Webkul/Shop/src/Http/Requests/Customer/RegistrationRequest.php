@@ -16,7 +16,7 @@ class RegistrationRequest extends FormRequest
         'first_name' => 'string|required',
         'last_name'  => 'string|required',
         'email'      => 'email|required|unique:customers,email',
-        'password'   => 'confirmed|min:6|required',
+        'password'   => 'required|confirmed|min:8|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/',
     ];
 
     /**
@@ -46,6 +46,16 @@ class RegistrationRequest extends FormRequest
      */
     public function messages()
     {
-        return Captcha::getValidationMessages();
+        return array_merge(Captcha::getValidationMessages(), [
+            'first_name.required' => 'Nama depan diperlukan.',
+            'last_name.required'  => 'Nama belakang diperlukan.',
+            'email.required'      => 'Email diperlukan.',
+            'email.email'         => 'Format email tidak valid.',
+            'email.unique'        => 'Email sudah digunakan.',
+            'password.required'   => 'Password diperlukan.',
+            'password.confirmed'  => 'Konfirmasi password tidak cocok.',
+            'password.min'        => 'Password harus minimal 8 karakter.',
+            'password.regex'      => 'Password harus mengandung huruf besar, huruf kecil, angka, dan karakter spesial.',
+        ]);
     }
 }

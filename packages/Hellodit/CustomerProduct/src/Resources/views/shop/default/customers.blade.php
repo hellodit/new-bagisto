@@ -21,7 +21,8 @@
                     <div class="grid gap-2.5 content-start w-full relative">
                         <a href="{{route('shop.customer_product.information',['user_id' => $customer->id])}}"
                            class="p-4 flex flex-col items-center justify-center border rounded-md hover:border-blue-500 transition">
-                            <img src="{{$customer->image_url}}" alt="Image 1" class="w-[50%] h-auto rounded-md">
+                            <img src="{{empty($customer->image_url) ? asset('assets/images/avatar-default.jpg') : $customer->image_url}}"
+                                 alt="Image 1" class="object-fill h-50 w-50 rounded-md" style="height: 250px;width: 100%;object-fit: contain;">
                             <p class="mt-2 text-center text-gray-800">{{$customer->firt_name." ".$customer->last_name}}</p>
                         </a>
                     </div>

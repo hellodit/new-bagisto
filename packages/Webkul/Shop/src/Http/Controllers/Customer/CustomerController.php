@@ -63,7 +63,7 @@ class CustomerController extends Controller
         $data = $profileRequest->validated();
 
         $data['phone'] = OtpHelper::formatIndonesianPhoneNumber($data['phone']);
-
+        $data['make_product'] = true;
         if (empty($data['date_of_birth'])) {
             unset($data['date_of_birth']);
         }

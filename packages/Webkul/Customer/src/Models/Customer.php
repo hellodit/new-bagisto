@@ -80,6 +80,7 @@ class Customer extends Authenticatable implements CustomerContract
         'is_suspended',
         'otp_created_at',
         'is_verify',
+        'make_product',
         'otp',
     ];
 

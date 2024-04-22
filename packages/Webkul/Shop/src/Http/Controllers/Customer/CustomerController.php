@@ -2,6 +2,7 @@
 
 namespace Webkul\Shop\Http\Controllers\Customer;
 
+use Hellodit\CustomerProduct\Helpers\OtpHelper;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
@@ -60,6 +61,8 @@ class CustomerController extends Controller
         $isPasswordChanged = false;
 
         $data = $profileRequest->validated();
+
+        $data['phone'] = OtpHelper::formatIndonesianPhoneNumber($data['phone']);
 
         if (empty($data['date_of_birth'])) {
             unset($data['date_of_birth']);

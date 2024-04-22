@@ -15,9 +15,12 @@ class IsUserVerify
      */
     public function handle($request, Closure $next)
     {
-        if (auth()->guard('customer')->user()->is_verify){
-            return $next($request);
+        if (auth()->guard('customer')->check()) {
+            if (auth()->guard('customer')->user()->is_verify){
+                return $next($request);
+            }
+            return redirect()->route('shop.otp.index');
         }
-        return redirect()->route('shop.otp.index');
+        return $next($request);
     }
 }

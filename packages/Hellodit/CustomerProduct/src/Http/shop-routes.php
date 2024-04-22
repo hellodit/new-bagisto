@@ -22,7 +22,7 @@ Route::group([
 
 Route::group([
     'prefix' => 'customer/product',
-    'middleware' => ['web', 'theme', 'locale', 'currency']
+    'middleware' => ['web', 'theme', 'locale', 'currency','isVerify']
 ], function () {
     Route::get('all',[CustomerProductController::class,'UserProducts'])->name('shop.customer_product.list');
     Route::get('information/{user_id}', [CustomerProductController::class, 'information'])->name('shop.customer_product.information');

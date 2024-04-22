@@ -9,7 +9,7 @@ use Webkul\Shop\Http\Controllers\ProductsCategoriesProxyController;
 use Webkul\Shop\Http\Controllers\SearchController;
 use Webkul\Shop\Http\Controllers\SubscriptionController;
 
-Route::group(['middleware' => ['locale', 'theme', 'currency']], function () {
+Route::group(['middleware' => ['locale', 'theme', 'currency','isVerify']], function () {
     /**
      * CMS pages.
      */

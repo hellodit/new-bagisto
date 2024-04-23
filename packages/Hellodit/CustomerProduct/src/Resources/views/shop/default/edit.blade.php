@@ -56,31 +56,31 @@
                     <div class="flex flex-col gap-8px flex-1 max-xl:flex-auto">
                         <p class="text-16px text-gray-800 dark:text-white font-semibold mb-5px"> General Info</p>
 
-                        <div class="mb-2">
-                            <label for="image"
-                                   class="block mb-15px mt-30px text-16px text-gray-800 dark:text-white required">Image</label>
-                            <input type="file" name="images[files][]" id="image"
-                                   class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50"
-                                   accept="image/*"
-                                   multiple>
-                        </div>
+{{--                        <div class="mb-2">--}}
+{{--                            <label for="image"--}}
+{{--                                   class="block mb-15px mt-30px text-16px text-gray-800 dark:text-white required">Image</label>--}}
+{{--                            <input type="file" name="images[files][]" id="image"--}}
+{{--                                   class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50"--}}
+{{--                                   accept="image/*"--}}
+{{--                                   multiple>--}}
+{{--                        </div>--}}
 
-                        <ul class="mb-3">
-                            <div class="flex gap-2">
-                                @foreach($product->product->images as $images)
-                                    <a href="{{Storage::url($images->path)}}">
-                                        <img src="{{Storage::url($images->path)}}" class="w-[200px] h-[200px] w-fit"
-                                             alt="">
-                                    </a>
-                                    <input type="hidden" name="images[files][{{$images->id}}]">
-                                @endforeach
-                            </div>
-                        </ul>
+{{--                        <ul class="mb-3">--}}
+{{--                            <div class="flex gap-2">--}}
+{{--                                @foreach($product->product->images as $images)--}}
+{{--                                    <a href="{{Storage::url($images->path)}}">--}}
+{{--                                        <img src="{{Storage::url($images->path)}}" class="w-[200px] h-[200px] w-fit"--}}
+{{--                                             alt="">--}}
+{{--                                    </a>--}}
+{{--                                    <input type="hidden" name="images[files][{{$images->id}}]">--}}
+{{--                                @endforeach--}}
+{{--                            </div>--}}
+{{--                        </ul>--}}
 
 
                         {{--                        @include('customerproduct::shop.default.edit.categories')--}}
                         {{--                        @include('customerproduct::shop.default.edit.videos')--}}
-                        {{--                        @include('customerproduct::shop.default.edit.images')--}}
+                                                @include('customerproduct::shop.default.edit.images')
 
                         <div class="mb-2">
                             <label for="location_id"

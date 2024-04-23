@@ -14,14 +14,15 @@
         </div>
     </div>
 
-    <!-- Image Blade Component -->
-    <x-admin::media.images
-        name="images[files]"
-        allow-multiple="true"
-        show-placeholders="true"
-        :uploaded-images="$product->images"
-    >
-    </x-admin::media.images>
+
+
+    @include('customerproduct::shop.default.component.images',
+    [
+        'uploadedImages' => $product->images,
+        'name' => 'images[files]',
+        'allowMultiple' => true,
+        'showPlaceholders' => true,
+    ])
 </div>
 
 {!! view_render_event('bagisto.admin.catalog.product.edit.form.images.after', ['product' => $product]) !!}

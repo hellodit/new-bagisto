@@ -1,6 +1,6 @@
 {
   "src/Resources/assets/css/app.css": {
-    "file": "assets/app-3302b2bf.css",
+    "file": "assets/app-57a461c5.css",
     "isEntry": true,
     "src": "src/Resources/assets/css/app.css"
   },
@@ -59,30 +59,6 @@
   "src/Resources/assets/images/icon-options.svg": {
     "file": "assets/icon-options-ebfcd268.svg",
     "src": "src/Resources/assets/images/settings/shipping-method.svg"
-  },
-  "src/Resources/assets/images/images/product-placeholders/front.svg": {
-    "file": "assets/front-93490c30.svg",
-    "src": "src/Resources/assets/images/product-placeholders/front.svg"
-  },
-  "src/Resources/assets/images/images/product-placeholders/next-1.svg": {
-    "file": "assets/next-1-91bb148a.svg",
-    "src": "src/Resources/assets/images/product-placeholders/next-1.svg"
-  },
-  "src/Resources/assets/images/images/product-placeholders/next-2.svg": {
-    "file": "assets/next-2-6aace5ca.svg",
-    "src": "src/Resources/assets/images/product-placeholders/next-2.svg"
-  },
-  "src/Resources/assets/images/images/product-placeholders/size.svg": {
-    "file": "assets/size-04e2a252.svg",
-    "src": "src/Resources/assets/images/product-placeholders/size.svg"
-  },
-  "src/Resources/assets/images/images/product-placeholders/use-cases.svg": {
-    "file": "assets/use-cases-4a33de1a.svg",
-    "src": "src/Resources/assets/images/product-placeholders/use-cases.svg"
-  },
-  "src/Resources/assets/images/images/product-placeholders/zoom.svg": {
-    "file": "assets/zoom-0c75bed3.svg",
-    "src": "src/Resources/assets/images/product-placeholders/zoom.svg"
   },
   "src/Resources/assets/images/logo.svg": {
     "file": "assets/logo-f02a1643.svg",

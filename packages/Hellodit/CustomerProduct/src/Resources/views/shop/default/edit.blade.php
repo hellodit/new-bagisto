@@ -188,13 +188,15 @@
                         <div class="mb-2">
                             <label for="price"
                                    class="block mb-15px mt-30px text-16px text-gray-800  required">Price</label>
-                            <input type="text" name="price" id="price" value="{{ old('price') ?? $product->price }}"
+                            <input type="text" name="price" id="price" value="{{ old('price') ?? floor($product->price) }}"
                                    class="w-full mb-3 py-2 px-3 shadow border rounded text-[14px] text-gray-600 transition-all hover:border-gray-400 focus:border-gray-400"
                                    required placeholder="Product Price">
                         </div>
 
 
                         <p class="text-16px font-semibold mb-15px"> Keyword Search Engines</p>
+{{--                        <x-admin::seo/>--}}
+
                         @include('customerproduct::shop.default.component.seo-component')
 
                         <div class="mb-2">

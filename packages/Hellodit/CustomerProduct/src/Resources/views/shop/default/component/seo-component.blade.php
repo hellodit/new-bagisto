@@ -1,7 +1,7 @@
 <div class="relative rounded-[4px] ">
     <div class="mb-[10px]">
         <label for="meta_title"
-               class="block mb-15px mt-30px text-16px  required">Meta
+               class="block mb-15px mt-30px text-16px">Meta
             Title</label>
         <textarea
             type="textarea"
@@ -11,7 +11,7 @@
 
     <div class="mb-[10px]">
         <label for="meta_keywords"
-               class="block mb-15px mt-30px text-16px  required">Meta
+               class="block mb-15px mt-30px text-16px">Meta
             Keywords</label>
         <textarea
             type="textarea"
@@ -23,7 +23,7 @@
 
     <div class="mb-[10px]">
         <label for="meta_keywords"
-               class="block mb-15px mt-30px text-16px  required">Meta
+               class="block mb-15px mt-30px text-16px">Meta
             Description</label>
         <textarea
             type="textarea"

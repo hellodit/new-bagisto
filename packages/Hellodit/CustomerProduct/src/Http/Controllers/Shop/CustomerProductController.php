@@ -102,11 +102,8 @@ class CustomerProductController extends Controller
 
 
         $product = $this->productRepository->create($data);
-
         Event::dispatch('catalog.product.create.after', $product);
-
         session()->flash('success', trans('admin::app.catalog.products.create-success'));
-
         return new JsonResponse([
             'data' => [
                 'status' => 'success',
@@ -151,6 +148,17 @@ class CustomerProductController extends Controller
         $data['locale'] = core()->getCurrentLocale()->code;
         $data['visible_individually'] = true;
         $data['url_key'] = Str::slug($data['name'], '-').'-'.uniqid();
+        if (empty($data['meta_title'])){
+            $data['meta_title'] = $data['name'];
+        }
+
+        if (empty($data['meta_keywords'])){
+            $data['meta_keywords'] = $data['name'];
+        }
+
+        if (empty($data['meta_description'])){
+            $data['meta_description'] = $data['name'];
+        }
 
         $product = $this->productRepository->update($data, $id);
         Event::dispatch('catalog.product.update.after', $product);

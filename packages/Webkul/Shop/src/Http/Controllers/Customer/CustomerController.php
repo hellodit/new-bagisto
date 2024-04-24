@@ -6,6 +6,8 @@ use Hellodit\CustomerProduct\Helpers\OtpHelper;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Validation\ValidationException;
+use Webkul\Customer\Models\Customer;
 use Webkul\Shop\Http\Controllers\Controller;
 use Webkul\Customer\Repositories\CustomerRepository;
 use Webkul\Product\Repositories\ProductReviewRepository;
@@ -20,8 +22,8 @@ class CustomerController extends Controller
      * @return void
      */
     public function __construct(
-        protected CustomerRepository $customerRepository,
-        protected ProductReviewRepository $productReviewRepository,
+        protected CustomerRepository        $customerRepository,
+        protected ProductReviewRepository   $productReviewRepository,
         protected SubscribersListRepository $subscriptionRepository
     )
     {
@@ -63,6 +65,16 @@ class CustomerController extends Controller
         $data = $profileRequest->validated();
 
         $data['phone'] = OtpHelper::formatIndonesianPhoneNumber($data['phone']);
+
+        $isExists = Customer::where('phone', $data['phone'])
+            ->whereNot('id', auth()->guard('customer')->user()->id)
+            ->exists();
+
+        if ($isExists) {
+            throw ValidationException::withMessages(['phone' => 'The phone has already been taken.']);
+        }
+
+
         $data['make_product'] = true;
         if (empty($data['date_of_birth'])) {
             unset($data['date_of_birth']);
@@ -70,14 +82,14 @@ class CustomerController extends Controller
 
         if (
             core()->getCurrentChannel()->theme === 'default'
-            && ! isset($data['image'])
+            && !isset($data['image'])
         ) {
             $data['image']['image_0'] = '';
         }
 
         $data['subscribed_to_news_letter'] = isset($data['subscribed_to_news_letter']);
 
-        if (! empty($data['current_password'])) {
+        if (!empty($data['current_password'])) {
             if (Hash::check($data['current_password'], auth()->guard('customer')->user()->password)) {
                 $isPasswordChanged = true;
 
@@ -105,16 +117,16 @@ class CustomerController extends Controller
 
                 if ($subscription) {
                     $this->subscriptionRepository->update([
-                        'customer_id'   => $customer->id,
+                        'customer_id' => $customer->id,
                         'is_subscribed' => 1,
                     ], $subscription->id);
                 } else {
                     $this->subscriptionRepository->create([
-                        'email'         => $data['email'],
-                        'customer_id'   => $customer->id,
-                        'channel_id'    => core()->getCurrentChannel()->id,
+                        'email' => $data['email'],
+                        'customer_id' => $customer->id,
+                        'channel_id' => core()->getCurrentChannel()->id,
                         'is_subscribed' => 1,
-                        'token'         => $token = uniqid(),
+                        'token' => $token = uniqid(),
                     ]);
                 }
             } else {
@@ -122,7 +134,7 @@ class CustomerController extends Controller
 
                 if ($subscription) {
                     $this->subscriptionRepository->update([
-                        'customer_id'   => $customer->id,
+                        'customer_id' => $customer->id,
                         'is_subscribed' => 0,
                     ], $subscription->id);
                 }
@@ -132,7 +144,7 @@ class CustomerController extends Controller
                 $this->customerRepository->uploadImages($data, $customer);
             } else {
                 if (isset($data['image'])) {
-                    if (! empty($data['image'])) {
+                    if (!empty($data['image'])) {
                         Storage::delete((string)$customer->image);
                     }
 
@@ -156,7 +168,7 @@ class CustomerController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy()

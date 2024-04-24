@@ -87,7 +87,7 @@
                             class="!p-[20px_25px] rounded-lg"
                             value=""
                             ref="password"
-                            rules="required|min:6"
+                            rules="required|min:8"
                             :label="trans('shop::app.customers.reset-password.password')"
                             :placeholder="trans('shop::app.customers.reset-password.password')"
                         >

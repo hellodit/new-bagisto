@@ -66,7 +66,7 @@
                                 @elseif(\Illuminate\Support\Str::contains($subMenuItem['url'], 'customer/account/profile'))
                                     href="{{ $subMenuItem['url'] }}"
                                 @else
-                                    onclick="alert('isi data terlebih dahulu di menu profile > data diri > data produk yang dijual')"
+                                    onclick="alert('Mohon Terlebih Dahulu Untuk Melengkapi Data Profile > Pilih Tombol Edit > Isi Data Secara Lengkap > Lalu Tekan Tombol Save')"
                                 href="#"
                                 @endif
                         >

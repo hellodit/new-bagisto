@@ -52,8 +52,9 @@ class ResetPasswordController extends Controller
             $this->validate(request(), [
                 'token'    => 'required',
                 'email'    => 'required|email',
-                'password' => 'required|confirmed|min:6',
+                'password'   => 'required|confirmed|min:8|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/',
             ]);
+
 
             $response = $this->broker()->reset(
                 request(['email', 'password', 'password_confirmation', 'token']), function ($customer, $password) {

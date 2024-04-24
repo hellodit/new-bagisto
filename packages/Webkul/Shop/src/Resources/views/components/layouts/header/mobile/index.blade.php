@@ -214,8 +214,14 @@
                                 </a>
 
                                 <a
+                                    @if(auth('customer')->user()->make_product)
+                                        href="{{ route('shop.customer_product.index') }}"
+                                    @else
+                                        onclick="alert('Mohon Terlebih Dahulu Untuk Melengkapi Data Profile > Pilih Tombol Edit > Isi Data Secara Lengkap > Lalu Tekan Tombol Save')"
+                                        href="#"
+                                    @endif
                                     class="px-5 py-2 text-[16px] hover:bg-gray-100 cursor-pointer"
-                                    href="{{ route('shop.customer_product.index') }}"
+
                                 >
                                     Products
                                 </a>
@@ -226,7 +232,12 @@
                                 @if ($showWishlist)
                                     <a
                                         class="px-5 py-2 text-[16px] hover:bg-gray-100 cursor-pointer"
-                                        href="{{ route('shop.customers.account.wishlist.index') }}"
+                                        @if(auth('customer')->user()->make_product)
+                                            href="{{ route('shop.customers.account.wishlist.index') }}"
+                                        @else
+                                            onclick="alert('Mohon Terlebih Dahulu Untuk Melengkapi Data Profile > Pilih Tombol Edit > Isi Data Secara Lengkap > Lalu Tekan Tombol Save')"
+                                        href="#"
+                                        @endif
                                     >
                                         @lang('shop::app.components.layouts.header.wishlist')
                                     </a>

@@ -1,4 +1,5 @@
-<div class="w-full flex justify-between min-h-[78px] px-[60px] border border-t-0 border-b-[1px] border-l-0 border-r-0 max-1180:px-[30px]">
+<div
+    class="w-full flex justify-between min-h-[78px] px-[60px] border border-t-0 border-b-[1px] border-l-0 border-r-0 max-1180:px-[30px]">
     {{--
         This section will provide categories for the first, second, and third levels. If
         additional levels are required, users can customize them according to their needs.
@@ -42,7 +43,8 @@
             </label>
 
             <div class="relative w-full">
-                <div class="icon-search flex items-center  absolute ltr:left-[12px] rtl:right-[12px] top-[10px] text-[22px] pointer-events-none"></div>
+                <div
+                    class="icon-search flex items-center  absolute ltr:left-[12px] rtl:right-[12px] top-[10px] text-[22px] pointer-events-none"></div>
 
                 <input
                     type="text"
@@ -72,10 +74,11 @@
             @endif
 
             {{-- Mini cart --}}
-{{--            @include('shop::checkout.cart.mini-cart')--}}
+            {{--            @include('shop::checkout.cart.mini-cart')--}}
 
             {{-- user profile --}}
-            <x-shop::dropdown position="bottom-{{ core()->getCurrentLocale()->direction === 'ltr' ? 'right' : 'left' }}">
+            <x-shop::dropdown
+                position="bottom-{{ core()->getCurrentLocale()->direction === 'ltr' ? 'right' : 'left' }}">
                 <x-slot:toggle>
                     <span class="icon-users inline-block text-[24px] cursor-pointer"></span>
                 </x-slot:toggle>
@@ -137,22 +140,35 @@
                                 @lang('shop::app.components.layouts.header.profile')
                             </a>
                             <a
+                                @if(auth('customer')->user()->make_product)
+                                    href="{{ route('shop.customer_product.index') }}"
+                                @else
+                                    onclick="alert('Mohon Terlebih Dahulu Untuk Melengkapi Data Profile > Pilih Tombol Edit > Isi Data Secara Lengkap > Lalu Tekan Tombol Save')"
+                                href="#"
+
+                                @endif
                                 class="px-5 py-2 text-[16px] hover:bg-gray-100 cursor-pointer"
-                                href="{{ route('shop.customer_product.index') }}"
+
                             >
                                 Products
                             </a>
-{{--                            <a--}}
-{{--                                class="px-5 py-2 text-[16px] hover:bg-gray-100 cursor-pointer"--}}
-{{--                                href="{{ route('shop.customers.account.orders.index') }}"--}}
-{{--                            >--}}
-{{--                                @lang('shop::app.components.layouts.header.orders')--}}
-{{--                            </a>--}}
+                            {{--                            <a--}}
+                            {{--                                class="px-5 py-2 text-[16px] hover:bg-gray-100 cursor-pointer"--}}
+                            {{--                                href="{{ route('shop.customers.account.orders.index') }}"--}}
+                            {{--                            >--}}
+                            {{--                                @lang('shop::app.components.layouts.header.orders')--}}
+                            {{--                            </a>--}}
 
                             @if (core()->getConfigData('general.content.shop.wishlist_option'))
                                 <a
+                                    @if(auth('customer')->user()->make_product)
+                                        href="{{ route('shop.customers.account.wishlist.index') }}"
+                                    @else
+                                        onclick="alert('Mohon Terlebih Dahulu Untuk Melengkapi Data Profile > Pilih Tombol Edit > Isi Data Secara Lengkap > Lalu Tekan Tombol Save')"
+                                    href="#"
+
+                                    @endif
                                     class="px-5 py-2 text-[16px] hover:bg-gray-100 cursor-pointer"
-                                    href="{{ route('shop.customers.account.wishlist.index') }}"
                                 >
                                     @lang('shop::app.components.layouts.header.wishlist')
                                 </a>
@@ -257,7 +273,7 @@
             template: '#v-desktop-category-template',
 
             data() {
-                return  {
+                return {
                     isLoading: true,
 
                     categories: [],
@@ -276,8 +292,8 @@
 
                             this.categories = response.data.data;
                         }).catch(error => {
-                            console.log(error);
-                        });
+                        console.log(error);
+                    });
                 },
 
                 pairCategoryChildren(category) {

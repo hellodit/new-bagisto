@@ -77,72 +77,75 @@ Route::group(['middleware' => ['locale', 'theme', 'currency']], function () {
                 'redirect' => 'shop.customer.session.index',
             ])->name('shop.customer.session.destroy');
 
-            /**
-             * Wishlist.
-             */
-            Route::get('wishlist', [WishlistController::class, 'index'])->name('shop.customers.account.wishlist.index');
-
-            /**
-             * Customer account. All the below routes are related to
-             * customer account details.
-             */
-            Route::prefix('account')->group(function () {
+            Route::group(['middleware' => ['isVerify']], function () {
                 /**
-                 * Profile.
+                 * Wishlist.
                  */
-                Route::controller(CustomerController::class)->prefix('profile')->group(function () {
-                    Route::get('', 'index')->name('shop.customers.account.profile.index');
-
-                    Route::get('edit', 'edit')->name('shop.customers.account.profile.edit');
-
-                    Route::post('edit', 'update')->name('shop.customers.account.profile.store');
-
-                    Route::post('destroy', 'destroy')->name('shop.customers.account.profile.destroy');
-
-                    Route::get('reviews', 'reviews')->name('shop.customers.account.reviews.index');
-                });
+                Route::get('wishlist', [WishlistController::class, 'index'])->name('shop.customers.account.wishlist.index');
 
                 /**
-                 * Addresses.
+                 * Customer account. All the below routes are related to
+                 * customer account details.
                  */
-                Route::controller(AddressController::class)->prefix('addresses')->group(function () {
-                    Route::get('', 'index')->name('shop.customers.account.addresses.index');
+                Route::prefix('account')->group(function () {
+                    /**
+                     * Profile.
+                     */
+                    Route::controller(CustomerController::class)->prefix('profile')->group(function () {
+                        Route::get('', 'index')->name('shop.customers.account.profile.index');
 
-                    Route::get('create', 'create')->name('shop.customers.account.addresses.create');
+                        Route::get('edit', 'edit')->name('shop.customers.account.profile.edit');
 
-                    Route::post('create', 'store')->name('shop.customers.account.addresses.store');
+                        Route::post('edit', 'update')->name('shop.customers.account.profile.store');
 
-                    Route::get('edit/{id}', 'edit')->name('shop.customers.account.addresses.edit');
+                        Route::post('destroy', 'destroy')->name('shop.customers.account.profile.destroy');
 
-                    Route::put('edit/{id}', 'update')->name('shop.customers.account.addresses.update');
+                        Route::get('reviews', 'reviews')->name('shop.customers.account.reviews.index');
+                    });
 
-                    Route::patch('edit/{id}', 'makeDefault')->name('shop.customers.account.addresses.update.default');
+                    /**
+                     * Addresses.
+                     */
+                    Route::controller(AddressController::class)->prefix('addresses')->group(function () {
+                        Route::get('', 'index')->name('shop.customers.account.addresses.index');
 
-                    Route::delete('delete/{id}', 'destroy')->name('shop.customers.account.addresses.delete');
-                });
+                        Route::get('create', 'create')->name('shop.customers.account.addresses.create');
 
-                /**
-                 * Orders.
-                 */
-                Route::controller(OrderController::class)->prefix('orders')->group(function () {
-                    Route::get('', 'index')->name('shop.customers.account.orders.index');
+                        Route::post('create', 'store')->name('shop.customers.account.addresses.store');
 
-                    Route::get('view/{id}', 'view')->name('shop.customers.account.orders.view');
+                        Route::get('edit/{id}', 'edit')->name('shop.customers.account.addresses.edit');
 
-                    Route::post('cancel/{id}', 'cancel')->name('shop.customers.account.orders.cancel');
+                        Route::put('edit/{id}', 'update')->name('shop.customers.account.addresses.update');
 
-                    Route::get('print/Invoice/{id}', 'printInvoice')->name('shop.customers.account.orders.print-invoice');
-                });
+                        Route::patch('edit/{id}', 'makeDefault')->name('shop.customers.account.addresses.update.default');
 
-                /**
-                 * Downloadable products.
-                 */
-                Route::controller(DownloadableProductController::class)->prefix('downloadable-products')->group(function () {
-                    Route::get('', 'index')->name('shop.customers.account.downloadable_products.index');
+                        Route::delete('delete/{id}', 'destroy')->name('shop.customers.account.addresses.delete');
+                    });
 
-                    Route::get('download/{id}', 'download')->name('shop.customers.account.downloadable_products.download');
-                });
-            })->middleware('isVerify');
+                    /**
+                     * Orders.
+                     */
+                    Route::controller(OrderController::class)->prefix('orders')->group(function () {
+                        Route::get('', 'index')->name('shop.customers.account.orders.index');
+
+                        Route::get('view/{id}', 'view')->name('shop.customers.account.orders.view');
+
+                        Route::post('cancel/{id}', 'cancel')->name('shop.customers.account.orders.cancel');
+
+                        Route::get('print/Invoice/{id}', 'printInvoice')->name('shop.customers.account.orders.print-invoice');
+                    });
+
+                    /**
+                     * Downloadable products.
+                     */
+                    Route::controller(DownloadableProductController::class)->prefix('downloadable-products')->group(function () {
+                        Route::get('', 'index')->name('shop.customers.account.downloadable_products.index');
+
+                        Route::get('download/{id}', 'download')->name('shop.customers.account.downloadable_products.download');
+                    });
+                })->middleware('isVerify');
+            });
+
         });
     });
 });

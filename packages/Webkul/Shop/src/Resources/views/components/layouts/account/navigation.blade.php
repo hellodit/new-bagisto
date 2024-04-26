@@ -59,12 +59,10 @@
                     @endif
 
                     @foreach ($menuItem['children'] as $subMenuItem)
-
                         <a
                                 @if(auth('customer')->user()->make_product)
                                     href="{{ $subMenuItem['url'] }}"
-                                @elseif(\Illuminate\Support\Str::contains($subMenuItem['url'], 'customer/account/profile'))
-                                    href="{{ $subMenuItem['url'] }}"
+                                @elseif(\Illuminate\Support\Str::is('*/customer/account/profile', $subMenuItem['url']))                                    href="{{ $subMenuItem['url'] }}"
                                 @else
                                     onclick="alert('Mohon Terlebih Dahulu Untuk Melengkapi Data Profile > Pilih Tombol Edit > Isi Data Secara Lengkap > Lalu Tekan Tombol Save')"
                                 href="#"

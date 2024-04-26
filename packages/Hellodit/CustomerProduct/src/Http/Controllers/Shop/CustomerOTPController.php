@@ -5,6 +5,7 @@ namespace Hellodit\CustomerProduct\Http\Controllers\Shop;
 use Carbon\Carbon;
 use Hellodit\CustomerProduct\Helpers\OtpHelper;
 use Hellodit\CustomerProduct\Mail\SendOTPMail;
+use Hellodit\CustomerProduct\Mail\SuccessVerifyOtp;
 use Illuminate\Http\Request;
 use Webkul\Shop\Http\Controllers\Controller;
 
@@ -51,9 +52,7 @@ class CustomerOTPController extends Controller
                 'otp' => null,
                 'otp_created_at' => null
             ]);
-            // todo: send notification
-            
-
+            \Mail::to($currentUser)->send(new SuccessVerifyOtp());
             return redirect()->route('shop.customers.account.profile.index')->with('success','Success verify using OTP');
         }
 

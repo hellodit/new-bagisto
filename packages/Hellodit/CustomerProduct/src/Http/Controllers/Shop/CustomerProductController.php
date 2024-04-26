@@ -146,6 +146,9 @@ class CustomerProductController extends Controller
         $data = request()->all();
         $data['channel'] = core()->getCurrentChannel()->code;
         $data['locale'] = core()->getCurrentLocale()->code;
+
+
+        $data['price'] = Str::replace('.','', $data['price']);
         $data['visible_individually'] = true;
         $data['url_key'] = Str::slug($data['name'], '-').'-'.uniqid();
         if (empty($data['meta_title'])){

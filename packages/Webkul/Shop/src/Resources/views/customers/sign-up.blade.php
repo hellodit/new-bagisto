@@ -137,7 +137,10 @@
                                 minlength="8"
                                 placeholder="Password"
                             >
-
+                            <x-shop::form.control-group.error
+                                control-name="password"
+                            >
+                            </x-shop::form.control-group.error>
 {{--                            <i class="fa fa-eye password-toggle"--}}
 {{--                               style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer;"></i>--}}
 

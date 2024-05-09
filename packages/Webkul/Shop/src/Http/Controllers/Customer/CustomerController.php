@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\ValidationException;
+use Webkul\Attribute\Repositories\AttributeFamilyRepository;
 use Webkul\Customer\Models\Customer;
 use Webkul\Shop\Http\Controllers\Controller;
 use Webkul\Customer\Repositories\CustomerRepository;
@@ -24,7 +25,8 @@ class CustomerController extends Controller
     public function __construct(
         protected CustomerRepository        $customerRepository,
         protected ProductReviewRepository   $productReviewRepository,
-        protected SubscribersListRepository $subscriptionRepository
+        protected SubscribersListRepository $subscriptionRepository,
+        protected AttributeFamilyRepository $attributeFamilyRepository
     )
     {
     }
@@ -37,8 +39,9 @@ class CustomerController extends Controller
     public function index()
     {
         $customer = $this->customerRepository->find(auth()->guard('customer')->user()->id);
+        $families = $this->attributeFamilyRepository->all();
 
-        return view('shop::customers.account.profile.index', compact('customer'));
+        return view('shop::customers.account.profile.index', compact('customer','families'));
     }
 
     /**

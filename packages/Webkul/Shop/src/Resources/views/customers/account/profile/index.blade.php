@@ -8,12 +8,10 @@
     @section('breadcrumbs')
         <x-shop::breadcrumbs name="profile"></x-shop::breadcrumbs>
     @endSection
-
-    <div class="flex justify-between items-center">
         <h2 class="text-[26px] font-medium">
             @lang('shop::app.customers.account.profile.title')
         </h2>
-
+    <div class="flex justify-between">
         <a
             href="{{ route('shop.customers.account.profile.edit') }}"
             class="secondary-button py-[12px] px-[20px] border-[#E9E9E9] font-normal"
@@ -21,19 +19,19 @@
             @lang('shop::app.customers.account.profile.edit')
         </a>
 
-{{--        <v-create-product-form>--}}
+        <v-create-product-form>
 
-{{--        </v-create-product-form>--}}
+        </v-create-product-form>
 
 
-{{--        @include('customerproduct::shop.default.component.add_product_form')--}}
+        @include('customerproduct::shop.default.component.add_product_form', ['button_class' => 'primary-button py-[11px] px-[43px] rounded-[18px]'])
     </div>
 
     {{-- Profile Information --}}
     <div class="grid grid-cols-1 gap-y-[25px] mt-[30px]">
         <div class="grid grid-cols-[2fr_3fr] w-full px-[30px] py-[12px] border-b-[1px] border-[#E9E9E9]">
             <p class="text-[14px] font-medium">
-                @lang('shop::app.customers.account.profile.first-name')
+                Nama Lengkap
             </p>
 
             <p class="text-[14px] text-[#6E6E6E] font-medium">
@@ -43,7 +41,7 @@
 
         <div class="grid grid-cols-[2fr_3fr] w-full px-[30px] py-[12px] border-b-[1px] border-[#E9E9E9]">
             <p class="text-[14px] font-medium">
-                @lang('shop::app.customers.account.profile.last-name')
+                Nama Profil
             </p>
 
             <p class="text-[14px] font-medium text-[#6E6E6E]">
@@ -68,6 +66,14 @@
 
             <p class="text-[14px] text-[#6E6E6E] font-medium">
                 {{ $customer->date_of_birth ?? '-' }}
+            </p>
+        </div> <div class="grid grid-cols-[2fr_3fr] w-full px-[30px] py-[12px] border-b-[1px] border-[#E9E9E9]">
+            <p class="text-[14px] font-medium">
+                No.Handphone (WhatsApp)
+            </p>
+
+            <p class="text-[14px] text-[#6E6E6E] font-medium">
+                {{ $customer->phone ?? '-' }}
             </p>
         </div>
 

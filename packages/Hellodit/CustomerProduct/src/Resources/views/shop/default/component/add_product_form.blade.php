@@ -1,3 +1,10 @@
+@props([
+'button_class' => 'items-center gap-[15px] max-w-[200px] w-full pl-[12px]
+                pr-[15px] py-[7px] rounded-lg bg-white border border-[#E9E9E9] text-[14px]
+                transition-all hover:border-gray-400 focus:border-gray-400 bg-[#F1EADF]
+                max-md:pr-[10px] max-md:pl-[10px] max-md:border-0 max-md:w-[110px] cursor-pointer'
+
+])
 @pushOnce('scripts')
 
     <script type="text/x-template" id="v-create-product-form-template">
@@ -5,10 +12,7 @@
             <!-- Product Create Button -->
             <button
                 type="button"
-                class="items-center gap-[15px] max-w-[200px] w-full pl-[12px]
-                pr-[15px] py-[7px] rounded-lg bg-white border border-[#E9E9E9] text-[14px]
-                transition-all hover:border-gray-400 focus:border-gray-400 bg-[#F1EADF]
-                max-md:pr-[10px] max-md:pl-[10px] max-md:border-0 max-md:w-[110px] cursor-pointer"
+                class="{{ $button_class }}"
                 @click="$refs.productCreateModal.toggle()"
             >
                 @lang('admin::app.catalog.products.index.create-btn')

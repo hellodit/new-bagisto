@@ -10,7 +10,7 @@ return [
     ],
     [
         'key' => 'account.customerproduct',
-        'name' => 'Product',
+        'name' => 'Iklan',
         'route' => 'shop.customer_product.index',
         'icon' => 'icon-cart',
         'sort' => 2,

@@ -44,6 +44,18 @@ defineRule("phone", (value) => {
     return true;
 });
 
+defineRule('oneWord', value => {
+    if (!value || !value.length) {
+        return true;
+    }
+
+    // Check if the value contains only one word
+    if (!/^\S+$/.test(value)) {
+        return 'Harus berisi hanya satu kata';    }
+
+    return true;
+});
+
 configure({
     /**
      * Built-in error messages and custom error messages are available. Multiple
@@ -81,7 +93,7 @@ window.app = createApp({
                     let lazyImage = entry.target;
 
                     lazyImage.src = lazyImage.dataset.src;
-                    
+
                     lazyImage.classList.remove("lazy");
 
                     lazyImageObserver.unobserve(lazyImage);

@@ -500,22 +500,22 @@ return [
         'products' => [
             'index' => [
                 'already-taken' => 'The :name has already been taken.',
-                'create-btn'    => 'Create Product',
-                'title'         => 'Products',
+                'create-btn'    => 'Buat Iklan',
+                'title'         => 'Iklan',
 
                 'create' => [
                     'back-btn'                => 'Back',
                     'bundle'                  => 'Bundle',
                     'configurable'            => 'Configurable',
                     'configurable-attributes' => 'Configurable Attributes',
-                    'create-btn'              => 'Create Product',
+                    'create-btn'              => 'Buat Iklan',
                     'downloadable'            => 'Downloadable',
                     'family'                  => 'Channel',
                     'grouped'                 => 'Grouped',
                     'simple'                  => 'Simple',
-                    'save-btn'                => 'Save Product',
+                    'save-btn'                => 'Simpan Iklan',
                     'sku'                     => 'SKU',
-                    'title'                   => 'Create New Product',
+                    'title'                   => 'Buat Iklan baru',
                     'type'                    => 'Type',
                     'virtual'                 => 'Virtual',
                 ],
@@ -523,11 +523,11 @@ return [
                 'datagrid' => [
                     'attribute-family'       => 'Channel',
                     'attribute-family-value' => 'Channel - :attribute_family',
-                    'active'                 => 'Active',
+                    'active'                 => 'Aktif',
                     'category'               => 'Category',
                     'copy-of'                => ':value',
                     'copy-of-slug'           => ':value',
-                    'disable'                => 'Disable',
+                    'disable'                => 'Tidak Aktif',
                     'delete'                 => 'Delete',
                     'image'                  => 'Image',
                     'id'                     => 'Id',
@@ -550,8 +550,8 @@ return [
 
             'edit' => [
                 'remove'   => 'Remove',
-                'save-btn' => 'Save Product',
-                'title'    => 'Edit Product',
+                'save-btn' => 'Simpan Iklan',
+                'title'    => 'Sunting Iklan',
 
                 'price' => [
                     'group' => [

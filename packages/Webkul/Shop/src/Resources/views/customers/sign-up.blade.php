@@ -52,7 +52,7 @@
 
                         <x-shop::form.control-group class="mb-4">
                             <x-shop::form.control-group.label class="required">
-                                @lang('shop::app.customers.signup-form.first-name')
+                                Nama Lengkap
                             </x-shop::form.control-group.label>
 
                             <x-shop::form.control-group.control
@@ -62,7 +62,7 @@
                                 :value="old('last_name')"
                                 rules="required"
                                 :label="trans('shop::app.customers.signup-form.first-name')"
-                                :placeholder="trans('shop::app.customers.signup-form.first-name')"
+                                placeholder="Nama lengkap"
                             >
                             </x-shop::form.control-group.control>
 
@@ -76,7 +76,7 @@
 
                         <x-shop::form.control-group class="mb-4">
                             <x-shop::form.control-group.label class="required">
-                                @lang('shop::app.customers.signup-form.last-name')
+                                Nama Profil
                             </x-shop::form.control-group.label>
 
                             <x-shop::form.control-group.control
@@ -84,9 +84,9 @@
                                 name="last_name"
                                 class="!p-[20px_25px] rounded-lg"
                                 :value="old('last_name')"
-                                rules="required"
+                                rules="required|oneWord"
                                 :label="trans('shop::app.customers.signup-form.last-name')"
-                                :placeholder="trans('shop::app.customers.signup-form.last-name')"
+                                placeholder="Nama Profil"
                             >
                             </x-shop::form.control-group.control>
 
@@ -138,8 +138,8 @@
                                 placeholder="Password"
                             >
 
-                            <i class="fa fa-eye password-toggle"
-                               style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer;"></i>
+{{--                            <i class="fa fa-eye password-toggle"--}}
+{{--                               style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer;"></i>--}}
 
                             <div class="error" id="password_error">
                             </div>

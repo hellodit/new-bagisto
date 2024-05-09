@@ -20,6 +20,13 @@
         >
             @lang('shop::app.customers.account.profile.edit')
         </a>
+
+{{--        <v-create-product-form>--}}
+
+{{--        </v-create-product-form>--}}
+
+
+{{--        @include('customerproduct::shop.default.component.add_product_form')--}}
     </div>
 
     {{-- Profile Information --}}

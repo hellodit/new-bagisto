@@ -105,7 +105,7 @@
 
                                     <div class="mb-[10px]">
                                         <label class="block mb-[15px] mt-[30px] text-[16px] required text-left">
-                                            Location
+                                            Lokasi Anda Kota/Kabupaten
                                         </label>
                                         <select required name="location_id" id="location_id" class="border border-red-500 custom-select block w-full py-2 px-3 shadow bg-white border border-[#E9E9E9] rounded-lg text-[16px] transition-all hover:border-gray-400 focus:border-gray-400 select2">
                                             @foreach(\Hellodit\Location\Models\Location::all() as $location)

@@ -46,7 +46,7 @@
 
         <x-shop::form.control-group class="mb-4">
             <x-shop::form.control-group.label class="required">
-                @lang('shop::app.customers.account.profile.first-name')
+                Nama Lengkap
             </x-shop::form.control-group.label>
 
             <x-shop::form.control-group.control
@@ -69,14 +69,14 @@
 
         <x-shop::form.control-group class="mb-4">
             <x-shop::form.control-group.label class="required">
-                @lang('shop::app.customers.account.profile.last-name')
+                Nama Profil
             </x-shop::form.control-group.label>
 
             <x-shop::form.control-group.control
                 type="text"
                 name="last_name"
                 :value="old('last_name') ?? $customer->last_name"
-                rules="required"
+                rules="required|oneWord"
                 :label="trans('shop::app.customers.account.profile.last-name')"
                 :placeholder="trans('shop::app.customers.account.profile.last-name')"
             >
@@ -92,7 +92,7 @@
 
         <x-shop::form.control-group class="mb-4">
             <x-shop::form.control-group.label class="required">
-                Description
+                Deskripsi Lokasi Anda
             </x-shop::form.control-group.label>
 
             <x-shop::form.control-group.control
@@ -137,7 +137,7 @@
 
         <x-shop::form.control-group class="mb-4">
             <x-shop::form.control-group.label class="required">
-                @lang('shop::app.customers.account.profile.phone')
+                No. Handphone (WhatsApp)
             </x-shop::form.control-group.label>
 
             <x-shop::form.control-group.control
@@ -187,7 +187,7 @@
 
         <x-shop::form.control-group class="mb-4">
             <x-shop::form.control-group.label>
-                @lang('shop::app.customers.account.profile.dob')
+                Tanggal lahir
             </x-shop::form.control-group.label>
 
             <x-shop::form.control-group.control

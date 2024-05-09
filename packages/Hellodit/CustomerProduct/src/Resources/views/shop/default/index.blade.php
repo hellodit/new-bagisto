@@ -2,26 +2,28 @@
 
 
     <x-slot:title>
-        Customer Product
+        Iklan Anda
     </x-slot:title>
 
             @section('breadcrumbs')
 {{--                <x-shop::breadcrumbs name="products"></x-shop::breadcrumbs>--}}
             @endSection
 
-    <div class="flex justify-between items-center">
-        <div class="">
+    <div class="">
+        <div class="mb-2">
             <h2 class="text-[26px] font-medium">
-                Customer Product
+                Iklan Anda
             </h2>
         </div>
-
 
         <v-create-product-form>
 
         </v-create-product-form>
 
+
     </div>
+
+
 
     {!! view_render_event('bagisto.shop.customers.account.products.list.before') !!}
     <x-shop::datagrid :isMultiRow="true" :src="route('shop.customer_product.index')">

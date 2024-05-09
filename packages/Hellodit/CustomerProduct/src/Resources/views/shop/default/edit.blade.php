@@ -30,35 +30,11 @@
                     <div class="flex flex-col gap-8px flex-1 max-xl:flex-auto">
                         <p class="text-16px text-gray-800 dark:text-white font-semibold mb-5px"> General Info</p>
 
-                        {{--                        <div class="mb-2">--}}
-                        {{--                            <label for="image"--}}
-                        {{--                                   class="block mb-15px mt-30px text-16px text-gray-800 dark:text-white required">Image</label>--}}
-                        {{--                            <input type="file" name="images[files][]" id="image"--}}
-                        {{--                                   class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring focus:ring-primary focus:ring-opacity-50"--}}
-                        {{--                                   accept="image/*"--}}
-                        {{--                                   multiple>--}}
-                        {{--                        </div>--}}
-
-                        {{--                        <ul class="mb-3">--}}
-                        {{--                            <div class="flex gap-2">--}}
-                        {{--                                @foreach($product->product->images as $images)--}}
-                        {{--                                    <a href="{{Storage::url($images->path)}}">--}}
-                        {{--                                        <img src="{{Storage::url($images->path)}}" class="w-[200px] h-[200px] w-fit"--}}
-                        {{--                                             alt="">--}}
-                        {{--                                    </a>--}}
-                        {{--                                    <input type="hidden" name="images[files][{{$images->id}}]">--}}
-                        {{--                                @endforeach--}}
-                        {{--                            </div>--}}
-                        {{--                        </ul>--}}
-
-
-                        {{--                        @include('customerproduct::shop.default.edit.categories')--}}
-                        {{--                        @include('customerproduct::shop.default.edit.videos')--}}
                         @include('customerproduct::shop.default.edit.images')
 
                         <div class="mb-2">
                             <label for="location_id"
-                                   class="block mb-15px mt-30px text-16px  required">Location</label>
+                                   class="block mb-15px mt-30px text-16px  required">Lokasi Anda Kota/Kabupaten</label>
                             <select name="location_id" id="location_id"
                                     class="select2 custom-select block w-full py-2 px-3 shadow bg-white border border-[#E9E9E9] rounded-lg text-[16px] transition-all hover:border-gray-400 focus:border-gray-400">
                                 @foreach(\Hellodit\Location\Models\Location::all() as $location)
@@ -77,8 +53,8 @@
 
                         <div class="mb-2">
                             <label for="name"
-                                   class="block mb-15px mt-30px text-16px  required">Product
-                                Name</label>
+                                   class="block mb-15px mt-30px text-16px  required">Nama Barang Gadaian
+                                </label>
                             <input type="text" name="name" id="product_name" value="{{ old('name') ?? $product->name }}"
                                    class="w-full mb-3 py-2 px-3 shadow border rounded text-[14px] text-gray-600 transition-all hover:border-gray-400 focus:border-gray-400"
                                    required placeholder="Product Name">
@@ -86,8 +62,7 @@
 
                         <div class="mb-2">
                             <label for="short_description"
-                                   class="block mb-15px mt-30px text-16px  required">Short
-                                Description</label>
+                                   class="block mb-15px mt-30px text-16px  required">Keterangan Barang Gadaian</label>
                             <textarea name="short_description" id="short_description"
                                       class="w-full mb-3 py-2 px-3 shadow border rounded text-14px text-gray-600 transition-all hover:border-gray-400 focus:border-gray-400"
                                       required
@@ -96,7 +71,7 @@
 
                         <div class="mb-2">
                             <label for="description"
-                                   class="block mb-15px mt-30px text-16px  required">Description</label>
+                                   class="block mb-15px mt-30px text-16px  required">Kelengkapan/Kelebihan & Kekurangan Barang Gadaian</label>
 
                             <textarea name="description" id="description"
                                       class="w-full mb-3 py-2 px-3 shadow border rounded text-14px text-gray-600 transition-all hover:border-gray-400 focus:border-gray-400"
@@ -153,11 +128,11 @@
                         {{--                        @include('customerproduct::shop.default.component.add_categories',['categories' => $categories ,'ids' => $product->categories->pluck('id')->toArray()])--}}
 
                         @include('customerproduct::shop.default.edit.categories',['product' => $product])
-                        <p class="text-16px text-gray-800  font-semibold mb-5px"> Price Info </p>
+                        <p class="text-16px text-gray-800  font-semibold mb-5px"> Jumlah Pinjaman (Rp) </p>
 
                         <div class="mb-2">
                             <label for="price"
-                                   class="block mb-15px mt-30px text-16px text-gray-800  required">Price</label>
+                                   class="block mb-15px mt-30px text-16px text-gray-800  required">Nominal Pinjaman Yang Anda Ajukan</label>
                             <input type="text" name="price" id="product_price"
                                    value="{{ old('price') ?? number_format(floor($product->price), 0, ',', '.') }}"
                                    class="w-full mb-3 py-2 px-3 shadow border rounded text-[14px] text-gray-600 transition-all hover:border-gray-400 focus:border-gray-400"
@@ -171,7 +146,7 @@
                         @include('customerproduct::shop.default.component.seo-component')
 
                         <div class="mb-2">
-                            <p class="text-16px text-gray-800  font-semibold mb-3 ">Product Visibility </p>
+                            <p class="text-16px text-gray-800  font-semibold mb-3 ">Status Iklan Barang Gadai </p>
 
                             <!--Default checkbox-->
                             <div class="mb-[0.125rem] block min-h-[1.5rem] ps-[1.5rem]">
@@ -181,7 +156,7 @@
                                 <label
                                     class="inline-block ps-[0.15rem] hover:cursor-pointer"
                                     for="checkboxDefault">
-                                    Set Product Disabled
+                                    Tidak Aktif
                                 </label>
                             </div>
 
@@ -193,7 +168,7 @@
                                 <label
                                     class="inline-block ps-[0.15rem] hover:cursor-pointer"
                                     for="checkboxChecked">
-                                    Set Product Active
+                                    Aktif
                                 </label>
                             </div>
 

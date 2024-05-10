@@ -18,7 +18,7 @@
         </x-slot:content>
     </x-shop::dropdown>
 
-    <p class="text-xs font-medium">Daftar<a href="/customer/register" class="underline">Sekarang</a></p>
+    <p class="text-xs font-medium">Buat Akun Baru & <a href="/customer/register" class="underline">Daftar Sekarang</a></p>
 
     {{-- Locales Switcher --}}
     <x-shop::dropdown position="bottom-right">

@@ -14,7 +14,7 @@ import { createApp } from "vue/dist/vue.esm-bundler";
  */
 import { configure, defineRule, Field, Form, ErrorMessage } from "vee-validate";
 import { localize } from "@vee-validate/i18n";
-import en from "@vee-validate/i18n/dist/locale/en.json";
+import en from "@vee-validate/i18n/dist/locale/id.json";
 import * as AllRules from '@vee-validate/rules';
 
 /**
@@ -55,6 +55,16 @@ defineRule('oneWord', value => {
 
     return true;
 });
+
+
+// Define the custom rule named "strongPassword"
+defineRule('strongPassword', (value) => {
+    // Use the same regex pattern
+    const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])/;
+    // Check if the value matches the regex
+    return regex.test(value) ? true : 'Password harus mengandung minimal 1 huruf kecil, 1 huruf besar, 1 angka, dan 1 karakter spesial (@, $, !, %, *, ?, &).';
+});
+
 
 configure({
     /**

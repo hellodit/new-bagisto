@@ -2,25 +2,38 @@
 'button_class' => 'items-center gap-[15px] max-w-[200px] w-full pl-[12px]
                 pr-[15px] py-[7px] rounded-lg bg-white border border-[#E9E9E9] text-[14px]
                 transition-all hover:border-gray-400 focus:border-gray-400 bg-[#F1EADF]
-                max-md:pr-[10px] max-md:pl-[10px] max-md:border-0 max-md:w-[110px] cursor-pointer'
+                max-md:pr-[10px] max-md:pl-[10px] max-md:border-0 max-md:w-[110px] cursor-pointer',
 
+                'is_can_create'=> true,
 ])
 @pushOnce('scripts')
 
     <script type="text/x-template" id="v-create-product-form-template">
         <div>
             <!-- Product Create Button -->
-            <button
-                type="button"
-                class="{{ $button_class }}"
-                @click="$refs.productCreateModal.toggle()"
-            >
-                @lang('admin::app.catalog.products.index.create-btn')
-            </button>
+
+            @if($is_can_create)
+                <button
+                    type="button"
+                    class="{{ $button_class }}"
+                    @click="$refs.productCreateModal.toggle()"
+                >
+                    @lang('admin::app.catalog.products.index.create-btn')
+                </button>
+            @else
+                <button
+                    type="button"
+                    class="{{ $button_class }}"
+                    onclick="alert('Mohon Terlebih Dahulu Untuk Melengkapi Data Profile > Pilih Tombol Edit > Isi Data Secara Lengkap > Lalu Tekan Tombol Save')"
+                >
+                    @lang('admin::app.catalog.products.index.create-btn')
+                </button>
+            @endif
+
 
             <x-admin::form
-                v-slot="{ meta, errors, handleSubmit }"
-                as="div"
+                    v-slot="{ meta, errors, handleSubmit }"
+                    as="div"
             >
                 <form @submit="handleSubmit($event, create)">
                     <!-- Customer Create Modal -->
@@ -28,15 +41,15 @@
                         <x-slot:header>
                             <!-- Modal Header -->
                             <p
-                                class="text-[18px] text-gray-800 dark:text-white font-bold"
-                                v-if="! attributes.length"
+                                    class="text-[18px] text-gray-800 dark:text-white font-bold"
+                                    v-if="! attributes.length"
                             >
                                 @lang('admin::app.catalog.products.index.create.title')
                             </p>
 
                             <p
-                                class="text-[18px] text-gray-800 dark:text-white font-bold"
-                                v-else
+                                    class="text-[18px] text-gray-800 dark:text-white font-bold"
+                                    v-else
                             >
                                 @lang('admin::app.catalog.products.index.create.configurable-attributes')
                             </p>
@@ -54,16 +67,16 @@
                                         </x-shop::form.control-group.label>
 
                                         <x-shop::form.control-group.control
-                                            type="select"
-                                            name="type"
-                                            rules="required"
-                                            :label="trans('admin::app.catalog.products.index.create.type')"
+                                                type="select"
+                                                name="type"
+                                                rules="required"
+                                                :label="trans('admin::app.catalog.products.index.create.type')"
                                         >
                                             <option value="simple" selected>Simple</option>
                                         </x-shop::form.control-group.control>
 
                                         <x-shop::form.control-group.error
-                                            control-name="type"></x-shop::form.control-group.error>
+                                                control-name="type"></x-shop::form.control-group.error>
                                     </x-shop::form.control-group>
 
                                     <x-shop::form.control-group>
@@ -72,10 +85,10 @@
                                         </x-shop::form.control-group.label>
 
                                         <x-shop::form.control-group.control
-                                            type="select"
-                                            name="attribute_family_id"
-                                            rules="required"
-                                            :label="trans('admin::app.catalog.products.index.create.family')"
+                                                type="select"
+                                                name="attribute_family_id"
+                                                rules="required"
+                                                :label="trans('admin::app.catalog.products.index.create.family')"
                                         >
                                             @foreach($families as $family)
                                                 <option value="{{ $family->id }}">
@@ -85,23 +98,23 @@
                                         </x-shop::form.control-group.control>
 
                                         <x-shop::form.control-group.error
-                                            control-name="attribute_family_id"></x-shop::form.control-group.error>
+                                                control-name="attribute_family_id"></x-shop::form.control-group.error>
                                     </x-shop::form.control-group>
 
                                     <input type="hidden" name="type" value="simple">
                                     <x-shop::form.control-group class="mb-[10px]">
 
                                         <x-shop::form.control-group.control
-                                            type="hidden"
-                                            name="sku"
-                                            value="{{\Illuminate\Support\Str::uuid()}}"
-                                            ::rules="{ required: true, regex: /^[a-zA-Z0-9]+(?:-[a-zA-Z0-9]+)*$/ }"
-                                            :label="trans('admin::app.catalog.products.index.create.sku')"
+                                                type="hidden"
+                                                name="sku"
+                                                value="{{\Illuminate\Support\Str::uuid()}}"
+                                                ::rules="{ required: true, regex: /^[a-zA-Z0-9]+(?:-[a-zA-Z0-9]+)*$/ }"
+                                                :label="trans('admin::app.catalog.products.index.create.sku')"
                                         >
                                         </x-shop::form.control-group.control>
 
                                         <x-shop::form.control-group.error
-                                            control-name="sku"></x-shop::form.control-group.error>
+                                                control-name="sku"></x-shop::form.control-group.error>
                                     </x-shop::form.control-group>
 
                                     {!! view_render_event('bagisto.admin.catalog.products.create_form.general.controls.before') !!}
@@ -111,7 +124,8 @@
                                         <label class="block mb-[15px] mt-[30px] text-[16px] required text-left">
                                             Lokasi Anda Kota/Kabupaten
                                         </label>
-                                        <select required name="location_id" id="location_id" class="border border-red-500 custom-select block w-full py-2 px-3 shadow bg-white border border-[#E9E9E9] rounded-lg text-[16px] transition-all hover:border-gray-400 focus:border-gray-400 select2">
+                                        <select required name="location_id" id="location_id"
+                                                class="border border-red-500 custom-select block w-full py-2 px-3 shadow bg-white border border-[#E9E9E9] rounded-lg text-[16px] transition-all hover:border-gray-400 focus:border-gray-400 select2">
                                             @foreach(\Hellodit\Location\Models\Location::all() as $location)
                                                 <option value="{{$location->id}}">{{$location->name}}</option>
                                             @endforeach
@@ -123,25 +137,25 @@
                                     {!! view_render_event('bagisto.admin.catalog.products.create_form.attributes.controls.before') !!}
 
                                     <div
-                                        class="mb-[10px]"
-                                        v-for="attribute in attributes"
+                                            class="mb-[10px]"
+                                            v-for="attribute in attributes"
                                     >
                                         <label
-                                            class="block leading-[24px] text-[12px] text-gray-800 dark:text-white font-medium">
+                                                class="block leading-[24px] text-[12px] text-gray-800 dark:text-white font-medium">
                                             @{{ attribute.name }}
                                         </label>
 
                                         <div
-                                            class="flex flex-wrap gap-[4px] min-h-[38px] p-[6px] border dark:border-gray-800 rounded-[6px]">
+                                                class="flex flex-wrap gap-[4px] min-h-[38px] p-[6px] border dark:border-gray-800 rounded-[6px]">
                                             <p
-                                                class="flex items-center py-[3px] px-[8px] bg-gray-600 rounded-[4px] text-white font-semibold"
-                                                v-for="option in attribute.options"
+                                                    class="flex items-center py-[3px] px-[8px] bg-gray-600 rounded-[4px] text-white font-semibold"
+                                                    v-for="option in attribute.options"
                                             >
                                                 @{{ option.name }}
 
                                                 <span
-                                                    class="icon-cross text-white text-[18px] ltr:ml-[5px] rtl:mr-[5px] cursor-pointer"
-                                                    @click="removeOption(option)"
+                                                        class="icon-cross text-white text-[18px] ltr:ml-[5px] rtl:mr-[5px] cursor-pointer"
+                                                        @click="removeOption(option)"
                                                 ></span>
                                             </p>
                                         </div>
@@ -154,8 +168,8 @@
                             <!-- Modal Submission -->
                             <div class="px-[16px] py-[10px]">
                                 <button
-                                    type="submit"
-                                    class="items-center gap-[15px] max-w-[200px] w-full pl-[12px] pr-[15px] py-[7px] rounded-lg bg-white border border-[#E9E9E9] text-[14px] transition-all hover:border-gray-400 focus:border-gray-400 bg-[#F1EADF] max-md:pr-[10px] max-md:pl-[10px] max-md:border-0 max-md:w-[110px] cursor-pointer"
+                                        type="submit"
+                                        class="items-center gap-[15px] max-w-[200px] w-full pl-[12px] pr-[15px] py-[7px] rounded-lg bg-white border border-[#E9E9E9] text-[14px] transition-all hover:border-gray-400 focus:border-gray-400 bg-[#F1EADF] max-md:pr-[10px] max-md:pl-[10px] max-md:border-0 max-md:w-[110px] cursor-pointer"
                                 >
                                     @lang('admin::app.catalog.products.index.create.save-btn')
                                 </button>

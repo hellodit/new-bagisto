@@ -24,7 +24,10 @@
         </v-create-product-form>
 
 
-        @include('customerproduct::shop.default.component.add_product_form', ['button_class' => 'primary-button py-[11px] px-[43px] rounded-[18px]'])
+        @include('customerproduct::shop.default.component.add_product_form', [
+                    'button_class' => 'primary-button py-[11px] px-[43px] rounded-[18px]',
+                    'is_can_create' => auth('customer')->user()->make_product,
+                    ])
     </div>
 
     {{-- Profile Information --}}

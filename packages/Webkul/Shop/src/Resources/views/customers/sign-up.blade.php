@@ -132,7 +132,6 @@
                                 id="password"
                                 name="password"
                                 class="!p-[20px_25px] rounded-lg"
-                                :value="old('password')"
                                 rules="required|min:8|strongPassword"
                                 :label="trans('shop::app.customers.login-form.password')"
                                 :placeholder="trans('shop::app.customers.login-form.password')"
@@ -156,9 +155,8 @@
                                 id="password_confirmation"
                                 name="password_confirmation"
                                 class="!p-[20px_25px] rounded-lg"
-                                :value="old('password_confirmation')"
                                 rules="required"
-                                :label="trans('shop::app.customers.signup-form.email')"
+                                :label="trans('shop::app.customers.login-form.password')"
                                 placeholder="Tulis ulang kata sandi"
                             >
                             </x-shop::form.control-group.control>

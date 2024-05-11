@@ -172,7 +172,6 @@
                 aria-label="Select Gender"
                 :label="trans('shop::app.customers.account.profile.gender')"
             >
-                <option value="Other">@lang('shop::app.customers.account.profile.other')</option>
                 <option value="Male">@lang('shop::app.customers.account.profile.male')</option>
                 <option value="Female">@lang('shop::app.customers.account.profile.female')</option>
             </x-shop::form.control-group.control>

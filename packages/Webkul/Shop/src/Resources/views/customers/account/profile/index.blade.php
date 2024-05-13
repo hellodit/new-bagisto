@@ -117,17 +117,44 @@
                             <x-shop::form.control-group.control
                                 type="password"
                                 name="password"
+                                id="password"
                                 class="py-[20px] px-[25px]"
-                                rules="required"
+                                rules="required|min:8|strongPassword"
                                 placeholder="Enter your password"
                             />
 
                             <x-shop::form.control-group.error
-                                class=" text-left"
+                                class="text-left"
                                 control-name="password"
                             >
                             </x-shop::form.control-group.error>
+
+                            <div class="flex justify-between pt-10">
+                                <div class="select-none items-center flex gap-[6px]">
+                                    <input
+                                        type="checkbox"
+                                        id="show-password"
+                                        class="hidden peer"
+                                        onchange="switchVisibility()"
+                                    />
+
+                                    <label
+                                        class="icon-uncheck text-[24px] text-navyBlue peer-checked:icon-check-box peer-checked:text-navyBlue cursor-pointer"
+                                        for="show-password"
+                                    ></label>
+
+                                    <label
+                                        class="text-[16] text-[#6E6E6E] max-sm:text-[12px] pl-0 select-none cursor-pointer"
+                                        for="show-password"
+                                    >
+                                        @lang('shop::app.customers.login-form.show-password')
+                                    </label>
+                                </div>
+
+                            </div>
+
                         </div>
+
                     </x-shop::form.control-group>
 
                     <div class="p-[30px] bg-white mt-[20px]">
@@ -145,4 +172,22 @@
         {!! view_render_event('bagisto.shop.customers.account.profile.delete.after') !!}
 
     </div>
+
+        @push('scripts')
+
+            <script>
+                function switchVisibility() {
+                    let passwordField = document.getElementById("password");
+                    let passwordConfirmation = document.getElementById("password_confirmation");
+
+                    passwordField.type = passwordField.type === "password"
+                        ? "text"
+                        : "password";
+
+                    passwordConfirmation.type = passwordConfirmation.type === "password"
+                        ? "text"
+                        : "password";
+                }
+            </script>
+    @endpush
 </x-shop::layouts.account>

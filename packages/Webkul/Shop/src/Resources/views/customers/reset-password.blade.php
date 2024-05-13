@@ -86,6 +86,7 @@
                             name="password"
                             class="!p-[20px_25px] rounded-lg"
                             value=""
+                            id="password"
                             ref="password"
                             rules="required|min:8|strongPassword"
                             :label="trans('shop::app.customers.reset-password.password')"
@@ -100,7 +101,7 @@
                     </x-shop::form.control-group>
 
                     <x-shop::form.control-group class="mb-6">
-                        <x-shop::form.control-group.label>
+                        <x-shop::form.control-group.label class="required">
                             @lang('shop::app.customers.reset-password.confirm-password')
                         </x-shop::form.control-group.label>
 
@@ -109,6 +110,7 @@
                             name="password_confirmation"
                             class="!p-[20px_25px] rounded-lg"
                             value=""
+                            id="password_confirmation"
                             rules="confirmed:@password"
                             :label="trans('shop::app.customers.reset-password.confirm-password')"
                             :placeholder="trans('shop::app.customers.reset-password.confirm-password')"
@@ -122,6 +124,29 @@
                     </x-shop::form.control-group>
 
                     {!! view_render_event('bagisto.shop.customers.reset_password_form_controls.after') !!}
+                    <div class="flex justify-between">
+                        <div class="select-none items-center flex gap-[6px]">
+                            <input
+                                type="checkbox"
+                                id="show-password"
+                                class="hidden peer"
+                                onchange="switchVisibility()"
+                            />
+
+                            <label
+                                class="icon-uncheck text-[24px] text-navyBlue peer-checked:icon-check-box peer-checked:text-navyBlue cursor-pointer"
+                                for="show-password"
+                            ></label>
+
+                            <label
+                                class="text-[16] text-[#6E6E6E] max-sm:text-[12px] pl-0 select-none cursor-pointer"
+                                for="show-password"
+                            >
+                                @lang('shop::app.customers.login-form.show-password')
+                            </label>
+                        </div>
+
+                    </div>
 
                     <div class="flex gap-[36px] flex-wrap mt-[30px] items-center">
                         <button
@@ -140,4 +165,23 @@
         </div>
 
     </div>
+
+
+        @push('scripts')
+
+            <script>
+                function switchVisibility() {
+                    let passwordField = document.getElementById("password");
+                    let passwordConfirmation = document.getElementById("password_confirmation");
+
+                    passwordField.type = passwordField.type === "password"
+                        ? "text"
+                        : "password";
+
+                    passwordConfirmation.type = passwordConfirmation.type === "password"
+                        ? "text"
+                        : "password";
+                }
+            </script>
+    @endpush
 </x-shop::layouts>

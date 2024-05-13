@@ -84,7 +84,7 @@
                             class="!p-[20px_25px] rounded-lg"
                             value=""
                             id="password"
-                            rules="required|min:6"
+                            rules="required|min:8|strongPassword"
                             :label="trans('shop::app.customers.login-form.password')"
                             :placeholder="trans('shop::app.customers.login-form.password')"
                         >

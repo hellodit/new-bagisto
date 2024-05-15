@@ -29,13 +29,9 @@
     <x-shop::datagrid :isMultiRow="true" :src="route('shop.customer_product.index')">
         <template #header="{ columns, records, sortPage, selectAllRecords, applied, isLoading}">
             <template v-if="! isLoading">
-                <div
-                    class="row grid grid-cols-[2fr_1fr_1fr] grid-rows-1 items-center px-[16px] py-[10px] border-b-[1px] dark:border-gray-800
-
-                    bg-gray-100
-                     ">
+                <div class="row grid grid-cols-3 items-center px-[10px] py-[10px] border-b-[1px] dark:border-gray-800 bg-gray-100">
                     <div
-                        class="flex gap-[10px] items-center select-none"
+                        class="flex gap-[6px] items-center select-none"
                         v-for="(columnGroup, index) in [['name', 'sku', 'attribute_family'], ['base_image', 'price', 'quantity'], ['status', 'category_name', 'type']]"
                     >
                         <label
@@ -65,9 +61,9 @@
 
                         <p class="text-gray-600 dark:text-gray-300">
                             <span class="[&>*]:after:content-['_/_']">
-                                <template v-for="column in columnGroup">
+                                <template v-for="(column, columnIndex) in columnGroup">
                                     <span
-                                        class="after:content-['/'] last:after:content-['']"
+                                        class="after:content-[' '] last:after:content-[' ']"
                                         :class="{
                                             'text-gray-800 dark:text-white font-medium': applied.sort.column == column,
                                             'cursor-pointer hover:text-gray-800 dark:hover:text-white': columns.find(columnTemp => columnTemp.index === column)?.sortable,
@@ -76,7 +72,7 @@
                                             columns.find(columnTemp => columnTemp.index === column)?.sortable ? sortPage(columns.find(columnTemp => columnTemp.index === column)): {}
                                         "
                                     >
-                                        @{{ columns.find(columnTemp => columnTemp.index === column)?.label }}
+                                        @{{ columns.find(columnTemp => columnTemp.index === column)?.label }} <br>
                                     </span>
                                 </template>
                             </span>
@@ -99,11 +95,11 @@
         <template #body="{ columns, records, setCurrentSelectionMode, applied, isLoading }">
             <template v-if="! isLoading">
                 <div
-                    class="row grid grid-cols-[2fr_1fr_1fr] grid-rows-1 px-[16px] py-[10px] border-b-[1px] dark:border-gray-800   transition-all hover:bg-gray-50 dark:hover:bg-gray-950  "
+                    class="row grid grid-cols-3 px-[16px] py-[10px] border-b-[1px] dark:border-gray-800 transition-all hover:bg-gray-50 dark:hover:bg-gray-950"
                     v-for="record in records"
                 >
-{{--                     Name, SKU, Attribute Family Columns--}}
-                    <div class="flex gap-[10px]">
+                    {{--                     Name, SKU, Attribute Family Columns--}}
+                    <div class="flex gap-[6px]">
                         <input
                             type="checkbox"
                             :name="`mass_action_select_record_${record.product_id}`"
@@ -141,8 +137,8 @@
                         </div>
                     </div>
 
-{{--                     Image, Price, Id, Stock Columns--}}
-                    <div class="flex gap-[6px]">
+                    {{--                     Image, Price, Id, Stock Columns--}}
+                    <div class="flex gap-[6px] mb-3">
                         <div class="relative">
                             <template v-if="record.base_image">
                                 <img
@@ -189,14 +185,14 @@
                                     </span>
                                 </p>
 
-{{--                                <p--}}
-{{--                                    class="text-gray-600 dark:text-gray-300"--}}
-{{--                                    v-else--}}
-{{--                                >--}}
-{{--                                    <span class="text-red-600">--}}
-{{--                                        @lang('admin::app.catalog.products.index.datagrid.out-of-stock')--}}
-{{--                                    </span>--}}
-{{--                                </p>--}}
+                                {{--                                <p--}}
+                                {{--                                    class="text-gray-600 dark:text-gray-300"--}}
+                                {{--                                    v-else--}}
+                                {{--                                >--}}
+                                {{--                                    <span class="text-red-600">--}}
+                                {{--                                        @lang('admin::app.catalog.products.index.datagrid.out-of-stock')--}}
+                                {{--                                    </span>--}}
+                                {{--                                </p>--}}
                             </div>
 
                             <p class="text-gray-600 dark:text-gray-300">
@@ -206,7 +202,7 @@
                         </div>
                     </div>
 
-{{--                     Status, Category, Type Columns--}}
+                    {{--                     Status, Category, Type Columns--}}
                     <div class="flex gap-x-[16px] justify-between items-center">
                         <div class="flex flex-col gap-[6px]">
                             <p :class="[record.status ? 'label-active-store': 'label-info-store']" style="">

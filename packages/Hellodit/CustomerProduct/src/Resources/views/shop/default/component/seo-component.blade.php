@@ -1,7 +1,7 @@
 <div class="relative rounded-[4px] ">
-    <div class="mb-[10px]">
+    <div class="mb-3">
         <label for="meta_title"
-               class="block mb-15px mt-30px text-16px">Meta
+               class="block mb-2 mt-30px text-16px">Meta
             Title</label>
         <textarea
             type="textarea"
@@ -9,9 +9,9 @@
             class="w-full mb-3 py-2 px-3 shadow border rounded text-14px text-gray-600 transition-all hover:border-gray-400 focus:border-gray-400"
             id="meta_title">{{$product->meta_title}}</textarea></div>
 
-    <div class="mb-[10px]">
+    <div class="mb-3">
         <label for="meta_keywords"
-               class="block mb-15px mt-30px text-16px">Meta
+               class="block mb-2 mt-30px text-16px">Meta
             Keywords</label>
         <textarea
             type="textarea"
@@ -21,9 +21,9 @@
         <!---->
     </div>
 
-    <div class="mb-[10px]">
+    <div class="mb-3">
         <label for="meta_keywords"
-               class="block mb-15px mt-30px text-16px">Meta
+               class="block mb-2 mt-30px text-16px">Meta
             Description</label>
         <textarea
             type="textarea"

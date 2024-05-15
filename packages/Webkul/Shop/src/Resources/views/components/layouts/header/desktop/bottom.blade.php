@@ -1,5 +1,5 @@
 <div
-    class="w-full flex justify-between min-h-[78px] px-[60px] border border-t-0 border-b-[1px] border-l-0 border-r-0 max-1180:px-[30px]">
+    class="w-full flex justify-between min-h-[78px] px-[60px] border border-t-0 border-b-[1px] border-l-0 border-r-0">
     {{--
         This section will provide categories for the first, second, and third levels. If
         additional levels are required, users can customize them according to their needs.
@@ -20,7 +20,7 @@
         </a>
 
         <v-desktop-category>
-            <div class="flex gap-[20px] items-center pb-[21px]">
+            <div class="flex gap-[20px] items-center pb-[21px] max-md:hidden">
                 <span class="shimmer w-[80px] h-[24px] rounded-[4px]"></span>
                 <span class="shimmer w-[80px] h-[24px] rounded-[4px]"></span>
                 <span class="shimmer w-[80px] h-[24px] rounded-[4px]"></span>
@@ -211,7 +211,7 @@
         </div>
 
         <div
-            class="flex items-center"
+            class="flex items-center max-md:hidden"
             v-else
         >
             <div

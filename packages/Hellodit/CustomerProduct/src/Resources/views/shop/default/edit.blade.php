@@ -28,13 +28,13 @@
 
                 <div class="flex gap-10px mt-14px max-xl:flex-wrap">
                     <div class="flex flex-col gap-8px flex-1 max-xl:flex-auto">
-                        <p class="text-16px text-gray-800 dark:text-white font-semibold mb-5px"> General Info</p>
+                        <p class="text-16px text-gray-800 dark:text-white font-semibold mb-3"> General Info</p>
 
                         @include('customerproduct::shop.default.edit.images')
 
-                        <div class="mb-2">
+                        <div class="mb-3 mt-5">
                             <label for="location_id"
-                                   class="block mb-15px mt-30px text-16px  required">Lokasi Anda Kota/Kabupaten</label>
+                                   class="block mb-2 text-16px  required">Lokasi Anda Kota/Kabupaten</label>
                             <select name="location_id" id="location_id"
                                     class="select2 custom-select block w-full py-2 px-3 shadow bg-white border border-[#E9E9E9] rounded-lg text-[16px] transition-all hover:border-gray-400 focus:border-gray-400">
                                 @foreach(\Hellodit\Location\Models\Location::all() as $location)
@@ -44,34 +44,33 @@
                             </select>
                         </div>
 
-                        <div class="mb-2">
-
+                        <div class="mb-3">
                             <input type="hidden" name="sku" id="sku" value="{{ old('sku') ?? $product->sku }}"
                                    class="w-full mb-3 py-2 px-3 shadow border rounded text-[14px] text-gray-600 transition-all hover:border-gray-400 focus:border-gray-400"
                                    required placeholder="Product SKU">
                         </div>
 
-                        <div class="mb-2">
+                        <div class="mb-3">
                             <label for="name"
-                                   class="block mb-15px mt-30px text-16px  required">Nama Barang Gadaian
+                                   class="block mb-2 text-16px  required">Nama Barang Gadaian
                                 </label>
                             <input type="text" name="name" id="product_name" value="{{ old('name') ?? $product->name }}"
                                    class="w-full mb-3 py-2 px-3 shadow border rounded text-[14px] text-gray-600 transition-all hover:border-gray-400 focus:border-gray-400"
                                    required placeholder="Product Name">
                         </div>
 
-                        <div class="mb-2">
+                        <div class="mb-3">
                             <label for="short_description"
-                                   class="block mb-15px mt-30px text-16px  required">Keterangan Barang Gadaian</label>
+                                   class="block mb-2 text-16px  required">Keterangan Barang Gadaian</label>
                             <textarea name="short_description" id="short_description"
                                       class="w-full mb-3 py-2 px-3 shadow border rounded text-14px text-gray-600 transition-all hover:border-gray-400 focus:border-gray-400"
                                       required
                                       placeholder="Short Description">{{ old('short_description') ?? $product->short_description }}</textarea>
                         </div>
 
-                        <div class="mb-2">
+                        <div class="mb-3">
                             <label for="description"
-                                   class="block mb-15px mt-30px text-16px  required">Kelengkapan/Kelebihan & Kekurangan Barang Gadaian</label>
+                                   class="block mb-2 text-16px  required">Kelengkapan/Kelebihan & Kekurangan Barang Gadaian</label>
 
                             <textarea name="description" id="description"
                                       class="w-full mb-3 py-2 px-3 shadow border rounded text-14px text-gray-600 transition-all hover:border-gray-400 focus:border-gray-400"
@@ -81,7 +80,7 @@
                         </div>
 
 
-                        <div class="flex gap-[10px] mt-[14px] max-xl:flex-wrap">
+                        <div class="flex gap-[10px] mt-[14px] max-xl:flex-wrap mb-4">
                             @foreach ($product->attribute_family->attribute_groups->groupBy('column') as $column => $groups)
                                 <div
 
@@ -104,7 +103,7 @@
                                                         'meta_keywords','meta_description','description','short_description']) as $attribute)
                                                 <x-admin::form.control-group>
 
-                                                    <label class="block leading-[24px] text-[12px] font-medium">
+                                                    <label class="block leading-[24px] text-[12px] font-medium mb-2">
                                                         {{ $attribute->admin_name . ($attribute->is_required ? '*' : '') }}
                                                     </label>
 
@@ -130,9 +129,9 @@
                         @include('customerproduct::shop.default.edit.categories',['product' => $product])
                         <p class="text-16px text-gray-800  font-semibold mb-5px"> Jumlah Pinjaman (Rp) </p>
 
-                        <div class="mb-2">
+                        <div class="mb-3">
                             <label for="price"
-                                   class="block mb-15px mt-30px text-16px text-gray-800  required">Nominal Pinjaman Yang Anda Ajukan</label>
+                                   class="block mb-2 text-16px text-gray-800  required">Nominal Pinjaman Yang Anda Ajukan</label>
                             <input type="text" name="price" id="product_price"
                                    value="{{ old('price') ?? number_format(floor($product->price), 0, ',', '.') }}"
                                    class="w-full mb-3 py-2 px-3 shadow border rounded text-[14px] text-gray-600 transition-all hover:border-gray-400 focus:border-gray-400"
@@ -140,12 +139,12 @@
                         </div>
 
 
-                        <p class="text-16px font-semibold mb-15px"> Keyword Search Engines</p>
+                        <p class="text-16px font-semibold mb-2"> Keyword Search Engines</p>
                         {{--                        <x-admin::seo/>--}}
 
                         @include('customerproduct::shop.default.component.seo-component')
 
-                        <div class="mb-2">
+                        <div class="mb-3">
                             <p class="text-16px text-gray-800  font-semibold mb-3 ">Status Iklan Barang Gadai </p>
 
                             <!--Default checkbox-->
@@ -184,7 +183,7 @@
                         <div class="flex gap-x-10px items-center">
 
                             <button type="submit"
-                                    class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                                    class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-3 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
                                 @lang('admin::app.catalog.products.edit.save-btn')
                             </button>
                         </div>

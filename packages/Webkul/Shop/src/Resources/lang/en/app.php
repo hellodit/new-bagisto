@@ -425,7 +425,7 @@ return [
             ],
 
             'carousel' => [
-                'view-all' => 'Lihat Semua',
+                'view-all' => 'Semua Iklan',
             ],
         ],
 

@@ -1,4 +1,4 @@
-<div class="flex justify-between items-center w-full py-[11px] px-16 border border-t-0 border-b-[1px] border-l-0 border-r-0">
+<div class="flex justify-between items-center w-full py-[11px] px-16 border border-t-0 border-b-[1px] border-l-0 border-r-0 max-md:hidden">
     {{-- Currency Switcher --}}
     <x-shop::dropdown>
         <!-- Dropdown Toggler -->

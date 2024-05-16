@@ -33,7 +33,7 @@
         {{-- Search Bar Container --}}
         <form
             action="{{ route('shop.search.index') }}"
-            class="flex items-center max-w-[445px]"
+            class="flex items-center max-w-[445px] max-md:hidden"
         >
             <label
                 for="organic-search"

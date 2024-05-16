@@ -39,7 +39,7 @@
             </div>
 
             <a
-                :href="navigationLink"
+                href="/search?mode=grid&sort=price-desc&limit=12"
                 class="secondary-button block w-max mt-[60px] mx-auto py-[11px] px-[43px] rounded-[18px] text-base text-center"
                 v-if="navigationLink"
             >
